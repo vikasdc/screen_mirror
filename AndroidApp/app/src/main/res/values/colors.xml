@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Slate Dark Premium Palette (Option B) -->
+    <color name="slate_bg">#1A1C1E</color>
+    <color name="slate_card">#282A2D</color>
+    <color name="slate_card_border">#3D4044</color>
+    
+    <!-- High-Visibility Accents -->
+    <color name="emerald_accent">#34A853</color>
+    <color name="emerald_ripple">#4CAF50</color>
+    <color name="google_blue">#4285F4</color>
+    
+    <!-- Text Palette -->
+    <color name="white_text">#FFFFFF</color>
+    <color name="dim_text">#94A3B8</color>
+    
+    <!-- M3 Mappings for code/resource compatibility -->
+    <color name="m3_surface">#1A1C1E</color>
+    <color name="m3_on_surface">#FFFFFF</color>
+    <color name="m3_surface_variant">#282A2D</color>
+    <color name="m3_on_surface_variant">#94A3B8</color>
+    <color name="m3_primary">#34A853</color>
+    <color name="m3_error">#EA4335</color>
+</resources>

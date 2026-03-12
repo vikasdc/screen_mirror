@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Solid base -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#050510" />
+        </shape>
+    </item>
+    
+    <!-- Large Purple Glow -->
+    <item>
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="600dp"
+                android:startColor="#2A0054"
+                android:endColor="#00000000"
+                android:centerX="80%"
+                android:centerY="20%" />
+        </shape>
+    </item>
+
+    <!-- Mid Pink Glow -->
+    <item>
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="500dp"
+                android:startColor="#4D0032"
+                android:endColor="#00000000"
+                android:centerX="20%"
+                android:centerY="80%" />
+        </shape>
+    </item>
+
+    <!-- Top Left Blue Hue -->
+    <item>
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="400dp"
+                android:startColor="#102040"
+                android:endColor="#00000000"
+                android:centerX="10%"
+                android:centerY="10%" />
+        </shape>
+    </item>
+</layer-list>

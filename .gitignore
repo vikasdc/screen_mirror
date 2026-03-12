@@ -1,0 +1,41 @@
+# --------------------------------------------------------------------------
+# Aircast Absolute Cleanup: Nuking the 10k untracked files
+# --------------------------------------------------------------------------
+
+# 1. Ignore EVERYTHING at ANY depth
+**
+
+# 2. Allow only these folders and files
+!/.gitignore
+!/README.md
+!/privacy_policy.html
+!/aircast-release-key.jks
+!/play_store_assets/
+!/play_store_assets/*.png
+!/AndroidApp/
+!/AndroidApp/**
+
+# 3. CRITICAL: Re-ignore the specific junk folders INSIDE AndroidApp
+# These are the ones creating the 10,000+ files
+**build/
+**/.gradle/
+**/.idea/
+**/.vscode/
+**/android_sdk/
+**/node_modules/
+**/jdk-*/
+**/gradle/
+**/gradle*
+**/gradlew*
+**/*.bin
+**/*.lock
+**/*.zip
+**/*.log
+**/*.txt
+**/*.class
+**/.DS_Store
+**/android_prefs/
+**/tmp/
+**/build.log
+**/build_output*
+**/emulator_screenshot.png

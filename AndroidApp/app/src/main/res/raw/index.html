@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AirMirror Pro</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle at 80% 20%, #2A0054 0%, #050510 60%),
+                radial-gradient(circle at 20% 80%, #4D0032 0%, #050510 60%);
+            background-color: #050510;
+            color: #fff;
+            font-family: 'Outfit', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 60px;
+            border-radius: 50px;
+            text-align: center;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+            max-width: 500px;
+            animation: float 6s ease-in-out infinite, scaleIn 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            font-size: 48px;
+            margin: 0;
+            background: linear-gradient(45deg, #fff, #A0A0B0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -2px;
+        }
+
+        p {
+            color: #A0A0B0;
+            font-size: 20px;
+            margin: 20px 0 50px;
+            line-height: 1.5;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #AF52DE, #5E5CE6);
+            border: none;
+            padding: 24px 60px;
+            color: white;
+            font-size: 20px;
+            font-weight: 700;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(175, 82, 222, 0.4);
+            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .btn:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 20px 50px rgba(175, 82, 222, 0.6);
+        }
+
+        #video-container {
+            width: 100%;
+            height: 100%;
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #000;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            background: #34C759;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 10px;
+            box-shadow: 0 0 15px #34C759;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="glass-panel" id="ui-panel">
+        <h1>AirMirror Pro</h1>
+        <p id="status-text">Ultra-low latency display link active. Launch the app on your device to begin mirroring.</p>
+        <button class="btn" id="connect-btn">Sync Display</button>
+        <div id="troubleshoot" style="display:none; margin-top:20px; font-size:14px; color:#8E8E93;">
+            Still connecting? Ensure your phone and TV are on the same 5G Wi-Fi. System casting (swiping down on Pixel)
+            will not work with this link; please use the browser.
+        </div>
+    </div>
+
+    <div id="video-container">
+        <video id="v" autoplay playsinline muted></video>
+    </div>
+
+    <script>
+        const ui = document.getElementById('ui-panel');
+        const vc = document.getElementById('video-container');
+        const v = document.getElementById('v');
+        const btn = document.getElementById('connect-btn');
+        const statusText = document.getElementById('status-text');
+        const troubleshoot = document.getElementById('troubleshoot');
+
+        let pc;
+        let ws;
+        let iceBuffer = [];
+        let isRemoteDescSet = false;
+        let connectTimeout;
+
+        const config = {
+            iceServers: [{ urls: 'stun:stun.l.google.com:19302' }],
+            iceCandidatePoolSize: 10
+        };
+
+        btn.onclick = () => {
+            btn.disabled = true;
+            btn.style.opacity = '0.5';
+            statusText.innerText = 'Establishing secure signaling link...';
+            btn.innerHTML = '<span class="status-dot"></span>Linking...';
+
+            connectTimeout = setTimeout(() => {
+                troubleshoot.style.display = 'block';
+                statusText.innerText = 'Signal is weak. Please ensure the phone app says "Broadcasting".';
+            }, 10000);
+
+            setupWebRTC();
+        };
+
+        function cleanup() {
+            if (pc) {
+                pc.close();
+                pc = null;
+            }
+            if (ws) {
+                ws.close();
+                ws = null;
+            }
+            iceBuffer = [];
+            isRemoteDescSet = false;
+            clearTimeout(connectTimeout);
+            troubleshoot.style.display = 'none';
+        }
+
+        function setupWebRTC() {
+            cleanup();
+
+            const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+            ws = new WebSocket(`${protocol}//${window.location.host}/signaling`);
+
+            ws.onopen = () => {
+                console.log('Signaling channel open');
+                statusText.innerText = 'Handshaking with Pixel 8...';
+            };
+
+            ws.onerror = (err) => {
+                console.error('WebSocket Error', err);
+                btn.disabled = false;
+                btn.style.opacity = '1';
+                btn.innerHTML = 'Retry Sync';
+                statusText.innerText = 'Connection Error. Is the phone app running?';
+            };
+
+            ws.onmessage = async (e) => {
+                if (e.data === 'pong') return;
+
+                try {
+                    const m = JSON.parse(e.data);
+
+                    if (m.type === 'offer') {
+                        statusText.innerText = 'Receiving video stream...';
+                        pc = new RTCPeerConnection(config);
+
+                        pc.ontrack = (evt) => {
+                            clearTimeout(connectTimeout);
+                            console.log('Track received');
+                            if (v.srcObject !== evt.streams[0]) {
+                                v.srcObject = evt.streams[0];
+                                ui.style.display = 'none';
+                                vc.style.display = 'block';
+                                v.play().catch(console.error);
+                            }
+                        };
+
+                        pc.onicecandidate = (evt) => {
+                            if (evt.candidate && ws.readyState === WebSocket.OPEN) {
+                                ws.send(JSON.stringify({ type: 'candidate', candidate: evt.candidate }));
+                            }
+                        };
+
+                        pc.oniceconnectionstatechange = () => {
+                            console.log('ICE state:', pc.iceConnectionState);
+                            if (pc.iceConnectionState === 'failed' || pc.iceConnectionState === 'disconnected') {
+                                // Potentially handle auto-reconnect here
+                            }
+                        };
+
+                        await pc.setRemoteDescription(new RTCSessionDescription(m));
+                        isRemoteDescSet = true;
+
+                        // Process buffered candidates
+                        while (iceBuffer.length > 0) {
+                            const cand = iceBuffer.shift();
+                            await pc.addIceCandidate(new RTCIceCandidate(cand)).catch(console.error);
+                        }
+
+                        const a = await pc.createAnswer();
+                        await pc.setLocalDescription(a);
+                        ws.send(JSON.stringify({ type: 'answer', sdp: a.sdp }));
+
+                    } else if (m.type === 'candidate') {
+                        if (isRemoteDescSet && pc) {
+                            await pc.addIceCandidate(new RTCIceCandidate(m.candidate)).catch(console.error);
+                        } else {
+                            iceBuffer.push(m.candidate);
+                        }
+                    }
+                } catch (err) {
+                    console.error('Messaging Error', err);
+                }
+            };
+
+            ws.onclose = () => {
+                console.log('Signaling channel closed');
+                // If we were viewing video, maybe show the UI again
+                if (vc.style.display === 'block') {
+                    ui.style.display = 'block';
+                    vc.style.display = 'none';
+                    btn.disabled = false;
+                    btn.style.opacity = '1';
+                    btn.innerHTML = 'Sync Display';
+                    statusText.innerText = 'Mirroring session ended.';
+                }
+            };
+
+            // Keepalive
+            const pingInterval = setInterval(() => {
+                if (ws && ws.readyState === WebSocket.OPEN) {
+                    ws.send('ping');
+                } else {
+                    clearInterval(pingInterval);
+                }
+            }, 5000);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/emerald_accent</item>
+        <item name="colorSurface">@color/slate_bg</item>
+        <item name="colorSecondary">@color/google_blue</item>
+        <item name="android:statusBarColor">@color/slate_bg</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:navigationBarColor">@color/slate_bg</item>
+    </style>
+</resources>
