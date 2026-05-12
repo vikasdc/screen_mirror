@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap');
+
+:root {
+  --green: #34A853; --blue: #4285F4;
+  --ink: #08231E; --paper: #FFFFFF;
+  --yellow: #FFE45C; --yellow-hot: #FFD60A; --red-dot: #E63946;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden;
+  font-family: 'Manrope', sans-serif; background: #0F1A2E;
+  -webkit-font-smoothing: antialiased; }
+.stage { width: 1080px; height: 1920px; position: relative; overflow: hidden; background: #0F1A2E; }
+.scene { position: absolute; inset: 0; opacity: 0;
+  transition: opacity 220ms ease; pointer-events: none; }
+.scene.active { opacity: 1; pointer-events: auto; }
+
+.grad-g {
+  background:
+    radial-gradient(ellipse at 30% 15%, rgba(91,192,118,0.65) 0%, transparent 55%),
+    linear-gradient(160deg, #2BC275 0%, #19B5A5 50%, #2B5FB8 100%);
+}
+.grad-b {
+  background:
+    radial-gradient(ellipse at 70% 20%, rgba(116,167,251,0.60) 0%, transparent 55%),
+    linear-gradient(160deg, #1FA08A 0%, #2B5FB8 60%, #0B3D91 100%);
+}
+.grad-c {
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(91,192,118,0.45) 0%, transparent 60%),
+    linear-gradient(135deg, #2BC275 0%, #19B5A5 50%, #2B5FB8 100%);
+}
+
+.aircast-mark { position: relative; flex-shrink: 0; }
+.aircast-mark .gr { position: absolute; background: var(--green); border-radius: 12%; }
+.aircast-mark .bl { position: absolute; background: var(--blue); border-radius: 12%; }
+.aircast-mark.lg { width: 240px; height: 168px; }
+.aircast-mark.lg .gr { left: 0; top: 0; width: 144px; height: 116px; }
+.aircast-mark.lg .bl { right: 0; top: 28px; width: 144px; height: 116px; }
+
+.display {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800; letter-spacing: -0.03em; line-height: 1.0;
+  color: #FFFFFF;
+  text-shadow: 0 6px 28px rgba(0,0,0,0.4);
+}
+.tag {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 12px 24px;
+  background: var(--yellow); color: var(--ink);
+  border-radius: 100px; border: 4px solid var(--ink);
+  font: 800 28px 'Manrope', sans-serif;
+  letter-spacing: -0.01em;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.3);
+}
+.tag .red-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--red-dot);
+  box-shadow: 0 0 10px var(--red-dot); animation: livedot 1.4s infinite; }
+@keyframes livedot { 0%,100% {opacity:1;} 50% {opacity: 0.4;} }
+
+/* ============== SCENE 1: particles → logo ============== */
+.scene-1 { background: #0F1A2E; }
+.particle {
+  position: absolute; width: 10px; height: 10px;
+  border-radius: 50%; opacity: 0;
+}
+.particle.green { background: var(--green); box-shadow: 0 0 14px var(--green); }
+.particle.blue  { background: var(--blue);  box-shadow: 0 0 14px var(--blue); }
+.scene-1.active .particle { animation: particle-converge 1.8s ease-out forwards; }
+@keyframes particle-converge {
+  0% { opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translate(var(--dx, 0), var(--dy, 0)) scale(0); opacity: 0; }
+}
+.scene-1-logo { position: absolute; top: 760px; left: 50%; transform: translateX(-50%);
+  opacity: 0; z-index: 5; }
+.scene-1.active .scene-1-logo {
+  animation: logo-appear 700ms 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes logo-appear {
+  0% { opacity: 0; transform: translateX(-50%) scale(0.85); }
+  100% { opacity: 1; transform: translateX(-50%) scale(1); }
+}
+.scene-1-wordmark {
+  position: absolute; top: 1020px; left: 0; right: 0;
+  text-align: center;
+  font: 800 120px 'Manrope', sans-serif; letter-spacing: -0.04em;
+  color: #FFFFFF; opacity: 0;
+}
+.scene-1.active .scene-1-wordmark { animation: typewriter 600ms 2.2s ease forwards; }
+@keyframes typewriter {
+  0% { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ============== SCENE 2: hero — phone+TV showing SAME sunset_beach ============== */
+.tv-mock {
+  position: absolute;
+  background: #0A0A0A; border: 12px solid #14141A;
+  border-radius: 14px;
+  box-shadow: 0 80px 140px rgba(0,0,0,0.55);
+  overflow: hidden;
+}
+.tv-mock .scr { position: absolute; inset: 0; background: #000; }
+.tv-mock .scr img { width: 100%; height: 100%; object-fit: cover; }
+.tv-mock .timer { position: absolute; top: 14px; right: 14px;
+  background: rgba(0,0,0,0.6); color: #fff;
+  padding: 6px 14px; border-radius: 100px;
+  font: 700 18px 'Manrope', sans-serif; display: inline-flex; gap: 6px; align-items: center; }
+.tv-mock .timer .red { color: var(--red-dot); }
+
+.phone-mock {
+  position: absolute;
+  width: 320px; height: 680px; border-radius: 44px;
+  background: #0A0A0A; border: 5px solid #1A1A1A;
+  box-shadow: 0 60px 100px rgba(0,0,0,0.55);
+  overflow: hidden;
+}
+.phone-mock .scr { position: absolute; inset: 12px; border-radius: 36px;
+  overflow: hidden; background: #000; }
+.phone-mock .scr img { width: 100%; height: 100%; object-fit: cover; }
+.phone-mock .notch { position: absolute; top: 18px; left: 50%; transform: translateX(-50%);
+  width: 100px; height: 22px; background: #000; border-radius: 14px; z-index: 2; }
+.phone-mock .timer { position: absolute; top: 32px; right: 18px;
+  background: rgba(0,0,0,0.6); color: #fff;
+  padding: 4px 10px; border-radius: 100px;
+  font: 700 14px 'Manrope', sans-serif; display: inline-flex; gap: 4px; align-items: center;
+  z-index: 3; }
+.phone-mock .timer .red { color: var(--red-dot); }
+
+.scene-2 {
+  background: radial-gradient(ellipse at 30% 15%, rgba(91,192,118,0.65) 0%, transparent 55%),
+              linear-gradient(160deg, #2BC275 0%, #19B5A5 50%, #2B5FB8 100%);
+}
+.scene-2 .tv-mock { top: 460px; left: 80px; width: 920px; height: 540px; }
+.scene-2 .phone-mock { top: 970px; right: 60px; }
+
+/* tap ripple over phone */
+.tap-ring {
+  position: absolute;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  border: 5px solid var(--yellow-hot);
+  opacity: 0;
+  z-index: 30;
+  box-shadow: 0 0 50px rgba(255,214,10,0.6), inset 0 0 30px rgba(255,214,10,0.3);
+}
+.scene-2.active .tap-ring {
+  animation: tap-ring-anim 1.6s 2.0s ease-out forwards;
+}
+@keyframes tap-ring-anim {
+  0% { opacity: 0; transform: scale(0.3); }
+  25% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(2.5); }
+}
+
+/* ============== SCENE 3: cast picker ============== */
+.scene-3 {
+  background: radial-gradient(ellipse at 70% 20%, rgba(116,167,251,0.60) 0%, transparent 55%),
+              linear-gradient(160deg, #1FA08A 0%, #2B5FB8 60%, #0B3D91 100%);
+}
+.scene-3 .phone-mock {
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 420px; height: 880px; border-radius: 50px;
+}
+.cast-mock {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, #0b1020 0%, #04060f 100%);
+  color: #fff; padding: 70px 22px 22px;
+}
+.cast-mock h3 { font: 800 32px 'Manrope', sans-serif; letter-spacing: -0.02em; }
+.cast-mock .sub { font: 600 18px 'Manrope', sans-serif; color: rgba(255,255,255,0.6); margin-top: 4px; margin-bottom: 22px; }
+.cast-mock .row {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 12px; border-radius: 14px; border: 1px solid transparent; margin-bottom: 4px;
+  opacity: 0;
+}
+.cast-mock .row.selected { background: rgba(52,168,83,0.18); border-color: rgba(52,168,83,0.6); }
+.cast-mock .row .logobox { width: 46px; height: 46px; border-radius: 10px;
+  background: #fff; padding: 6px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.cast-mock .row .logobox img { max-width: 100%; max-height: 100%; }
+.cast-mock .row .nm { font: 700 18px 'Manrope', sans-serif; }
+.cast-mock .row .sm { font: 500 13px 'Manrope', sans-serif; color: rgba(255,255,255,0.5); margin-top: 2px; }
+.cast-mock .row .ck { margin-left: auto; color: var(--green); font: 900 22px sans-serif; opacity: 0; }
+.cast-mock .row.selected .ck { opacity: 1; }
+
+.scene-3.active .row { animation: row-in 500ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+.scene-3.active .row:nth-child(3) { animation-delay: 0.4s; }
+.scene-3.active .row:nth-child(4) { animation-delay: 0.46s; }
+.scene-3.active .row:nth-child(5) { animation-delay: 0.52s; }
+.scene-3.active .row:nth-child(6) { animation-delay: 0.58s; }
+.scene-3.active .row:nth-child(7) { animation-delay: 0.64s; }
+@keyframes row-in {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ============== SCENE 4: Connected TV ============== */
+.scene-4 {
+  background: linear-gradient(160deg, #2BC275 0%, #19B5A5 50%, #2B5FB8 100%);
+}
+.scene-4 .tv-mock {
+  top: 50%; left: 50%; transform: translate(-50%, -52%);
+  width: 880px; height: 540px;
+}
+.connected-screen {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, #0F1A2E 0%, #1B2E5A 100%);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  color: #fff;
+}
+.check-ring {
+  width: 180px; height: 180px; border-radius: 50%;
+  background: var(--green);
+  display: flex; align-items: center; justify-content: center;
+  font: 900 120px 'Manrope', sans-serif; color: #fff;
+  box-shadow: 0 0 80px rgba(52,168,83,0.6);
+  margin-bottom: 24px; opacity: 0; transform: scale(0.5);
+}
+.scene-4.active .check-ring { animation: pop-in 600ms 0.3s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+.connected-text { font: 800 44px 'Manrope', sans-serif; opacity: 0; }
+.scene-4.active .connected-text { animation: pop-in 500ms 0.9s ease forwards; }
+@keyframes pop-in {
+  from { opacity: 0; transform: scale(0.7); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ============== SCENE 5: mirroring live — phone + TV with same content ============== */
+.scene-5 {
+  background: linear-gradient(160deg, #2BC275 0%, #19B5A5 50%, #2B5FB8 100%);
+}
+.scene-5 .tv-mock { top: 380px; left: 50%; transform: translateX(-50%);
+  width: 800px; height: 470px; }
+.scene-5 .phone-mock { bottom: 100px; left: 50%; transform: translateX(-50%);
+  width: 380px; height: 800px; border-radius: 50px; }
+.beam {
+  position: absolute;
+  height: 6px;
+  background: linear-gradient(90deg, transparent 0%, var(--yellow-hot) 30%, var(--yellow-hot) 70%, transparent 100%);
+  border-radius: 4px;
+  filter: blur(1px) drop-shadow(0 0 16px var(--yellow-hot));
+}
+.scene-5 .beam { top: 880px; left: 50%; transform: translateX(-50%); width: 380px; }
+
+/* ============== SCENE 6: multi-language ============== */
+.scene-6 {
+  background: linear-gradient(135deg, #4FD489 0%, #2EA0E8 100%);
+}
+.lang-headline {
+  position: absolute; top: 280px; left: 60px; right: 60px;
+  font: 800 120px 'Manrope', sans-serif;
+  letter-spacing: -0.035em; line-height: 1.02;
+  color: var(--ink); text-shadow: none;
+  text-align: center; opacity: 0;
+}
+.lang-headline.show { opacity: 1; transition: opacity 250ms ease; }
+.lang-pill {
+  display: inline-block;
+  background: #FFFFFF; color: var(--ink);
+  padding: 14px 28px; border-radius: 100px;
+  font: 800 36px 'Manrope', sans-serif; letter-spacing: -0.02em;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+  margin: 6px;
+}
+.lang-pill.y { background: var(--yellow); color: var(--ink); }
+.lang-pill.b { background: var(--blue); color: #fff; }
+.lang-pill.g { background: var(--green); color: #fff; }
+
+/* ============== SCENE 7: end card ============== */
+.scene-7 {
+  background: linear-gradient(160deg, #1FA08A 0%, #2B5FB8 60%, #0B3D91 100%);
+}
+.scene-7 .center-stack {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 32px;
+}
+.scene-7 .aircast-mark { opacity: 0; transform: scale(0.85); }
+.scene-7.active .aircast-mark { animation: ec-up 600ms 0.2s ease forwards; }
+.scene-7 .aircast-mark .gr, .scene-7 .aircast-mark .bl { opacity: 0; }
+.scene-7.active .aircast-mark .gr { animation: ec-up 500ms 0.4s ease forwards; }
+.scene-7.active .aircast-mark .bl { animation: ec-up 500ms 0.6s ease forwards; }
+.scene-7 .wordmark { font: 800 110px 'Manrope', sans-serif; color: #fff; letter-spacing: -0.04em;
+  opacity: 0; text-shadow: 0 8px 32px rgba(0,0,0,0.4); }
+.scene-7.active .wordmark { animation: ec-up 500ms 0.9s ease forwards; }
+.scene-7 .tag-line { font: 600 36px 'Manrope', sans-serif; color: #FFFFFF; opacity: 0; }
+.scene-7.active .tag-line { animation: ec-up 500ms 1.3s ease forwards; }
+.scene-7 .cta {
+  display: inline-flex; align-items: center; gap: 16px;
+  padding: 26px 50px; background: var(--yellow); color: var(--ink);
+  border-radius: 16px; border: 5px solid var(--ink);
+  font: 800 32px 'Manrope', sans-serif;
+  letter-spacing: -0.02em; box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+  opacity: 0; transform: translateY(12px);
+}
+.scene-7.active .cta { animation: ec-up 500ms 1.7s ease forwards; }
+@keyframes ec-up { from { opacity: 0; transform: translateY(12px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
+</style>
+</head>
+<body>
+<div class="stage">
+
+  <div class="scene scene-1" id="s1">
+    <div id="particle-container" style="position: absolute; inset: 0;"></div>
+    <div class="scene-1-logo aircast-mark lg">
+      <div class="gr"></div><div class="bl"></div>
+    </div>
+    <div class="scene-1-wordmark">AIRCAST</div>
+  </div>
+
+  <!-- SCENE 2: TV + Phone showing SAME sunset beach -->
+  <div class="scene scene-2" id="s2">
+    <h1 class="display"
+        style="position:absolute; top: 120px; left: 60px; right: 60px;
+               font-size: 110px; text-align: center;">
+      PHONE TO TV<br>
+      <span style="color: var(--yellow-hot);">IN ONE TAP</span>
+    </h1>
+    <div class="tv-mock">
+      <div class="scr"><img src="../photos/sunset_beach.jpg" alt=""></div>
+      <div class="timer"><span class="red">●</span> LIVE 1:22:25</div>
+    </div>
+    <div class="phone-mock">
+      <div class="notch"></div>
+      <div class="scr"><img src="../photos/sunset_beach.jpg" alt=""></div>
+      <div class="timer"><span class="red">●</span> LIVE</div>
+    </div>
+    <!-- tap ripple over phone -->
+    <div class="tap-ring" style="top: 1240px; right: 130px;"></div>
+    <div style="position: absolute; bottom: 80px; left: 60px;">
+      <span class="tag"><span class="red-dot"></span>Real-time!</span>
+    </div>
+  </div>
+
+  <!-- SCENE 3: cast picker -->
+  <div class="scene scene-3" id="s3">
+    <h1 class="display" style="position: absolute; top: 200px; left: 60px; right: 60px;
+                                font-size: 96px; text-align: center;">
+      PICK YOUR <span style="color: var(--yellow);">TV</span>
+    </h1>
+    <div class="phone-mock">
+      <div class="notch"></div>
+      <div class="scr">
+        <div class="cast-mock">
+          <h3>Cast to TV</h3>
+          <div class="sub">5 devices found</div>
+          <div class="row selected">
+            <div class="logobox"><img src="../brand_logos/samsung.svg" alt=""></div>
+            <div><div class="nm">Samsung Smart TV</div><div class="sm">LIVING ROOM · 4K</div></div>
+            <div class="ck">✓</div>
+          </div>
+          <div class="row"><div class="logobox"><img src="../brand_logos/chromecast.svg"></div>
+            <div><div class="nm">Google Chromecast</div><div class="sm">KITCHEN · 4K</div></div></div>
+          <div class="row"><div class="logobox"><img src="../brand_logos/firetv.svg"></div>
+            <div><div class="nm">Amazon Fire TV</div><div class="sm">BEDROOM · 1080P</div></div></div>
+          <div class="row"><div class="logobox"><img src="../brand_logos/roku.svg"></div>
+            <div><div class="nm">Roku Express</div><div class="sm">OFFICE · 1080P</div></div></div>
+          <div class="row"><div class="logobox"><img src="../brand_logos/lg.svg"></div>
+            <div><div class="nm">LG OLED Bedroom</div><div class="sm">WEBOS · 4K HDR</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 4: Connected ✓ on TV -->
+  <div class="scene scene-4" id="s4">
+    <h1 class="display" style="position: absolute; top: 180px; left: 60px; right: 60px;
+                                font-size: 96px; text-align: center;">
+      <span style="color: var(--yellow);">CONNECTED</span><br>IN 2 SECONDS
+    </h1>
+    <div class="tv-mock">
+      <div class="scr">
+        <div class="connected-screen">
+          <div class="check-ring">✓</div>
+          <div class="connected-text">Samsung Living Room</div>
+        </div>
+      </div>
+    </div>
+    <div style="position: absolute; bottom: 200px; left: 0; right: 0; text-align: center;">
+      <span class="tag"><span class="red-dot"></span>Casting now</span>
+    </div>
+  </div>
+
+  <!-- SCENE 5: mirror live - phone+TV both showing sunset_beach -->
+  <div class="scene scene-5" id="s5">
+    <h1 class="display" style="position: absolute; top: 140px; left: 60px; right: 60px;
+                                font-size: 100px; text-align: center;">
+      MIRRORING <span style="color: var(--yellow);">LIVE</span>
+    </h1>
+    <div class="tv-mock">
+      <div class="scr"><img src="../photos/sunset_beach.jpg" alt=""></div>
+      <div class="timer"><span class="red">●</span> LIVE</div>
+    </div>
+    <div class="phone-mock">
+      <div class="notch"></div>
+      <div class="scr"><img src="../photos/sunset_beach.jpg" alt=""></div>
+      <div class="timer"><span class="red">●</span> LIVE</div>
+    </div>
+    <div class="beam"></div>
+  </div>
+
+  <!-- SCENE 6: multi-language -->
+  <div class="scene scene-6" id="s6">
+    <h1 class="lang-headline" id="lh1">MIRROR YOUR PHONE</h1>
+    <h1 class="lang-headline" id="lh2">REFLEJA TU TELÉFONO</h1>
+    <h1 class="lang-headline" id="lh3" style="font-size: 96px;">अपना फ़ोन मिरर करें</h1>
+    <h1 class="lang-headline" id="lh4" style="font-size: 96px;">スマホをミラー</h1>
+    <h1 class="lang-headline" id="lh5" style="font-size: 90px;">انعكس هاتفك</h1>
+    <h1 class="lang-headline" id="lh6" style="font-size: 110px;">投屏到电视</h1>
+
+    <div style="position: absolute; top: 700px; left: 30px; right: 30px;
+         text-align: center;">
+      <span class="lang-pill">English</span>
+      <span class="lang-pill y">Español</span>
+      <span class="lang-pill b">हिन्दी</span>
+      <span class="lang-pill">日本語</span>
+      <span class="lang-pill y">العربية</span>
+      <span class="lang-pill g">中文</span>
+      <span class="lang-pill b">한국어</span>
+      <span class="lang-pill">Português</span>
+      <span class="lang-pill g">Français</span>
+      <span class="lang-pill">Deutsch</span>
+      <span class="lang-pill y">Italiano</span>
+      <span class="lang-pill b">Türkçe</span>
+      <span class="lang-pill">Русский</span>
+      <span class="lang-pill g">Tiếng Việt</span>
+      <span class="lang-pill">Bahasa</span>
+    </div>
+
+    <div style="position: absolute; top: 100px; left: 0; right: 0; text-align: center;">
+      <span class="tag">🌍 15 LANGUAGES</span>
+    </div>
+  </div>
+
+  <!-- SCENE 7: end card -->
+  <div class="scene scene-7" id="s7">
+    <div class="center-stack">
+      <div class="aircast-mark lg">
+        <div class="gr"></div><div class="bl"></div>
+      </div>
+      <div class="wordmark">AIRCAST</div>
+      <div class="tag-line">Cast in one tap · Free with ads</div>
+      <div class="cta">▶ GET ON GOOGLE PLAY</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function() {
+  const c = document.getElementById('particle-container');
+  const CX = 540, CY = 840;
+  for (let i = 0; i < 80; i++) {
+    const isGreen = Math.random() < 0.5;
+    const p = document.createElement('div');
+    p.className = 'particle ' + (isGreen ? 'green' : 'blue');
+    const edge = Math.floor(Math.random() * 4);
+    let sx, sy;
+    if (edge === 0) { sx = Math.random()*1080; sy = -50; }
+    else if (edge === 1) { sx = 1130; sy = Math.random()*1920; }
+    else if (edge === 2) { sx = Math.random()*1080; sy = 1970; }
+    else { sx = -50; sy = Math.random()*1920; }
+    p.style.left = sx + 'px'; p.style.top = sy + 'px';
+    p.style.setProperty('--dx', (CX - sx) + 'px');
+    p.style.setProperty('--dy', (CY - sy) + 'px');
+    p.style.animationDelay = (Math.random() * 0.3) + 's';
+    c.appendChild(p);
+  }
+})();
+
+const scenes = ['s1','s2','s3','s4','s5','s6','s7'];
+function show(id) {
+  scenes.forEach(s => { if (s !== id) document.getElementById(s).classList.remove('active'); });
+  setTimeout(() => document.getElementById(id).classList.add('active'), 80);
+}
+function at(ms, fn) { setTimeout(fn, ms); }
+
+function cycleLangHeadlines() {
+  const heads = ['lh1','lh2','lh3','lh4','lh5','lh6'];
+  let i = 0;
+  document.getElementById(heads[0]).classList.add('show');
+  const iv = setInterval(() => {
+    document.getElementById(heads[i]).classList.remove('show');
+    i = (i + 1) % heads.length;
+    document.getElementById(heads[i]).classList.add('show');
+  }, 720);
+  setTimeout(() => clearInterval(iv), 5000);
+}
+
+show('s1');
+at(3000, () => show('s2'));
+at(7500, () => show('s3'));
+at(12000, () => show('s4'));
+at(15500, () => show('s5'));
+at(20000, () => { show('s6'); cycleLangHeadlines(); });
+at(25500, () => show('s7'));
+</script>
+
+</body></html>
