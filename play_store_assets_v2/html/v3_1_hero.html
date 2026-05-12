@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="styles_v3.css">
+<style>
+  .cine {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(180deg, rgba(15,26,46,0.0) 50%, rgba(15,26,46,0.55) 100%),
+      url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=85&auto=format');
+    background-size: cover; background-position: center;
+  }
+  .cine .live { position:absolute; top:14px; right:14px;
+    background: rgba(0,0,0,0.55); color:#fff;
+    padding: 6px 12px; border-radius: 4px;
+    font: 700 16px 'JetBrains Mono', monospace; letter-spacing: 0.08em;
+  }
+  .cine .res { position:absolute; bottom:14px; left:14px;
+    background: rgba(255,255,255,0.18); color:#fff;
+    padding: 5px 12px; border-radius: 4px;
+    font: 700 14px 'JetBrains Mono', monospace; letter-spacing: 0.08em;
+  }
+</style>
+</head>
+<body>
+<div class="canvas surf-paper grid-bg">
+
+  <!-- top bar: real Aircast logo on left, label tag on right -->
+  <div style="position:absolute; top: 80px; left: 80px; right: 80px;
+       display: flex; justify-content: space-between; align-items: center;">
+    <div class="air-logo size-md">
+      <div class="mark">
+        <div class="rect-green"></div>
+        <div class="rect-blue"></div>
+      </div>
+      <span class="name" style="font-size: 36px;">AIRCAST</span>
+    </div>
+    <div class="label" style="color: var(--air-ink); opacity: 0.55;">01 / OVERVIEW</div>
+  </div>
+
+  <!-- mono caps headline -->
+  <h1 class="mono h-160" style="position: absolute; top: 240px; left: 80px; right: 80px;">
+    MIRROR<br>
+    YOUR<br>
+    PHONE<br>
+    <span style="color: var(--air-green);">TO ANY</span><br>
+    <span style="color: var(--air-blue);">TV.</span>
+  </h1>
+
+  <!-- erode italic tagline -->
+  <p class="serif-italic t-44" style="position: absolute; top: 1180px; left: 80px; right: 80px;
+       color: var(--air-ink); opacity: 0.78;">
+    Open the app, tap the button.<br>
+    Your phone is on the big screen.
+  </p>
+
+  <!-- device pair: phone overlapping TV (kept smaller, lower-right) -->
+  <div class="tv" style="bottom: 220px; right: 320px; width: 540px; height: 326px;">
+    <div class="scr"><div class="cine"><div class="live">● LIVE  1:22:25</div><div class="res">1080P · 60FPS</div></div></div>
+  </div>
+  <div class="phone" style="bottom: 80px; right: 100px; width: 280px; height: 600px; border-radius: 36px;">
+    <div class="notch" style="width: 80px; height: 18px;"></div>
+    <div class="scr"><div class="cine"></div></div>
+  </div>
+
+  <!-- mono spec strip bottom -->
+  <div style="position: absolute; bottom: 110px; left: 80px;
+       display: flex; gap: 20px;">
+    <span class="tag" style="color: var(--air-ink);"><span class="dot"></span>LIVE MIRRORING</span>
+    <span class="tag" style="color: var(--air-ink);"><span class="dot blue"></span>1080P · 60FPS</span>
+  </div>
+
+</div>
+</body></html>

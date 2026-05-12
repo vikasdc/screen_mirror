@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=erode@300i,400i&display=swap');
+
+:root {
+  --air-green: #34A853;
+  --air-blue:  #4285F4;
+  --air-ink:   #0F1A2E;
+  --air-paper: #F5F1E8;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0F1A2E;
+  font-family: 'JetBrains Mono', monospace;
+  -webkit-font-smoothing: antialiased; }
+
+.stage { width: 1080px; height: 1920px; position: relative; overflow: hidden;
+  background: #0F1A2E; }
+
+.scene { position: absolute; inset: 0; opacity: 0;
+  transition: opacity 250ms ease;
+  pointer-events: none; }
+.scene.active { opacity: 1; pointer-events: auto; }
+
+/* ============== shared elements ============== */
+
+.aircast-logo {
+  position: relative;
+  width: 240px; height: 160px;
+}
+.aircast-logo .green-rect {
+  position: absolute; left: 0; top: 0;
+  width: 140px; height: 112px;
+  background: var(--air-green);
+  border-radius: 16px;
+}
+.aircast-logo .blue-rect {
+  position: absolute; right: 0; top: 28px;
+  width: 140px; height: 112px;
+  background: var(--air-blue);
+  border-radius: 16px;
+}
+
+.caption {
+  position: absolute;
+  top: 240px; left: 0; right: 0;
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  font-size: 72px;
+  letter-spacing: -0.02em; line-height: 0.96;
+  color: #FAFAF7;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 350ms ease;
+  z-index: 50;
+}
+.caption.show { opacity: 1; }
+.caption .it { font-family: 'Erode', serif; font-weight: 400; font-style: italic;
+  text-transform: none; font-size: 0.55em; color: rgba(250,250,247,0.85);
+  display: block; margin-top: 12px; letter-spacing: -0.01em; }
+
+.tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 18px;
+  border: 2px solid currentColor;
+  border-radius: 4px;
+  font: 700 22px 'JetBrains Mono', monospace;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.tag .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--air-green); }
+
+/* ============== SCENE 1: logo from particles ============== */
+
+.scene-1 { background: #0F1A2E; }
+.particle {
+  position: absolute; width: 8px; height: 8px;
+  border-radius: 50%;
+  opacity: 0;
+}
+.particle.green { background: var(--air-green); box-shadow: 0 0 12px var(--air-green); }
+.particle.blue  { background: var(--air-blue);  box-shadow: 0 0 12px var(--air-blue);  }
+
+.scene-1.active .particle {
+  animation: particle-converge 1.8s ease-out forwards;
+}
+@keyframes particle-converge {
+  0%   { opacity: 0; }
+  20%  { opacity: 1; }
+  100% { transform: translate(var(--dx, 0), var(--dy, 0)) scale(0); opacity: 0; }
+}
+
+.scene-1-logo {
+  position: absolute;
+  top: 760px; left: 50%; transform: translateX(-50%);
+  opacity: 0;
+  z-index: 5;
+}
+.scene-1.active .scene-1-logo {
+  animation: logo-appear 700ms 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes logo-appear {
+  0%   { opacity: 0; transform: translateX(-50%) scale(0.85); }
+  100% { opacity: 1; transform: translateX(-50%) scale(1); }
+}
+
+.scene-1-wordmark {
+  position: absolute; top: 1000px; left: 0; right: 0;
+  text-align: center;
+  font: 800 96px 'JetBrains Mono', monospace;
+  letter-spacing: -0.04em; color: #FAFAF7;
+  opacity: 0;
+}
+.scene-1.active .scene-1-wordmark {
+  animation: typewriter 600ms 2.2s ease forwards;
+}
+@keyframes typewriter {
+  0% { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ============== SCENE 2: phone arrives on environment ============== */
+
+.scene-2 { background:
+  linear-gradient(180deg, rgba(15,26,46,0.5), rgba(15,26,46,0.85)),
+  url('https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=1400&q=85&auto=format');
+  background-size: cover; background-position: center;
+}
+
+.phone-mock {
+  width: 440px; height: 920px;
+  border-radius: 50px;
+  background: #0A0A0A;
+  border: 5px solid #1A1A1A;
+  box-shadow: 0 60px 100px rgba(0,0,0,0.7), 0 24px 40px rgba(0,0,0,0.5);
+  overflow: hidden;
+  position: absolute;
+}
+.phone-mock .scr {
+  position: absolute; inset: 13px; border-radius: 40px;
+  overflow: hidden; background: #000;
+}
+.phone-mock .scr img {
+  width: 100%; height: 100%; object-fit: cover; object-position: top;
+}
+.phone-mock .notch {
+  position: absolute; top: 22px; left: 50%; transform: translateX(-50%);
+  width: 110px; height: 24px; background: #000; border-radius: 18px; z-index: 2;
+}
+
+.scene-2 .phone-mock {
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) translateY(0px);
+}
+.scene-2.active .phone-mock {
+  animation: phone-arrive 1.0s cubic-bezier(0.16, 1.05, 0.3, 1) forwards;
+}
+@keyframes phone-arrive {
+  0%   { opacity: 0; transform: translate(-50%, -50%) translateY(120px) scale(0.92); }
+  60%  { opacity: 1; transform: translate(-50%, -50%) translateY(-12px) scale(1.02); }
+  100% { opacity: 1; transform: translate(-50%, -50%) translateY(0) scale(1); }
+}
+
+/* ============== SCENE 3: tilted phone, app opens ============== */
+
+.scene-3 { background:
+  linear-gradient(180deg, rgba(15,26,46,0.55), rgba(15,26,46,0.85)),
+  url('https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=1400&q=85&auto=format');
+  background-size: cover; background-position: center;
+}
+.scene-3 .tilted {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  perspective: 1600px;
+}
+.scene-3 .tilted .phone-mock {
+  position: relative;
+  top: auto; left: auto;
+  transform: rotateY(8deg) rotateX(-2deg);
+  transition: transform 800ms ease;
+}
+/* finger / thumb sprite over the Search button position */
+.thumb-sprite {
+  position: absolute;
+  width: 90px; height: 90px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ffd9b3 0%, #d4a574 60%, #8a5a3a 100%);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.6),
+              0 0 60px rgba(255, 215, 170, 0.4);
+  opacity: 0;
+  z-index: 30;
+}
+.scene-3.active .thumb-sprite {
+  animation: thumb-tap 1.4s 2.5s ease forwards;
+}
+@keyframes thumb-tap {
+  0%   { opacity: 0; transform: translate(0, 50px); }
+  30%  { opacity: 1; transform: translate(0, 0); }
+  60%  { opacity: 1; transform: translate(0, -8px); }
+  80%  { opacity: 1; transform: translate(0, 0); }
+  100% { opacity: 0; transform: translate(0, 30px); }
+}
+.tap-ripple {
+  position: absolute;
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  border: 3px solid var(--air-green);
+  opacity: 0;
+  z-index: 25;
+}
+.scene-3.active .tap-ripple {
+  animation: ripple 700ms 3.0s ease-out forwards;
+}
+@keyframes ripple {
+  0%   { opacity: 0; transform: scale(0.3); }
+  30%  { opacity: 1; }
+  100% { opacity: 0; transform: scale(2.2); }
+}
+
+/* ============== SCENE 4: cast picker, staggered rows ============== */
+
+.scene-4 { background:
+  linear-gradient(180deg, rgba(15,26,46,0.65), rgba(15,26,46,0.92)),
+  url('https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=1400&q=85&auto=format');
+  background-size: cover; background-position: center;
+}
+.cast-mock {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, #0b1020 0%, #04060f 100%);
+  color: #fff;
+  padding: 70px 22px 22px;
+  display: flex; flex-direction: column;
+}
+.cast-mock .stat-bar {
+  position: absolute; top: 18px; left: 24px; right: 24px;
+  display: flex; justify-content: space-between;
+  font: 600 14px 'JetBrains Mono', monospace; color: rgba(255,255,255,0.7);
+  letter-spacing: 0.08em;
+}
+.cast-mock h3 { font: 800 28px 'JetBrains Mono', monospace; letter-spacing: -0.02em; margin-bottom: 4px; }
+.cast-mock .sub { font: 300 italic 16px Erode, serif; color: rgba(255,255,255,0.55); margin-bottom: 18px; }
+.cast-mock .cast-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 10px; border-radius: 10px;
+  border: 1px solid transparent;
+  margin-bottom: 1px;
+  opacity: 0;
+}
+.cast-mock .cast-row.selected {
+  background: rgba(52,168,83,0.15);
+  border-color: rgba(52,168,83,0.5);
+}
+.cast-mock .cast-row .lg { width: 36px; height: 36px; border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font: 900 10px 'JetBrains Mono', monospace; flex-shrink: 0; }
+.cast-mock .cast-row .lg.samsung { background: #1428A0; color: #fff; }
+.cast-mock .cast-row .lg.lg2     { background: #fff; color: #A50034; }
+.cast-mock .cast-row .lg.fire    { background: #FF9900; color: #18181b; }
+.cast-mock .cast-row .lg.roku    { background: #6E249F; color: #fff; }
+.cast-mock .cast-row .lg.chrome  { background: #4285F4; color: #fff; }
+.cast-mock .cast-row .nm { font: 700 14px 'JetBrains Mono', monospace; letter-spacing: -0.01em; }
+.cast-mock .cast-row .sm { font: 500 11px 'JetBrains Mono', monospace; color: rgba(255,255,255,0.5); margin-top: 1px; letter-spacing: 0.04em; }
+.cast-mock .cast-row .ck { margin-left: auto; color: var(--air-green); font: 900 20px 'JetBrains Mono', monospace; opacity: 0; }
+.cast-mock .cast-row.selected .ck { opacity: 1; }
+
+.scene-4.active .cast-row {
+  animation: row-in 500ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+.scene-4.active .cast-row:nth-child(3) { animation-delay: 0.4s; }
+.scene-4.active .cast-row:nth-child(4) { animation-delay: 0.46s; }
+.scene-4.active .cast-row:nth-child(5) { animation-delay: 0.52s; }
+.scene-4.active .cast-row:nth-child(6) { animation-delay: 0.58s; }
+.scene-4.active .cast-row:nth-child(7) { animation-delay: 0.64s; }
+@keyframes row-in {
+  0%   { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ============== SCENE 5: phone + TV split, beam ============== */
+
+.scene-5 { background: #0F1A2E; }
+.cinema-bg {
+  position: absolute; inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=85&auto=format');
+  background-size: cover; background-position: center;
+}
+.cinema-bg::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%);
+}
+
+.tv-mock {
+  position: absolute;
+  width: 640px; height: 380px;
+  background: #0A0A0A;
+  border: 12px solid #14141A;
+  border-radius: 12px;
+  box-shadow: 0 60px 100px rgba(0,0,0,0.5);
+  overflow: hidden;
+}
+.tv-mock .scr { position: absolute; inset: 0; background: #000; overflow: hidden; }
+
+.scene-5 .phone-mock {
+  top: 50%; left: 60px;
+  transform: translateY(-50%);
+  width: 360px; height: 760px;
+  border-radius: 44px;
+}
+.scene-5 .tv-mock {
+  top: 50%; right: 60px;
+  transform: translateY(-50%);
+}
+
+/* SVG beam */
+.beam-svg {
+  position: absolute; inset: 0; pointer-events: none; z-index: 20;
+}
+.scene-5.active .beam-path {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: beam-draw 1.4s 0.4s ease-out forwards;
+}
+@keyframes beam-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+.beam-particle {
+  fill: var(--air-green);
+  filter: drop-shadow(0 0 6px var(--air-green));
+  opacity: 0;
+}
+.scene-5.active .beam-particle {
+  animation: particle-flow 2.5s 1.6s linear infinite;
+}
+@keyframes particle-flow {
+  0%   { opacity: 1; offset-distance: 0%; }
+  100% { opacity: 0; offset-distance: 100%; }
+}
+
+/* ============== SCENE 6: hero shot, TV dominates ============== */
+
+.scene-6 { background:
+  linear-gradient(180deg, rgba(15,26,46,0.5), rgba(15,26,46,0.85)),
+  url('https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=1400&q=85&auto=format');
+  background-size: cover; background-position: center;
+}
+.scene-6 .tv-mock {
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 880px; height: 530px;
+}
+.scene-6 .phone-mock {
+  bottom: 200px; right: 60px;
+  width: 240px; height: 510px;
+  border-radius: 30px;
+  border-width: 4px;
+}
+.scene-6.active .tv-mock {
+  animation: orbit 4s linear forwards;
+}
+@keyframes orbit {
+  0% { transform: translate(-50%, -50%) rotateY(-2deg); }
+  100% { transform: translate(-50%, -50%) rotateY(2deg); }
+}
+
+/* ============== SCENE 7: end card ============== */
+
+.scene-7 { background: var(--air-paper); color: var(--air-ink); }
+.scene-7 .center-stack {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 36px;
+}
+.scene-7 .aircast-logo {
+  width: 320px; height: 220px;
+  opacity: 0; transform: scale(0.9);
+}
+.scene-7.active .aircast-logo {
+  animation: ec-fade-up 600ms 0.2s ease forwards;
+}
+.scene-7 .aircast-logo .green-rect {
+  width: 190px; height: 150px; border-radius: 22px;
+  opacity: 0;
+}
+.scene-7 .aircast-logo .blue-rect {
+  width: 190px; height: 150px; border-radius: 22px;
+  top: 40px;
+  opacity: 0;
+}
+.scene-7.active .green-rect { animation: ec-rect-in 500ms 0.4s ease forwards; }
+.scene-7.active .blue-rect  { animation: ec-rect-in 500ms 0.6s ease forwards; }
+@keyframes ec-rect-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes ec-fade-up {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.scene-7 .wordmark {
+  font: 800 96px 'JetBrains Mono', monospace;
+  letter-spacing: -0.04em;
+  opacity: 0;
+}
+.scene-7.active .wordmark { animation: ec-fade-up 500ms 0.9s ease forwards; }
+
+.scene-7 .tagline {
+  font: 400 italic 36px Erode, serif;
+  color: rgba(15,26,46,0.7);
+  opacity: 0;
+}
+.scene-7.active .tagline { animation: ec-fade-up 500ms 1.3s ease forwards; }
+
+.scene-7 .cta {
+  display: inline-flex; align-items: center; gap: 14px;
+  padding: 22px 36px;
+  background: var(--air-ink); color: var(--air-paper);
+  border-radius: 6px;
+  font: 800 28px 'JetBrains Mono', monospace;
+  letter-spacing: 0.04em;
+  box-shadow: 5px 5px 0 0 rgba(15,26,46,0.25);
+  opacity: 0; transform: translateY(12px);
+}
+.scene-7.active .cta { animation: ec-fade-up 500ms 1.7s ease forwards; }
+.scene-7 .cta .play { color: var(--air-green); font-size: 32px; }
+
+</style>
+</head>
+<body>
+<div class="stage">
+
+  <!-- ============== SCENE 1: logo from particles ============== -->
+  <div class="scene scene-1" id="s1">
+    <!-- particles, generated by JS below -->
+    <div id="particle-container" style="position: absolute; inset: 0;"></div>
+    <div class="scene-1-logo aircast-logo">
+      <div class="green-rect"></div>
+      <div class="blue-rect"></div>
+    </div>
+    <div class="scene-1-wordmark">AIRCAST</div>
+  </div>
+
+  <!-- ============== SCENE 2: phone arrives ============== -->
+  <div class="scene scene-2" id="s2">
+    <div class="phone-mock">
+      <div class="notch"></div>
+      <div class="scr"><img src="../phone_screens/home_en.png" alt=""></div>
+    </div>
+    <div class="caption" id="cap2">
+      MIRROR YOUR PHONE
+      <span class="it">to any TV, instantly</span>
+    </div>
+  </div>
+
+  <!-- ============== SCENE 3: tilted phone, app + tap ============== -->
+  <div class="scene scene-3" id="s3">
+    <div class="tilted">
+      <div class="phone-mock">
+        <div class="notch"></div>
+        <div class="scr"><img src="../phone_screens/home_en.png" alt=""></div>
+      </div>
+    </div>
+    <!-- thumb roughly over the Search for TVs button area -->
+    <div class="thumb-sprite" style="top: 1240px; left: 50%; margin-left: -45px;"></div>
+    <div class="tap-ripple"  style="top: 1235px; left: 50%; margin-left: -50px;"></div>
+    <div class="caption" id="cap3" style="top: 220px;">
+      TAP TO SEARCH
+      <span class="it">no setup, no account</span>
+    </div>
+  </div>
+
+  <!-- ============== SCENE 4: cast picker emerges ============== -->
+  <div class="scene scene-4" id="s4">
+    <div class="phone-mock" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
+      <div class="notch"></div>
+      <div class="scr">
+        <div class="cast-mock">
+          <div class="stat-bar"><span>14:22</span><span>100%</span></div>
+          <h3>CAST TO TV</h3>
+          <div class="sub">5 devices found nearby</div>
+          <div class="cast-row selected">
+            <div class="lg samsung">SAM</div>
+            <div><div class="nm">Samsung Living Room</div><div class="sm">SMART TV · 4K</div></div>
+            <div class="ck">✓</div>
+          </div>
+          <div class="cast-row"><div class="lg lg2">LG</div><div><div class="nm">LG OLED Bedroom</div><div class="sm">WEBOS · 4K HDR</div></div></div>
+          <div class="cast-row"><div class="lg fire">fTV</div><div><div class="nm">Fire TV Stick</div><div class="sm">AMAZON · 1080P</div></div></div>
+          <div class="cast-row"><div class="lg roku">R</div><div><div class="nm">Roku Express</div><div class="sm">ROKU · 1080P</div></div></div>
+          <div class="cast-row"><div class="lg chrome">G</div><div><div class="nm">Chromecast Kitchen</div><div class="sm">GOOGLE · 4K</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="caption" id="cap4" style="top: 220px;">
+      PICK YOUR TV
+      <span class="it">five devices found in 0.4s</span>
+    </div>
+  </div>
+
+  <!-- ============== SCENE 5: phone + TV beam ============== -->
+  <div class="scene scene-5" id="s5">
+    <div class="phone-mock">
+      <div class="notch"></div>
+      <div class="scr"><div class="cinema-bg"></div></div>
+    </div>
+
+    <svg class="beam-svg" viewBox="0 0 1080 1920" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="beamGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#34A853" stop-opacity="0"/>
+          <stop offset="20%" stop-color="#34A853" stop-opacity="1"/>
+          <stop offset="80%" stop-color="#4285F4" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#4285F4" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <path id="beamPath"
+            class="beam-path"
+            d="M 420 960 C 540 940, 700 980, 760 960"
+            stroke="url(#beamGrad)"
+            stroke-width="6"
+            fill="none"
+            stroke-linecap="round"/>
+      <!-- particles travel along the path -->
+      <circle r="4" class="beam-particle">
+        <animateMotion dur="1.8s" begin="2s" repeatCount="indefinite"
+                       path="M 420 960 C 540 940, 700 980, 760 960"/>
+      </circle>
+      <circle r="3" class="beam-particle">
+        <animateMotion dur="1.8s" begin="2.4s" repeatCount="indefinite"
+                       path="M 420 960 C 540 940, 700 980, 760 960"/>
+      </circle>
+      <circle r="3" class="beam-particle">
+        <animateMotion dur="1.8s" begin="2.8s" repeatCount="indefinite"
+                       path="M 420 960 C 540 940, 700 980, 760 960"/>
+      </circle>
+    </svg>
+
+    <div class="tv-mock">
+      <div class="scr"><div class="cinema-bg"></div></div>
+    </div>
+
+    <div class="caption" id="cap5" style="top: 200px;">
+      MIRRORING <span style="color: var(--air-green);">LIVE</span>
+      <span class="it">1080p · &lt;200ms latency</span>
+    </div>
+
+    <div style="position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%);">
+      <span class="tag" style="color: #FAFAF7;"><span class="dot"></span>SAMSUNG LIVING ROOM</span>
+    </div>
+  </div>
+
+  <!-- ============== SCENE 6: hero shot ============== -->
+  <div class="scene scene-6" id="s6">
+    <div class="tv-mock"><div class="scr"><div class="cinema-bg"></div></div></div>
+    <div class="phone-mock"><div class="notch" style="width:60px; height:14px; top:14px;"></div><div class="scr"><div class="cinema-bg"></div></div></div>
+
+    <div class="caption" id="cap6" style="top: 240px;">
+      ANY PHONE.<br>ANY TV.
+      <span class="it">one tap.</span>
+    </div>
+  </div>
+
+  <!-- ============== SCENE 7: end card ============== -->
+  <div class="scene scene-7" id="s7">
+    <div class="center-stack">
+      <div class="aircast-logo">
+        <div class="green-rect"></div>
+        <div class="blue-rect"></div>
+      </div>
+      <div class="wordmark">AIRCAST</div>
+      <div class="tagline">Cast in one tap. Free, with ads.</div>
+      <div class="cta"><span class="play">▶</span> GET IT ON GOOGLE PLAY</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// generate particle field for scene 1 — 80 particles drift in from random
+// off-canvas positions toward the centre (where the logo assembles).
+(function() {
+  const c = document.getElementById('particle-container');
+  const CX = 540, CY = 840;
+  for (let i = 0; i < 80; i++) {
+    const isGreen = Math.random() < 0.5;
+    const p = document.createElement('div');
+    p.className = 'particle ' + (isGreen ? 'green' : 'blue');
+    // start at edge: pick a random edge position
+    const edge = Math.floor(Math.random() * 4);
+    let sx, sy;
+    if (edge === 0)      { sx = Math.random() * 1080; sy = -50; }
+    else if (edge === 1) { sx = 1130; sy = Math.random() * 1920; }
+    else if (edge === 2) { sx = Math.random() * 1080; sy = 1970; }
+    else                 { sx = -50; sy = Math.random() * 1920; }
+    p.style.left = sx + 'px';
+    p.style.top  = sy + 'px';
+    // dx/dy travel toward centre (the converge point)
+    p.style.setProperty('--dx', (CX - sx) + 'px');
+    p.style.setProperty('--dy', (CY - sy) + 'px');
+    p.style.animationDelay = (Math.random() * 0.3) + 's';
+    c.appendChild(p);
+  }
+})();
+
+// scene timeline
+const scenes = ['s1','s2','s3','s4','s5','s6','s7'];
+function show(id) {
+  scenes.forEach(s => {
+    if (s !== id) document.getElementById(s).classList.remove('active');
+  });
+  setTimeout(() => document.getElementById(id).classList.add('active'), 80);
+}
+
+function at(ms, fn) { setTimeout(fn, ms); }
+
+// 0.0  S1: logo particles
+show('s1');
+
+// 3.0  S2: phone arrives on environment + caption
+at(3000, () => show('s2'));
+at(3600, () => document.getElementById('cap2').classList.add('show'));
+at(6500, () => document.getElementById('cap2').classList.remove('show'));
+
+// 7.0  S3: tilted phone + tap
+at(7000, () => show('s3'));
+at(7400, () => document.getElementById('cap3').classList.add('show'));
+at(11500, () => document.getElementById('cap3').classList.remove('show'));
+
+// 12.0  S4: cast picker emerges
+at(12000, () => show('s4'));
+at(12500, () => document.getElementById('cap4').classList.add('show'));
+at(16500, () => document.getElementById('cap4').classList.remove('show'));
+
+// 17.0  S5: phone+TV beam
+at(17000, () => show('s5'));
+at(17600, () => document.getElementById('cap5').classList.add('show'));
+at(22500, () => document.getElementById('cap5').classList.remove('show'));
+
+// 23.0  S6: hero shot
+at(23000, () => show('s6'));
+at(23400, () => document.getElementById('cap6').classList.add('show'));
+at(26600, () => document.getElementById('cap6').classList.remove('show'));
+
+// 27.0  S7: end card
+at(27000, () => show('s7'));
+</script>
+
+</body></html>

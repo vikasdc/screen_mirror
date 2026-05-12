@@ -1,69 +1,109 @@
 # Aircast Play Store assets
 
-Generated 1080×1920 phone screenshots and 30-second promo videos for the
-Google Play listing.
+1080×1920 screenshots and 30-second promo videos for the Google Play
+listing. Designed in HTML/CSS, rendered through headless Chromium.
 
-## Final asset set (v2)
+## v3 — current recommended set
 
-Use these for the next Play Store upload. Designed in HTML/CSS and rendered
-through headless Chromium; sources live in `html/`.
+Direction synthesised from a research swarm: CRED-school NeoPOP flat
+brand-colour panels, JetBrains Mono ExtraBold caps, Erode Light Italic
+for warmth, the real Aircast overlapping-rectangle logo, brand tiles
+where the wordmarks actually fill the tile space. Anti-AI-slop: no
+Instrument Serif, no Inter, no saturated radial gradients, no Vercel-
+template editorial-dark cliche.
 
 ### Screenshots (carousel order)
 
-| File | Concept | Surface | Caption |
-|------|---------|---------|---------|
-| `out/v2_1_hero.png`        | Phone + TV mirroring, asymmetric editorial | dark  | "Phone, on _TV._" |
-| `out/v2_2_livingroom.png`  | Lifestyle: living-room interior, hand-held phone implied | dark | "Same screen. _Bigger_ moment." |
-| `out/v2_3_brands.png`      | Compatibility wordmark lockup, brand names as huge type | cream | "Works with the TV you _already own._" |
-| `out/v2_4_languages.png`   | "Cast" in 15 languages as a typographic mosaic | cream | "The word for _cast,_ in your language." |
-| `out/v2_5_kitchen.png`     | Second hand-held lifestyle, bedroom mirror demo | dark | "Lie back. Watch _bigger._" |
-| `out/v2_6_theme.png`       | Diagonal dark/light split, abstract UI cards | hybrid | "Night / Day" |
+| File | Concept | Surface |
+|------|---------|---------|
+| `out/v3_1_hero.png`    | Mono caps "MIRROR YOUR PHONE TO ANY TV." with green/blue accent words. Real Aircast logo top-left. Phone + TV mirror with cinematic landscape. Live spec tags. | Paper + grid |
+| `out/v3_2_brands.png`  | "EVERY TV. EVERY STICK." 3×3 grid of saturated brand-colour tiles. Wordmarks fill 75-85% of each tile. Samsung blue, LG red, Sony black, Fire TV orange, Chromecast Google blue, Roku purple, Hisense teal, Mi orange, Android TV green. | Paper + grid |
+| `out/v3_3_onetap.png`  | "TAP. PICK. DONE." (with DONE in green). Erode italic dek. Phone showing cast picker with Samsung Living Room selected. ELAPSED 00:00:02 stat tag. | Dark navy |
+| `out/v3_4_proof.png`   | Pull-quote "Took longer to find the remote than to set this up." with — PLAY STORE REVIEW ★★★★★. Phone + TV pair as visible proof. NeoPOP chunky offset shadow on the device frames. | Brand green |
+| `out/v3_5_speed.png`   | Massive numeral "1" filling 60% of canvas with NeoPOP chunky offset shadow. Erode italic "tap to cast. that's it." Small phone in lower-right with Search-for-TVs button highlighted. AVG SETUP · 2 SECONDS tag. | Brand blue |
+| `out/v3_6_honest.png`  | Real Aircast logo big and centred. "FREE. WITH ADS." headline (truthful, not buried). Black "GET IT ON GOOGLE PLAY" CTA. Footer tags: 15 LANGUAGES · ANDROID 7+. | Paper |
 
-### Promo videos
+### Promo video
 
-- **`out/aircast_tutorial.mp4`** — 30-second walkthrough showing the actual flow:
-  home → tap Search → cast picker → pick Samsung → mirror live → end card.
-  Use this in the Play Console Promo Video field (via YouTube upload).
-- `out/aircast_promo.mp4` — 30-second carousel of v1 promo scenes. Kept as a
-  spare; the tutorial is the recommended primary.
+**`out/aircast_tutorial_v3.mp4`** — 30-second advanced tutorial.
 
-Both videos are H.264 MP4 + WebM (Playwright capture). Either format uploads
-to YouTube.
+Seven scenes, continuous spatial narrative (per the agent brief: every
+transition is motivated, things morph/match-on-action instead of
+fading):
 
-### Brand voice notes (for future iterations)
+1. 0-3s — Particles drift in from all four edges, magnetise to centre,
+   assemble into the real overlapping-rectangle Aircast logo + wordmark.
+2. 3-7s — Phone slides in on an arc, overshoots, settles on a warm
+   interior plate. Caption "MIRROR YOUR PHONE — to any TV, instantly".
+3. 7-12s — Phone rotates to `perspective(1600px) rotateY(8deg)`.
+   Skin-tone thumb sprite fades in over the Search-for-TVs button.
+   Mint tap ripple fires. Caption "TAP TO SEARCH — no setup, no
+   account".
+4. 12-17s — Cast picker modal emerges. Rows stagger in with
+   `cubic-bezier(0.34, 1.56, 0.64, 1)` overshoot. Samsung Living Room
+   row shown selected with green check. Caption "PICK YOUR TV — five
+   devices found in 0.4s".
+5. 17-23s — Phone left, TV right. SVG beam draws from phone screen to
+   TV screen with green→blue gradient stroke. Particles travel along
+   the beam path via `animateMotion`. Caption "MIRRORING LIVE — 1080p ·
+   <200ms latency".
+6. 23-27s — Hero shot: TV scales to fill ~60% of frame, phone in lower-
+   right at 30% scale. Slow rotateY orbit. Caption "ANY PHONE. ANY TV.
+   one tap.".
+7. 27-30s — End card on paper. Real Aircast logo with green rect, then
+   blue rect, fading in with stagger. Wordmark "AIRCAST". Erode italic
+   tagline "Cast in one tap. Free, with ads." Black "GET IT ON GOOGLE
+   PLAY" CTA with green play arrow.
 
-- **The app contains ads.** Never claim "no ads", "ad-free", or "no trackers"
-  in any marketing asset — would be misinformation. Truthful value props
-  acceptable: "no sign-up", "no account", "no email needed", "free to
-  download", "works offline".
-- Typography: Instrument Serif (display, regular weight, italic accent on one
-  word per headline) + Inter (body, 400/500/600). Both free, on Google Fonts.
-- Palette: editorial dark (`#0B0D10` bg, `#F4F4F2` text, `#7AE0C2` mint
-  accent, `#FF6B5B` warm signal) and cream paper (`#F4EFE7` bg, `#1B1A17`
-  text, `#2E5D4F` deep eucalyptus accent). Avoid the saturated
-  orange→pink→purple gradient that every competitor cast app uses.
+Upload to YouTube → paste URL into Play Console's Promo Video field.
+
+### Design system tokens
+
+- **Colours**: Aircast green `#34A853`, Aircast blue `#4285F4`, ink
+  `#0F1A2E`, paper `#F5F1E8`. The green + blue ARE the brand (they
+  come from the app icon — two overlapping rounded rectangles
+  representing phone + TV).
+- **Type**: JetBrains Mono ExtraBold 800 for headlines (mono caps,
+  -2% tracking, 0.95 line-height). Erode Light Italic 300i for
+  warmth in subheads + pull quotes. Both free under SIL OFL /
+  ITF Free Font License — explicitly licensed for commercial use
+  including Play Store assets.
+- **Logo**: two overlapping rounded rectangles, green `#34A853` (the
+  phone screen) overlapping blue `#4285F4` (the TV display). Always
+  used at the proper aspect — never substituted with a letter.
+- **Brand voice**: app is free, with ads. Never claim "ad-free" or
+  "no ads". Truthful value props: "no account", "no subscription",
+  "free", "no setup wizard".
+
+## v2 — legacy editorial-dark direction (kept for reference)
+
+`out/v2_*.png` and `out/aircast_tutorial.mp4` — first redesign pass.
+Used Instrument Serif + Inter (the AI-slop pair) and editorial dark
+gradients. Superseded by v3. Safe to delete once v3 is uploaded to
+Play Console.
+
+## v1 — original saturated-gradient set (kept for reference)
+
+`out/1_hero.png` through `out/6_hd.png` plus `aircast_promo.mp4`.
+Initial pass using the same saturated orange→pink→purple gradients as
+every competitor. Superseded by v3.
 
 ## Regenerate
 
 ```sh
-# Install deps once
+# Install once
 npm install playwright
 npx playwright install chromium
+pip install imageio-ffmpeg
 
-# Render all six screenshots
-node render_v2.js
+# Render all six v3 screenshots
+node render_v3.js
 
-# Record the tutorial video (WebM, 30s)
-node record_tutorial.js
+# Record the v3 tutorial video (30s WebM)
+node record_tutorial_v3.js
 
-# Optional: convert WebM to H.264 MP4 (needs ffmpeg)
-ffmpeg -i out/aircast_tutorial.webm \
+# Convert WebM → H.264 MP4
+ffmpeg -i out/aircast_tutorial_v3.webm \
        -c:v libx264 -pix_fmt yuv420p -preset slow -crf 20 \
-       -movflags +faststart out/aircast_tutorial.mp4
+       -movflags +faststart out/aircast_tutorial_v3.mp4
 ```
-
-## Legacy v1 set (kept for reference)
-
-`out/1_hero.png` through `out/6_hd.png` are the earlier saturated-gradient
-designs. Kept temporarily in case a comparison is useful. Safe to delete
-once v2 is uploaded.
