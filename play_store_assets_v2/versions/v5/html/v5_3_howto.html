@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="styles_v5.css">
+<style>
+  /* 3-step illustration: tap → pick → cast */
+  .step {
+    text-align: center;
+    color: #FFFFFF;
+  }
+  .step-num {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    background: var(--hot-yellow);
+    color: #0F1A2E;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Switzer', sans-serif;
+    font-weight: 900; font-size: 56px;
+    margin: 0 auto 22px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+  }
+  .step-title {
+    font-family: 'Switzer', sans-serif;
+    font-weight: 900;
+    font-size: 56px;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+  }
+  .step-sub {
+    font-family: 'Switzer', sans-serif;
+    font-weight: 500;
+    font-size: 26px;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.35;
+  }
+  .step-icon {
+    width: 220px; height: 220px;
+    margin: 0 auto 30px;
+    background: rgba(255,255,255,0.10);
+    border: 2px solid rgba(255,255,255,0.30);
+    border-radius: 30px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 110px;
+    color: #FFFFFF;
+    backdrop-filter: blur(10px);
+  }
+  .arrow {
+    position: absolute;
+    color: rgba(255,255,255,0.6);
+    font-size: 48px;
+  }
+</style>
+</head>
+<body>
+<div class="canvas grad-b">
+
+  <div style="position: absolute; top: 80px; left: 60px; right: 60px;
+       display: flex; justify-content: space-between; align-items: center; z-index: 10;">
+    <div class="aircast-logo">
+      <div class="aircast-mark size-md"><div class="gr"></div><div class="bl"></div></div>
+      <span>AIRCAST</span>
+    </div>
+    <span class="mono t-22" style="color:#FFFFFF; opacity: 0.7;">03 / HOW IT WORKS</span>
+  </div>
+
+  <h1 class="display h-140"
+      style="position: absolute; top: 220px; left: 60px; right: 60px;">
+    THREE TAPS<br>
+    TO THE <span class="accent">BIG SCREEN.</span>
+  </h1>
+
+  <!-- three steps in a vertical stack -->
+  <div style="position: absolute; top: 600px; left: 60px; right: 60px;">
+
+    <div class="step" style="margin-bottom: 40px;">
+      <div style="display:flex; align-items:center; gap: 32px;">
+        <div class="step-num">1</div>
+        <div style="text-align: left; flex: 1;">
+          <div class="step-title">OPEN AIRCAST</div>
+          <div class="step-sub">Launch the app — it's that simple.</div>
+        </div>
+        <div class="step-icon" style="width: 130px; height: 130px; font-size: 64px;">📱</div>
+      </div>
+    </div>
+
+    <div class="step" style="margin-bottom: 40px;">
+      <div style="display:flex; align-items:center; gap: 32px;">
+        <div class="step-num">2</div>
+        <div style="text-align: left; flex: 1;">
+          <div class="step-title">TAP SEARCH</div>
+          <div class="step-sub">Pick your TV from the list.</div>
+        </div>
+        <div class="step-icon" style="width: 130px; height: 130px; font-size: 64px;">👆</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div style="display:flex; align-items:center; gap: 32px;">
+        <div class="step-num">3</div>
+        <div style="text-align: left; flex: 1;">
+          <div class="step-title">MIRROR LIVE</div>
+          <div class="step-sub">Phone on the big screen, instantly.</div>
+        </div>
+        <div class="step-icon" style="width: 130px; height: 130px; font-size: 64px;">📺</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="position: absolute; bottom: 80px; left: 0; right: 0; text-align: center; z-index: 10;">
+    <span class="pill solid">⏱ AVG SETUP · 2 SECONDS</span>
+  </div>
+
+</div>
+</body></html>
