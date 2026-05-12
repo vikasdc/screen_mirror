@@ -18,8 +18,8 @@ android {
         applicationId "com.screenmirror"
         minSdk 24
         targetSdk 35
-        versionCode 12
-        versionName "1.3"
+        versionCode 13
+        versionName "1.4"
 
         // Restrict packaged locales to the ones we actually ship.
         // Without this, AppCompat's full set of ~80 locales bloats the APK.

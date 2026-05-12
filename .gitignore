@@ -11,6 +11,8 @@
 !/privacy_policy.html
 !/play_store_assets/
 !/play_store_assets/*.png
+!/play_store_assets_v2/
+!/play_store_assets_v2/**
 !/AndroidApp/
 !/AndroidApp/**
 
@@ -48,3 +50,7 @@
 
 # Machine-specific Android SDK path.
 **/local.properties
+
+# Playwright video raw output (we keep only the final webm/mp4 in out/).
+**/video_raw/
+**/node_modules/

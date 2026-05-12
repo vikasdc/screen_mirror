@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000;
+  font-family: 'Inter','Segoe UI', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased; }
+.stage { width: 1080px; height: 1920px; position: relative; overflow: hidden; }
+.scene { position: absolute; inset: 0; opacity: 0; transition: opacity 600ms ease;
+  display: flex; align-items: center; justify-content: center; flex-direction: column; }
+.scene.active { opacity: 1; }
+
+/* gradient bgs */
+.bg1 { background: radial-gradient(ellipse at 30% 20%, #ff7a2b 0%, #ff3d8a 45%, #6a1b9a 100%); }
+.bg2 { background: radial-gradient(ellipse at 70% 30%, #5b21b6 0%, #2563eb 50%, #0b1f4a 100%); }
+.bg3 { background: linear-gradient(180deg, #1e3a8a 0%, #1e293b 50%, #020617 100%); }
+.bg4 { background: linear-gradient(135deg, #f59e0b 0%, #db2777 50%, #4338ca 100%); }
+.bg5 { background: linear-gradient(135deg, #0f766e 0%, #14532d 60%, #052e16 100%); }
+.bg6 { background: radial-gradient(ellipse at 50% 30%, #00e5a8 0%, #14532d 60%, #020617 100%); }
+
+.headline { font-weight:900; color:#fff; text-align:center; letter-spacing:-0.025em;
+  text-shadow: 0 8px 32px rgba(0,0,0,0.4); line-height: 0.98; padding: 0 60px; }
+.h-xxl { font-size: 124px; }
+.h-xl  { font-size: 96px; }
+.h-lg  { font-size: 78px; }
+.accent { background: linear-gradient(180deg, #fef3c7 0%, #fbbf24 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent; display: inline-block; }
+.accent.teal { background: linear-gradient(180deg, #5eead4 0%, #14b8a6 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sub { font-size: 42px; color: rgba(255,255,255,0.88); text-align: center;
+  padding: 24px 80px; font-weight: 500; line-height: 1.25; }
+
+/* mock phone */
+.phone { position: absolute; width: 380px; height: 800px; border-radius: 50px;
+  background: #0a0a0a; border: 6px solid #1f1f1f;
+  box-shadow: 0 60px 100px rgba(0,0,0,0.5), 0 30px 60px rgba(0,0,0,0.35);
+  overflow: hidden; }
+.phone .scr { position: absolute; inset: 14px; border-radius: 38px; overflow: hidden; }
+.phone .notch { position: absolute; top: 22px; left: 50%; transform: translateX(-50%);
+  width: 100px; height: 24px; background: #000; border-radius: 16px; z-index: 2; }
+
+/* mock TV */
+.tv { position: absolute; width: 640px; height: 390px;
+  background: #0a0a0a; border: 12px solid #1c1c1c; border-radius: 16px;
+  box-shadow: 0 50px 90px rgba(0,0,0,0.5); overflow: hidden; }
+.tv .scr { position: absolute; inset: 0; }
+
+/* beam (mirror visualisation) */
+.beam { position: absolute; height: 8px; background: linear-gradient(90deg, transparent 0%, #00e5a8 30%, #00e5a8 70%, transparent 100%);
+  border-radius: 4px; filter: blur(1px) drop-shadow(0 0 12px #00e5a8); }
+
+/* tag badges */
+.tag { background: rgba(255,255,255,0.96); color: #18181b; font-weight: 800;
+  font-size: 32px; padding: 14px 28px; border-radius: 14px; display: inline-block; }
+.tag.glow { background: #00e5a8; color: #052e16; box-shadow: 0 0 30px rgba(0,229,168,0.5); }
+
+/* brand chip */
+.chip { background: rgba(255,255,255,0.96); color: #18181b;
+  padding: 16px 26px; border-radius: 16px; font-weight: 800; font-size: 32px;
+  display: inline-block; box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
+
+/* brand grid for scene 3 */
+.bgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+  width: 920px; margin-top: 60px; }
+.bcell { background: rgba(255,255,255,0.98); border-radius: 24px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 900; font-size: 56px; color: #18181b; min-height: 140px;
+  padding: 16px; box-shadow: 0 18px 40px rgba(0,0,0,0.25);
+  opacity: 0; transform: scale(0.85); transition: opacity 400ms ease, transform 500ms cubic-bezier(.2,.9,.3,1.4); }
+.bcell.in { opacity: 1; transform: scale(1); }
+.bcell.samsung { color:#1428a0; font-size:42px; }
+.bcell.lg      { color:#a50034; }
+.bcell.sony    { color:#000; font-size:48px; }
+.bcell.fire    { color:#ff9900; font-size:40px; }
+.bcell.chrome  { color:#4285f4; font-size:34px; }
+.bcell.hisense { color:#008f8c; font-size:38px; }
+.bcell.mi      { color:#ff6900; font-size:46px; }
+.bcell.roku    { color:#6f1ab6; font-size:46px; }
+.bcell.atv     { color:#3ddc84; font-size:38px; }
+
+/* language pills floating */
+.lpill { position: absolute; background: rgba(255,255,255,0.96); color: #18181b;
+  padding: 14px 24px; border-radius: 16px; font-weight: 800; font-size: 38px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  opacity: 0; transform: scale(0.7) translateY(20px);
+  transition: opacity 500ms ease, transform 500ms cubic-bezier(.2,.9,.3,1.4); }
+.lpill.in { opacity: 1; transform: scale(1) translateY(0); }
+
+/* hand mock holding phone */
+.hand { position: absolute; left: -100px; bottom: -200px; width: 720px; height: 600px;
+  background: radial-gradient(ellipse at 30% 30%, #d4a574 0%, #b8825a 50%, #8a5a3a 100%);
+  border-radius: 50% 50% 30% 40% / 60% 60% 20% 30%;
+  transform: rotate(-12deg);
+  filter: drop-shadow(0 30px 50px rgba(0,0,0,0.4)); }
+
+/* CTA button */
+.cta-btn { background: #00e5a8; color: #052e16; font-weight: 900; font-size: 52px;
+  padding: 28px 56px; border-radius: 100px; display: inline-flex; align-items: center; gap: 16px;
+  box-shadow: 0 30px 60px rgba(0,229,168,0.4);
+  animation: pulse 1.6s infinite; }
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+/* "live" overlays */
+.cine { position: absolute; inset: 0;
+  background-image:
+    linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.65) 100%),
+    url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80&auto=format');
+  background-size: cover; background-position: center; }
+.cine .live { position: absolute; top: 14px; right: 14px;
+  background: rgba(0,0,0,0.55); color: #fff; padding: 6px 12px; border-radius: 8px;
+  font-weight: 700; font-size: 16px; }
+.cine .res { position: absolute; bottom: 14px; left: 14px;
+  background: rgba(255,255,255,0.2); color: #fff; padding: 6px 12px; border-radius: 8px;
+  font-weight: 800; font-size: 16px; }
+
+/* scene 6 logo */
+.logo { font-size: 200px; font-weight: 900; color: #fff;
+  letter-spacing: -0.04em; text-shadow: 0 12px 40px rgba(0,0,0,0.5); }
+.logo .dot { color: #00e5a8; }
+
+/* slide-up animation utility */
+.up { opacity: 0; transform: translateY(40px); transition: opacity 500ms ease, transform 500ms ease; }
+.scene.active .up { opacity: 1; transform: translateY(0); transition-delay: 200ms; }
+.scene.active .up.d2 { transition-delay: 400ms; }
+.scene.active .up.d3 { transition-delay: 600ms; }
+.scene.active .up.d4 { transition-delay: 800ms; }
+</style>
+</head>
+<body>
+<div class="stage">
+
+  <!-- SCENE 1: Hero (0-5s) -->
+  <div class="scene bg1" id="s1">
+    <div class="up" style="position:absolute; top: 140px; left: 0; right: 0; text-align: center;">
+      <span class="tag glow">● LIVE</span>
+      <span class="tag" style="margin-left: 10px;">1080P HD</span>
+    </div>
+    <h1 class="headline h-xxl up d2" style="margin-top: 60px;">Mirror Your<br>Phone To<br><span class="accent">Any TV.</span></h1>
+    <div class="up d3" style="position: absolute; bottom: 240px; left: 60px;">
+      <div class="tv">
+        <div class="scr"><div class="cine"><div class="live">● LIVE 1:22:25</div><div class="res">1080P</div></div></div>
+      </div>
+    </div>
+    <div class="up d4" style="position: absolute; bottom: 80px; right: 80px;">
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="scr"><div class="cine"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 2: One Tap (5-10s) -->
+  <div class="scene bg2" id="s2">
+    <h1 class="headline h-xxl up" style="margin-top: 200px;">One Tap.<br><span class="accent">Cast.</span></h1>
+    <p class="sub up d2">Tap. Pick TV. Done.<br>No accounts. No setup.</p>
+    <div class="up d3" style="margin-top: 60px;">
+      <div class="cta-btn">📺 &nbsp;Connected ✓</div>
+    </div>
+    <div class="up d4" style="margin-top: 40px; display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; padding: 0 80px;">
+      <span class="chip">Samsung</span>
+      <span class="chip" style="color:#a50034">LG</span>
+      <span class="chip" style="color:#ff9900">fire TV</span>
+      <span class="chip" style="color:#6f1ab6">Roku</span>
+      <span class="chip" style="color:#4285f4">Chromecast</span>
+    </div>
+  </div>
+
+  <!-- SCENE 3: All TVs (10-15s) -->
+  <div class="scene bg3" id="s3">
+    <h1 class="headline h-xl up" style="margin-top: 220px;">Every Smart TV.<br><span class="accent">Every Stick.</span></h1>
+    <div class="bgrid" id="bgrid">
+      <div class="bcell samsung">SAMSUNG</div>
+      <div class="bcell lg">LG</div>
+      <div class="bcell sony">SONY</div>
+      <div class="bcell fire">fireTV</div>
+      <div class="bcell chrome">chromecast</div>
+      <div class="bcell hisense">Hisense</div>
+      <div class="bcell mi">Mi TV</div>
+      <div class="bcell roku">Roku</div>
+      <div class="bcell atv">Android TV</div>
+    </div>
+  </div>
+
+  <!-- SCENE 4: Languages (15-20s) -->
+  <div class="scene bg4" id="s4">
+    <h1 class="headline h-xl up" style="margin-top: 180px;">15 Languages.<br><span class="accent">Zero Friction.</span></h1>
+    <div class="lpill" id="lp1" style="top: 600px; left: 100px; transform: rotate(-10deg) scale(0.7);">हिन्दी</div>
+    <div class="lpill" id="lp2" style="top: 720px; right: 140px; transform: rotate(8deg) scale(0.7);">العربية</div>
+    <div class="lpill" id="lp3" style="top: 900px; left: 160px; transform: rotate(-6deg) scale(0.7);">中文</div>
+    <div class="lpill" id="lp4" style="top: 1020px; right: 100px; transform: rotate(6deg) scale(0.7);">日本語</div>
+    <div class="lpill" id="lp5" style="top: 1180px; left: 200px; transform: rotate(-8deg) scale(0.7);">Español</div>
+    <div class="lpill" id="lp6" style="top: 1300px; right: 180px; transform: rotate(4deg) scale(0.7);">Français</div>
+    <div class="lpill" id="lp7" style="top: 1450px; left: 120px; transform: rotate(-4deg) scale(0.7);">한국어</div>
+    <div class="lpill" id="lp8" style="top: 1560px; right: 160px; transform: rotate(8deg) scale(0.7);">Português</div>
+  </div>
+
+  <!-- SCENE 5: Free (20-25s) -->
+  <div class="scene bg5" id="s5">
+    <h1 class="headline h-xxl up" style="margin-top: 320px;">Free.<br>Forever.<br><span class="accent">No Ads.</span></h1>
+    <div class="up d2" style="margin-top: 80px; display: flex; gap: 28px; flex-wrap: wrap; justify-content: center;">
+      <span class="tag glow">✓ 0 ADS</span>
+      <span class="tag glow">✓ 0 SIGN-UP</span>
+      <span class="tag glow">✓ 0 TRACKERS</span>
+    </div>
+  </div>
+
+  <!-- SCENE 6: CTA (25-30s) -->
+  <div class="scene bg6" id="s6">
+    <div class="up" style="margin-top: 280px;"><div class="logo">Aircast<span class="dot">.</span></div></div>
+    <p class="sub up d2" style="margin-top: 0; font-size: 48px;">Get it on Google Play</p>
+    <div class="up d3" style="margin-top: 100px;">
+      <div class="cta-btn" style="font-size: 56px;">▶ &nbsp;Download Free</div>
+    </div>
+    <div class="up d4" style="margin-top: 80px; display: flex; gap: 16px;">
+      <span class="chip" style="font-size:28px">★★★★★</span>
+      <span class="chip" style="font-size:28px">FREE</span>
+      <span class="chip" style="font-size:28px">NO ADS</span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const sceneIds = ['s1','s2','s3','s4','s5','s6'];
+const SCENE_MS = 5000;     // each scene 5s
+let idx = 0;
+function showScene(i) {
+  sceneIds.forEach((id, k) => {
+    document.getElementById(id).classList.toggle('active', k === i);
+  });
+  // Scene 3: cascade-in the brand tiles
+  if (i === 2) {
+    const cells = document.querySelectorAll('#bgrid .bcell');
+    cells.forEach((c, k) => {
+      setTimeout(() => c.classList.add('in'), 300 + k * 180);
+    });
+  }
+  // Scene 4: cascade-in the language pills
+  if (i === 3) {
+    for (let k = 1; k <= 8; k++) {
+      const el = document.getElementById('lp' + k);
+      if (el) setTimeout(() => el.classList.add('in'), 300 + (k-1) * 280);
+    }
+  }
+}
+showScene(0);
+setInterval(() => {
+  idx = (idx + 1) % sceneIds.length;
+  // Reset cascades on re-entry
+  document.querySelectorAll('.bcell, .lpill').forEach(e => e.classList.remove('in'));
+  showScene(idx);
+}, SCENE_MS);
+</script>
+
+</body></html>
