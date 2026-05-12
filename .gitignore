@@ -9,7 +9,6 @@
 !/.gitignore
 !/README.md
 !/privacy_policy.html
-!/aircast-release-key.jks
 !/play_store_assets/
 !/play_store_assets/*.png
 !/AndroidApp/
@@ -42,6 +41,10 @@
 
 # Release signing creds. Template lives at app/keystore.properties.example.
 **/keystore.properties
+
+# Release signing keystore. Never commit. Stored outside the repo.
+**/*.jks
+**/*.keystore
 
 # Machine-specific Android SDK path.
 **/local.properties
