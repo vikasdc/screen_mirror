@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Aircast</string>
+
+    <string name="walk_skip">Atla</string>
+    <string name="walk_next">İleri</string>
+    <string name="walk_get_started">Başla</string>
+
+    <string name="walk_intro_title">Telefonu herhangi bir TV\'ye yansıt</string>
+    <string name="walk_intro_body">Akıllı TV\'ye keskin HD\'de ekran yansıt. Kablosuz ve anında.</string>
+
+    <string name="walk_brands_title">Çoğu Akıllı TV ile çalışır</string>
+    <string name="walk_brands_body">Önde gelen Akıllı TV ve yayın cihazlarıyla uyumlu</string>
+
+    <string name="walk_tv_setup_title">TV\'nde aç</string>
+    <string name="walk_tv_setup_body">TV\'nde Screen Mirroring seçeneğini bul. Wireless Display, Smart View, Anyview Cast veya sadece Cast olarak da geçebilir. Marka bazlı yaygın yollar:</string>
+    <string name="walk_tv_setup_chip_samsung">SAMSUNG</string>
+    <string name="walk_tv_setup_path_samsung">Kumandadan SOURCE → Screen Mirroring</string>
+    <string name="walk_tv_setup_chip_lg">LG</string>
+    <string name="walk_tv_setup_path_lg">Home → Screen Share</string>
+    <string name="walk_tv_setup_chip_sony">SONY</string>
+    <string name="walk_tv_setup_path_sony">Ayarlar → Ağ → Yerleşik Chromecast</string>
+    <string name="walk_tv_setup_chip_roku">ROKU</string>
+    <string name="walk_tv_setup_path_roku">Ayarlar → Sistem → Screen Mirroring → İzin Ver</string>
+    <string name="walk_tv_setup_chip_firetv">FIRE TV</string>
+    <string name="walk_tv_setup_path_firetv">HOME basılı tut → Mirroring</string>
+    <string name="walk_tv_setup_chip_hisense">HISENSE</string>
+    <string name="walk_tv_setup_path_hisense">Apps → Anyview Cast</string>
+    <string name="walk_tv_setup_chip_tcl">TCL</string>
+    <string name="walk_tv_setup_path_tcl">Apps → Wireless Display</string>
+    <string name="walk_tv_setup_chip_mitv">MI TV</string>
+    <string name="walk_tv_setup_path_mitv">Ayarlar → Bağlantı → Wireless Display</string>
+    <string name="walk_tv_setup_chip_vizio">VIZIO</string>
+    <string name="walk_tv_setup_path_vizio">Kumandadan V → Cast (Chromecast Built-in)</string>
+    <string name="walk_tv_setup_chip_panasonic">PANASONIC</string>
+    <string name="walk_tv_setup_path_panasonic">Apps → Mirroring</string>
+
+    <string name="walk_wifi_title">Aynı Wi-Fi ağı</string>
+    <string name="walk_wifi_body">Telefonu ve TV\'yi aynı Wi-Fi ağına bağla ki birbirlerini bulsunlar.</string>
+    <string name="walk_wifi_hotspot_heading">Wi-Fi yok mu? Telefon hotspot\'unu kullan</string>
+    <string name="walk_wifi_hotspot_step1">Ayarlar\'dan telefonun hotspot özelliğini aç.</string>
+    <string name="walk_wifi_hotspot_step2">TV\'de Wi-Fi ayarlarını aç ve normal bir ağ gibi hotspot\'una bağlan.</string>
+    <string name="walk_wifi_hotspot_step3">İki cihaz da aynı ağda. Yansıtma ev internetine ihtiyaç duymadan çalışır.</string>
+
+    <string name="walk_cast_title">Yansıtmayı başlat</string>
+    <string name="walk_cast_body">Hazırsın. Üç dokunuşla büyük ekrandasın.</string>
+    <string name="walk_cast_step1">Telefonda Aircast\'i aç</string>
+    <string name="walk_cast_step2">%1$s\'e dokun</string>
+    <string name="walk_cast_step3">TV\'yi seç ve TV ekranında onayla</string>
+
+    <string name="rate_us">Bizi puanla</string>
+    <string name="how_to_use">Nasıl kullanılır</string>
+    <string name="home_subtitle">KABLOSUZ YANSITMA</string>
+
+    <string name="cd_rate_app">Aircast\'i Play Store\'da puanla</string>
+    <string name="cd_phone_tv_cast">Wi-Fi üzerinden TV\'ye yansıtan telefon</string>
+    <string name="cd_help">Kullanım kılavuzunu aç</string>
+
+    <string name="language_picker_title">Dil seç</string>
+    <string name="cd_language">Uygulama dilini seç</string>
+    <string name="walk_language_title">Dilini seç</string>
+    <string name="walk_language_subtitle">İstediğin zaman uygulamadan değiştirebilirsin</string>
+
+    <string name="theme_switch_to_light">Açık moda geç</string>
+    <string name="theme_switch_to_dark">Koyu moda geç</string>
+    <string name="home_connect_to_tv">TV\'ye bağlan</string>
+    <string name="home_search_for_tvs">TV ara</string>
+    <string name="home_search_subtitle">Yakındaki ekranları tara ve bağlan</string>
+    <string name="home_wifi_hint">TV\'nin ve telefonun aynı Wi-Fi ağına\nbağlı olduğundan emin ol.</string>
+    <string name="toast_cast_settings_unavailable">Lütfen sistem menüsünden Cast ayarlarını aç.</string>
+</resources>

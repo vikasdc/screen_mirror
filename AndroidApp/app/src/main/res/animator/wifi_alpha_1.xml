@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ring 1 stroke fades 1 -> 0 in lockstep with the scale animation. -->
+<objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
+    android:propertyName="strokeAlpha"
+    android:valueFrom="0.95"
+    android:valueTo="0.0"
+    android:valueType="floatType"
+    android:duration="1800"
+    android:repeatCount="infinite"
+    android:repeatMode="restart"
+    android:interpolator="@android:interpolator/accelerate_quad" />

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Aircast</string>
+
+    <string name="walk_skip">Lewati</string>
+    <string name="walk_next">Lanjut</string>
+    <string name="walk_get_started">Mulai</string>
+
+    <string name="walk_intro_title">Cerminkan ponsel ke TV apa pun</string>
+    <string name="walk_intro_body">Kirim layar ponsel ke Smart TV dalam HD jernih. Tanpa kabel, langsung.</string>
+
+    <string name="walk_brands_title">Cocok dengan kebanyakan TV</string>
+    <string name="walk_brands_body">Bekerja dengan Smart TV dan perangkat streaming populer</string>
+
+    <string name="walk_tv_setup_title">Aktifkan di TV Anda</string>
+    <string name="walk_tv_setup_body">Cari Screen Mirroring di TV Anda. Bisa juga disebut Wireless Display, Smart View, Anyview Cast, atau Cast. Jalur umum per merek:</string>
+    <string name="walk_tv_setup_chip_samsung">SAMSUNG</string>
+    <string name="walk_tv_setup_path_samsung">Tekan SOURCE di remote → Screen Mirroring</string>
+    <string name="walk_tv_setup_chip_lg">LG</string>
+    <string name="walk_tv_setup_path_lg">Home → Screen Share</string>
+    <string name="walk_tv_setup_chip_sony">SONY</string>
+    <string name="walk_tv_setup_path_sony">Settings → Network → Built-in Chromecast</string>
+    <string name="walk_tv_setup_chip_roku">ROKU</string>
+    <string name="walk_tv_setup_path_roku">Settings → System → Screen Mirroring → Allow</string>
+    <string name="walk_tv_setup_chip_firetv">FIRE TV</string>
+    <string name="walk_tv_setup_path_firetv">Tahan HOME → Mirroring</string>
+    <string name="walk_tv_setup_chip_hisense">HISENSE</string>
+    <string name="walk_tv_setup_path_hisense">Apps → Anyview Cast</string>
+    <string name="walk_tv_setup_chip_tcl">TCL</string>
+    <string name="walk_tv_setup_path_tcl">Apps → Wireless Display</string>
+    <string name="walk_tv_setup_chip_mitv">MI TV</string>
+    <string name="walk_tv_setup_path_mitv">Settings → Connection → Wireless Display</string>
+    <string name="walk_tv_setup_chip_vizio">VIZIO</string>
+    <string name="walk_tv_setup_path_vizio">Tekan V di remote → Cast (Chromecast Built-in)</string>
+    <string name="walk_tv_setup_chip_panasonic">PANASONIC</string>
+    <string name="walk_tv_setup_path_panasonic">Apps → Mirroring</string>
+
+    <string name="walk_wifi_title">Jaringan Wi-Fi yang sama</string>
+    <string name="walk_wifi_body">Hubungkan ponsel dan TV ke jaringan Wi-Fi yang sama agar bisa saling menemukan.</string>
+    <string name="walk_wifi_hotspot_heading">Tanpa Wi-Fi? Gunakan hotspot ponsel</string>
+    <string name="walk_wifi_hotspot_step1">Aktifkan hotspot ponsel di Pengaturan.</string>
+    <string name="walk_wifi_hotspot_step2">Di TV, buka pengaturan Wi-Fi dan sambungkan ke hotspot Anda seperti jaringan biasa.</string>
+    <string name="walk_wifi_hotspot_step3">Kedua perangkat kini di jaringan yang sama. Mirroring jalan tanpa internet rumah.</string>
+
+    <string name="walk_cast_title">Mulai mirroring</string>
+    <string name="walk_cast_body">Anda siap. Tiga ketukan dan tampil di layar besar.</string>
+    <string name="walk_cast_step1">Buka Aircast di ponsel</string>
+    <string name="walk_cast_step2">Ketuk %1$s</string>
+    <string name="walk_cast_step3">Pilih TV dan konfirmasi di layar TV</string>
+
+    <string name="rate_us">Beri rating</string>
+    <string name="how_to_use">Cara pakai</string>
+    <string name="home_subtitle">MIRRORING TANPA KABEL</string>
+
+    <string name="cd_rate_app">Beri rating Aircast di Play Store</string>
+    <string name="cd_phone_tv_cast">Ponsel mencerminkan ke TV via Wi-Fi</string>
+    <string name="cd_help">Buka panduan penggunaan</string>
+
+    <string name="language_picker_title">Pilih bahasa</string>
+    <string name="cd_language">Pilih bahasa aplikasi</string>
+    <string name="walk_language_title">Pilih bahasa Anda</string>
+    <string name="walk_language_subtitle">Bisa diubah kapan saja di aplikasi</string>
+
+    <string name="theme_switch_to_light">Beralih ke mode terang</string>
+    <string name="theme_switch_to_dark">Beralih ke mode gelap</string>
+    <string name="home_connect_to_tv">Hubungkan ke TV</string>
+    <string name="home_search_for_tvs">Cari TV</string>
+    <string name="home_search_subtitle">Pindai dan sambungkan ke layar terdekat</string>
+    <string name="home_wifi_hint">Pastikan TV dan ponsel terhubung\nke jaringan Wi-Fi yang sama.</string>
+    <string name="toast_cast_settings_unavailable">Buka pengaturan Cast di menu sistem.</string>
+</resources>

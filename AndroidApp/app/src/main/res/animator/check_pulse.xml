@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Gentle pulse for the checkbox in the walkthrough TV-setup illustration.
+    Communicates "this is the toggle you flip on".
+-->
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:ordering="together">
+
+    <objectAnimator
+        android:propertyName="scaleX"
+        android:valueFrom="0.92"
+        android:valueTo="1.12"
+        android:valueType="floatType"
+        android:duration="1100"
+        android:repeatCount="infinite"
+        android:repeatMode="reverse"
+        android:interpolator="@android:interpolator/accelerate_decelerate" />
+
+    <objectAnimator
+        android:propertyName="scaleY"
+        android:valueFrom="0.92"
+        android:valueTo="1.12"
+        android:valueType="floatType"
+        android:duration="1100"
+        android:repeatCount="infinite"
+        android:repeatMode="reverse"
+        android:interpolator="@android:interpolator/accelerate_decelerate" />
+
+</set>

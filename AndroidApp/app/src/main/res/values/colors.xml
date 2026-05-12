@@ -1,24 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Slate Dark Premium Palette (Option B) -->
-    <color name="slate_bg">#1A1C1E</color>
-    <color name="slate_card">#282A2D</color>
-    <color name="slate_card_border">#3D4044</color>
-    
-    <!-- High-Visibility Accents -->
+    <!-- Light counterparts. Names kept identical to the dark palette so the
+         existing layouts resolve correctly in either mode. The default theme
+         mode (set by AppPreferences) is dark, so without an explicit user
+         opt-in from Settings, this file's values are not actually rendered. -->
+
+    <color name="slate_bg">#F6F8FB</color>
+    <color name="slate_card">#FFFFFF</color>
+    <color name="slate_card_border">#E3E7EE</color>
+
+    <!-- "white_text" name kept for layout compatibility. In light mode this
+         is the dark primary text colour that contrasts with the light bg. -->
+    <color name="white_text">#0E1424</color>
+    <color name="dim_text">#5A6378</color>
+
+    <!-- Accents (unchanged across themes — these always look good on either bg) -->
     <color name="emerald_accent">#34A853</color>
     <color name="emerald_ripple">#4CAF50</color>
+
+    <!-- Soft emerald background for the "How to use" tonal button -->
+    <color name="emerald_tonal_bg">#1A34A853</color>
     <color name="google_blue">#4285F4</color>
-    
-    <!-- Text Palette -->
-    <color name="white_text">#FFFFFF</color>
-    <color name="dim_text">#94A3B8</color>
-    
-    <!-- M3 Mappings for code/resource compatibility -->
-    <color name="m3_surface">#1A1C1E</color>
-    <color name="m3_on_surface">#FFFFFF</color>
-    <color name="m3_surface_variant">#282A2D</color>
-    <color name="m3_on_surface_variant">#94A3B8</color>
     <color name="m3_primary">#34A853</color>
     <color name="m3_error">#EA4335</color>
+
+    <!-- M3 Mappings - Light -->
+    <color name="m3_surface">#F6F8FB</color>
+    <color name="m3_on_surface">#0E1424</color>
+    <color name="m3_surface_variant">#FFFFFF</color>
+    <color name="m3_on_surface_variant">#5A6378</color>
+
+    <!-- Walkthrough - Light -->
+    <color name="walkthrough_bg">#F6F8FB</color>
+    <color name="walkthrough_text_primary">#0E1424</color>
+    <color name="walkthrough_text_secondary">#5A6378</color>
+    <color name="walkthrough_dot_inactive">#D6DBE5</color>
 </resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- TV bird 3: starts 3400ms later, matching phone bird 3's offset. -->
+<objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
+    android:propertyName="translateX"
+    android:valueFrom="0"
+    android:valueTo="154"
+    android:valueType="floatType"
+    android:duration="5000"
+    android:startOffset="3400"
+    android:repeatCount="infinite"
+    android:repeatMode="restart"
+    android:interpolator="@android:interpolator/linear" />

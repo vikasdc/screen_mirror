@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Aircast</string>
+
+    <string name="walk_skip">छोड़ें</string>
+    <string name="walk_next">आगे</string>
+    <string name="walk_get_started">शुरू करें</string>
+
+    <string name="walk_intro_title">अपना फ़ोन किसी भी TV पर मिरर करें</string>
+    <string name="walk_intro_body">अपनी स्क्रीन को Smart TV पर शानदार HD में कास्ट करें। वायरलेस और तुरंत।</string>
+
+    <string name="walk_brands_title">हर Smart TV के साथ काम करता है</string>
+    <string name="walk_brands_body">प्रमुख Smart TV और स्ट्रीमिंग डिवाइस के साथ संगत</string>
+
+    <string name="walk_tv_setup_title">अपनी TV पर चालू करें</string>
+    <string name="walk_tv_setup_body">अपनी TV पर Screen Mirroring ढूँढें। इसे Wireless Display, Smart View, Anyview Cast या सिर्फ़ Cast भी कहा जाता है। ब्रांड के अनुसार सामान्य रास्ते:</string>
+    <string name="walk_tv_setup_chip_samsung">SAMSUNG</string>
+    <string name="walk_tv_setup_path_samsung">रिमोट पर SOURCE दबाएँ → Screen Mirroring</string>
+    <string name="walk_tv_setup_chip_lg">LG</string>
+    <string name="walk_tv_setup_path_lg">Home → Screen Share</string>
+    <string name="walk_tv_setup_chip_sony">SONY</string>
+    <string name="walk_tv_setup_path_sony">Settings → Network → Built-in Chromecast</string>
+    <string name="walk_tv_setup_chip_roku">ROKU</string>
+    <string name="walk_tv_setup_path_roku">Settings → System → Screen Mirroring → Allow</string>
+    <string name="walk_tv_setup_chip_firetv">FIRE TV</string>
+    <string name="walk_tv_setup_path_firetv">HOME दबाए रखें → Mirroring</string>
+    <string name="walk_tv_setup_chip_hisense">HISENSE</string>
+    <string name="walk_tv_setup_path_hisense">Apps → Anyview Cast</string>
+    <string name="walk_tv_setup_chip_tcl">TCL</string>
+    <string name="walk_tv_setup_path_tcl">Apps → Wireless Display</string>
+    <string name="walk_tv_setup_chip_mitv">MI TV</string>
+    <string name="walk_tv_setup_path_mitv">Settings → Connection → Wireless Display</string>
+    <string name="walk_tv_setup_chip_vizio">VIZIO</string>
+    <string name="walk_tv_setup_path_vizio">रिमोट पर V दबाएँ → Cast (Chromecast Built-in)</string>
+    <string name="walk_tv_setup_chip_panasonic">PANASONIC</string>
+    <string name="walk_tv_setup_path_panasonic">Apps → Mirroring</string>
+
+    <string name="walk_wifi_title">एक ही Wi-Fi नेटवर्क</string>
+    <string name="walk_wifi_body">अपने फ़ोन और TV को एक ही Wi-Fi नेटवर्क से जोड़ें ताकि वे एक दूसरे को पहचान सकें।</string>
+    <string name="walk_wifi_hotspot_heading">Wi-Fi नहीं है? फ़ोन हॉटस्पॉट का इस्तेमाल करें</string>
+    <string name="walk_wifi_hotspot_step1">Settings में अपने फ़ोन का हॉटस्पॉट चालू करें।</string>
+    <string name="walk_wifi_hotspot_step2">TV पर Wi-Fi settings खोलें और अपने हॉटस्पॉट से किसी सामान्य नेटवर्क की तरह जुड़ें।</string>
+    <string name="walk_wifi_hotspot_step3">अब दोनों डिवाइस एक ही नेटवर्क पर हैं। मिररिंग बिना घर के इंटरनेट के काम करती है।</string>
+
+    <string name="walk_cast_title">मिररिंग शुरू करें</string>
+    <string name="walk_cast_body">तैयार हैं। तीन टैप और आप बड़ी स्क्रीन पर हैं।</string>
+    <string name="walk_cast_step1">अपने फ़ोन पर Aircast खोलें</string>
+    <string name="walk_cast_step2">%1$s पर टैप करें</string>
+    <string name="walk_cast_step3">अपनी TV चुनें और TV स्क्रीन पर पुष्टि करें</string>
+
+    <string name="rate_us">रेट करें</string>
+    <string name="how_to_use">कैसे इस्तेमाल करें</string>
+    <string name="home_subtitle">वायरलेस मिररिंग</string>
+
+    <string name="cd_rate_app">Aircast को Play Store पर रेट करें</string>
+    <string name="cd_phone_tv_cast">Wi-Fi पर TV को मिरर करता हुआ फ़ोन</string>
+    <string name="cd_help">उपयोग गाइड खोलें</string>
+
+    <string name="language_picker_title">भाषा चुनें</string>
+    <string name="cd_language">ऐप की भाषा चुनें</string>
+    <string name="walk_language_title">अपनी भाषा चुनें</string>
+    <string name="walk_language_subtitle">इसे आप बाद में ऐप में कभी भी बदल सकते हैं</string>
+
+    <string name="theme_switch_to_light">लाइट मोड पर जाएँ</string>
+    <string name="theme_switch_to_dark">डार्क मोड पर जाएँ</string>
+    <string name="home_connect_to_tv">TV से जोड़ें</string>
+    <string name="home_search_for_tvs">TV खोजें</string>
+    <string name="home_search_subtitle">आस-पास के डिस्प्ले स्कैन करें और जुड़ें</string>
+    <string name="home_wifi_hint">सुनिश्चित करें कि TV और मोबाइल\nएक ही Wi-Fi नेटवर्क पर हैं।</string>
+    <string name="toast_cast_settings_unavailable">कृपया System Menu में Cast settings खोलें।</string>
+</resources>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Aircast</string>
+
+    <string name="walk_skip">Saltar</string>
+    <string name="walk_next">Siguiente</string>
+    <string name="walk_get_started">Comenzar</string>
+
+    <string name="walk_intro_title">Refleja tu móvil en cualquier TV</string>
+    <string name="walk_intro_body">Transmite tu pantalla a una Smart TV en HD nítido. Sin cables y al instante.</string>
+
+    <string name="walk_brands_title">Compatible con casi todas las TV</string>
+    <string name="walk_brands_body">Funciona con las principales Smart TV y dispositivos de streaming</string>
+
+    <string name="walk_tv_setup_title">Activa la duplicación en tu TV</string>
+    <string name="walk_tv_setup_body">Busca Screen Mirroring en tu TV. También puede llamarse Wireless Display, Smart View, Anyview Cast o solo Cast. Rutas habituales por marca:</string>
+    <string name="walk_tv_setup_chip_samsung">SAMSUNG</string>
+    <string name="walk_tv_setup_path_samsung">Pulsa SOURCE en el mando → Screen Mirroring</string>
+    <string name="walk_tv_setup_chip_lg">LG</string>
+    <string name="walk_tv_setup_path_lg">Inicio → Screen Share</string>
+    <string name="walk_tv_setup_chip_sony">SONY</string>
+    <string name="walk_tv_setup_path_sony">Ajustes → Red → Chromecast integrado</string>
+    <string name="walk_tv_setup_chip_roku">ROKU</string>
+    <string name="walk_tv_setup_path_roku">Ajustes → Sistema → Screen Mirroring → Permitir</string>
+    <string name="walk_tv_setup_chip_firetv">FIRE TV</string>
+    <string name="walk_tv_setup_path_firetv">Mantén HOME → Mirroring</string>
+    <string name="walk_tv_setup_chip_hisense">HISENSE</string>
+    <string name="walk_tv_setup_path_hisense">Apps → Anyview Cast</string>
+    <string name="walk_tv_setup_chip_tcl">TCL</string>
+    <string name="walk_tv_setup_path_tcl">Apps → Wireless Display</string>
+    <string name="walk_tv_setup_chip_mitv">MI TV</string>
+    <string name="walk_tv_setup_path_mitv">Ajustes → Conexión → Wireless Display</string>
+    <string name="walk_tv_setup_chip_vizio">VIZIO</string>
+    <string name="walk_tv_setup_path_vizio">Pulsa V en el mando → Cast (Chromecast Built-in)</string>
+    <string name="walk_tv_setup_chip_panasonic">PANASONIC</string>
+    <string name="walk_tv_setup_path_panasonic">Apps → Mirroring</string>
+
+    <string name="walk_wifi_title">Misma red Wi-Fi</string>
+    <string name="walk_wifi_body">Conecta tu móvil y tu TV a la misma red Wi-Fi para que se reconozcan.</string>
+    <string name="walk_wifi_hotspot_heading">¿Sin Wi-Fi? Usa el punto de acceso del móvil</string>
+    <string name="walk_wifi_hotspot_step1">Activa el punto de acceso del móvil en Ajustes.</string>
+    <string name="walk_wifi_hotspot_step2">En la TV, abre los ajustes de Wi-Fi y conéctate a tu punto de acceso como a una red normal.</string>
+    <string name="walk_wifi_hotspot_step3">Ambos dispositivos están en la misma red. La duplicación funciona sin internet de casa.</string>
+
+    <string name="walk_cast_title">Empieza a duplicar</string>
+    <string name="walk_cast_body">Listo. Tres toques y estás en la pantalla grande.</string>
+    <string name="walk_cast_step1">Abre Aircast en tu móvil</string>
+    <string name="walk_cast_step2">Toca %1$s</string>
+    <string name="walk_cast_step3">Elige tu TV y confirma en la pantalla del televisor</string>
+
+    <string name="rate_us">Valóranos</string>
+    <string name="how_to_use">Cómo usar</string>
+    <string name="home_subtitle">DUPLICACIÓN INALÁMBRICA</string>
+
+    <string name="cd_rate_app">Valora Aircast en Play Store</string>
+    <string name="cd_phone_tv_cast">Móvil reflejándose en una TV por Wi-Fi</string>
+    <string name="cd_help">Abre la guía de uso</string>
+
+    <string name="language_picker_title">Elegir idioma</string>
+    <string name="cd_language">Elegir idioma de la app</string>
+    <string name="walk_language_title">Elige tu idioma</string>
+    <string name="walk_language_subtitle">Puedes cambiarlo cuando quieras</string>
+
+    <string name="theme_switch_to_light">Cambiar a modo claro</string>
+    <string name="theme_switch_to_dark">Cambiar a modo oscuro</string>
+    <string name="home_connect_to_tv">Conectar al TV</string>
+    <string name="home_search_for_tvs">Buscar TV</string>
+    <string name="home_search_subtitle">Escanea y conéctate a pantallas cercanas</string>
+    <string name="home_wifi_hint">Asegúrate de que el TV y el móvil estén\nen la misma red Wi-Fi.</string>
+    <string name="toast_cast_settings_unavailable">Abre los ajustes de Cast en el menú del sistema.</string>
+</resources>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Walkthrough page 3 illustration: TV with a settings menu showing
+     "Wireless Display" / "Enable" rows, demonstrating where to enable Miracast. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="220dp"
+    android:height="220dp"
+    android:viewportWidth="220"
+    android:viewportHeight="220">
+
+    <!-- TV bezel -->
+    <path
+        android:pathData="M22,46 a6,6 0 0 1 6,-6 h164 a6,6 0 0 1 6,6 v100 a6,6 0 0 1 -6,6 h-164 a6,6 0 0 1 -6,-6 z"
+        android:strokeColor="#4285F4"
+        android:strokeWidth="3"
+        android:fillColor="@android:color/transparent" />
+    <!-- TV screen -->
+    <path
+        android:pathData="M30,48 h160 v96 h-160 z"
+        android:fillColor="#4285F4"
+        android:fillAlpha="0.08" />
+
+    <!-- Top label: "Cast" -->
+    <path
+        android:pathData="M40,58 h28 v8 h-28 z"
+        android:fillColor="#4285F4"
+        android:fillAlpha="0.6" />
+
+    <!-- Settings menu panel (right side of TV screen) -->
+    <path
+        android:pathData="M96,62 h86 v74 h-86 z"
+        android:fillColor="#FFFFFF" />
+    <path
+        android:pathData="M96,62 h86 v74 h-86 z"
+        android:strokeColor="#4285F4"
+        android:strokeWidth="1.5"
+        android:fillColor="@android:color/transparent" />
+
+    <!-- Menu row 1: "Wireless Display" with checkbox -->
+    <path
+        android:pathData="M104,76 h54"
+        android:strokeColor="#1F1F1F"
+        android:strokeWidth="3"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M104,82 h36"
+        android:strokeColor="#5A6378"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeAlpha="0.6" />
+    <!-- Checkbox (checked, emerald) -->
+    <path
+        android:pathData="M163,72 a2,2 0 0 1 2,-2 h8 a2,2 0 0 1 2,2 v8 a2,2 0 0 1 -2,2 h-8 a2,2 0 0 1 -2,-2 z"
+        android:fillColor="#34A853" />
+    <path
+        android:pathData="M165.5,76 L168,79 L173,73"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.6"
+        android:strokeLineCap="round"
+        android:fillColor="@android:color/transparent" />
+
+    <!-- Divider -->
+    <path
+        android:pathData="M104,94 h70"
+        android:strokeColor="#E3E7EE"
+        android:strokeWidth="1" />
+
+    <!-- Menu row 2: "Help & Feedback" -->
+    <path
+        android:pathData="M104,104 h44"
+        android:strokeColor="#5A6378"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M104,110 h28"
+        android:strokeColor="#5A6378"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeAlpha="0.5" />
+
+    <!-- Divider -->
+    <path
+        android:pathData="M104,122 h70"
+        android:strokeColor="#E3E7EE"
+        android:strokeWidth="1" />
+
+    <!-- TV stand -->
+    <path
+        android:pathData="M88,154 L132,154 L138,170 L82,170 z"
+        android:fillColor="#4285F4"
+        android:fillAlpha="0.7" />
+    <path
+        android:pathData="M68,176 h84"
+        android:strokeColor="#4285F4"
+        android:strokeWidth="3"
+        android:strokeLineCap="round" />
+
+</vector>

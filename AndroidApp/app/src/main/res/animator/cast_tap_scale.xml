@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Tap ripple grows outward from the Search button. -->
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:ordering="together">
+    <objectAnimator
+        android:propertyName="scaleX"
+        android:valueFrom="0.4"
+        android:valueTo="1.3"
+        android:valueType="floatType"
+        android:duration="1300"
+        android:repeatCount="infinite"
+        android:repeatMode="restart"
+        android:interpolator="@android:interpolator/decelerate_quad" />
+    <objectAnimator
+        android:propertyName="scaleY"
+        android:valueFrom="0.4"
+        android:valueTo="1.3"
+        android:valueType="floatType"
+        android:duration="1300"
+        android:repeatCount="infinite"
+        android:repeatMode="restart"
+        android:interpolator="@android:interpolator/decelerate_quad" />
+</set>

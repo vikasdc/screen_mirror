@@ -5,7 +5,66 @@
         <item name="colorSurface">@color/slate_bg</item>
         <item name="colorSecondary">@color/google_blue</item>
         <item name="android:statusBarColor">@color/slate_bg</item>
-        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightStatusBar">true</item>
         <item name="android:navigationBarColor">@color/slate_bg</item>
+    </style>
+
+    <!-- Walkthrough page 3: brand path rows. -->
+    <style name="BrandPathRow">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">6dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="BrandPathChip">
+        <item name="android:layout_width">76dp</item>
+        <item name="android:layout_height">28dp</item>
+        <item name="android:background">@drawable/brand_chip_bg</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">0.04</item>
+    </style>
+
+    <style name="BrandPathText">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_marginStart">12dp</item>
+        <item name="android:textColor">@color/walkthrough_text_secondary</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+    </style>
+
+    <!-- Walkthrough pages 4 & 5: numbered step rows. -->
+    <style name="WalkStepRow">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="WalkStepNumber">
+        <item name="android:layout_width">28dp</item>
+        <item name="android:layout_height">28dp</item>
+        <item name="android:layout_marginEnd">14dp</item>
+        <item name="android:background">@drawable/walk_step_number_bg</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif-black</item>
+    </style>
+
+    <style name="WalkStepText">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@color/walkthrough_text_secondary</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:lineSpacingExtra">3dp</item>
     </style>
 </resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- TV bird 1: travels TV screen width (154px) in 5000ms — same duration as
+     phone bird 1 so both birds reach the same fractional position together. -->
+<objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
+    android:propertyName="translateX"
+    android:valueFrom="0"
+    android:valueTo="154"
+    android:valueType="floatType"
+    android:duration="5000"
+    android:repeatCount="infinite"
+    android:repeatMode="restart"
+    android:interpolator="@android:interpolator/linear" />

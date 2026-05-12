@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Aircast</string>
+
+    <string name="walk_skip">跳过</string>
+    <string name="walk_next">下一步</string>
+    <string name="walk_get_started">开始使用</string>
+
+    <string name="walk_intro_title">将手机投屏到任何电视</string>
+    <string name="walk_intro_body">高清画质无线投屏到智能电视，即开即用。</string>
+
+    <string name="walk_brands_title">适配多数智能电视</string>
+    <string name="walk_brands_body">兼容主流智能电视和流媒体设备</string>
+
+    <string name="walk_tv_setup_title">在电视上开启</string>
+    <string name="walk_tv_setup_body">在电视上找到 Screen Mirroring。也可能叫 Wireless Display、Smart View、Anyview Cast 或仅 Cast。各品牌常见路径:</string>
+    <string name="walk_tv_setup_chip_samsung">SAMSUNG</string>
+    <string name="walk_tv_setup_path_samsung">遥控器按 SOURCE → Screen Mirroring</string>
+    <string name="walk_tv_setup_chip_lg">LG</string>
+    <string name="walk_tv_setup_path_lg">Home → Screen Share</string>
+    <string name="walk_tv_setup_chip_sony">SONY</string>
+    <string name="walk_tv_setup_path_sony">设置 → 网络 → 内置 Chromecast</string>
+    <string name="walk_tv_setup_chip_roku">ROKU</string>
+    <string name="walk_tv_setup_path_roku">设置 → 系统 → Screen Mirroring → 允许</string>
+    <string name="walk_tv_setup_chip_firetv">FIRE TV</string>
+    <string name="walk_tv_setup_path_firetv">长按 HOME → Mirroring</string>
+    <string name="walk_tv_setup_chip_hisense">HISENSE</string>
+    <string name="walk_tv_setup_path_hisense">Apps → Anyview Cast</string>
+    <string name="walk_tv_setup_chip_tcl">TCL</string>
+    <string name="walk_tv_setup_path_tcl">Apps → Wireless Display</string>
+    <string name="walk_tv_setup_chip_mitv">MI TV</string>
+    <string name="walk_tv_setup_path_mitv">设置 → 连接 → Wireless Display</string>
+    <string name="walk_tv_setup_chip_vizio">VIZIO</string>
+    <string name="walk_tv_setup_path_vizio">遥控器按 V → Cast (Chromecast Built-in)</string>
+    <string name="walk_tv_setup_chip_panasonic">PANASONIC</string>
+    <string name="walk_tv_setup_path_panasonic">Apps → Mirroring</string>
+
+    <string name="walk_wifi_title">同一 Wi-Fi 网络</string>
+    <string name="walk_wifi_body">将手机和电视连到同一 Wi-Fi 网络，让它们彼此发现。</string>
+    <string name="walk_wifi_hotspot_heading">没有 Wi-Fi？使用手机热点</string>
+    <string name="walk_wifi_hotspot_step1">在设置中打开手机热点。</string>
+    <string name="walk_wifi_hotspot_step2">在电视上打开 Wi-Fi 设置，像普通网络一样连接你的热点。</string>
+    <string name="walk_wifi_hotspot_step3">两台设备已在同一网络。无需家庭宽带也能投屏。</string>
+
+    <string name="walk_cast_title">开始投屏</string>
+    <string name="walk_cast_body">已就绪。三次点击就能上大屏。</string>
+    <string name="walk_cast_step1">在手机上打开 Aircast</string>
+    <string name="walk_cast_step2">点击 %1$s</string>
+    <string name="walk_cast_step3">选择电视并在电视屏幕上确认</string>
+
+    <string name="rate_us">给好评</string>
+    <string name="how_to_use">使用说明</string>
+    <string name="home_subtitle">无线投屏</string>
+
+    <string name="cd_rate_app">在 Play 商店给 Aircast 评分</string>
+    <string name="cd_phone_tv_cast">通过 Wi-Fi 投屏到电视的手机</string>
+    <string name="cd_help">打开使用指南</string>
+
+    <string name="language_picker_title">选择语言</string>
+    <string name="cd_language">选择应用语言</string>
+    <string name="walk_language_title">选择你的语言</string>
+    <string name="walk_language_subtitle">稍后可以在应用中随时更改</string>
+
+    <string name="theme_switch_to_light">切换到浅色模式</string>
+    <string name="theme_switch_to_dark">切换到深色模式</string>
+    <string name="home_connect_to_tv">连接到电视</string>
+    <string name="home_search_for_tvs">搜索电视</string>
+    <string name="home_search_subtitle">扫描并连接附近的屏幕</string>
+    <string name="home_wifi_hint">请确认电视和手机\n连接在同一 Wi-Fi 网络。</string>
+    <string name="toast_cast_settings_unavailable">请在系统菜单中打开 Cast 设置。</string>
+</resources>

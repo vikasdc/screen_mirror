@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Walkthrough page 5 illustration: phone showing Aircast home with the
+    "Search for TVs" button, a TV list-item below, and an animated tap ripple
+    over the Search button to suggest "tap here". Animation wired up in
+    avd_walk_cast.xml.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="220dp"
+    android:height="220dp"
+    android:viewportWidth="220"
+    android:viewportHeight="220">
+
+    <!-- Phone shadow -->
+    <path
+        android:pathData="M52,32 a12,12 0 0 1 12,-12 h92 a12,12 0 0 1 12,12 v160 a12,12 0 0 1 -12,12 h-92 a12,12 0 0 1 -12,-12 z"
+        android:fillColor="#000000"
+        android:fillAlpha="0.07" />
+
+    <!-- Phone body -->
+    <path
+        android:pathData="M52,30 a12,12 0 0 1 12,-12 h92 a12,12 0 0 1 12,12 v156 a12,12 0 0 1 -12,12 h-92 a12,12 0 0 1 -12,-12 z"
+        android:strokeColor="#34A853"
+        android:strokeWidth="3"
+        android:fillColor="#FFFFFF" />
+
+    <!-- Status bar tint -->
+    <path
+        android:pathData="M58,38 h100 v8 h-100 z"
+        android:fillColor="#34A853"
+        android:fillAlpha="0.10" />
+
+    <!-- Hero mockup (sunset thumbnail) -->
+    <path
+        android:pathData="M62,52 h92 v36 h-92 z"
+        android:fillColor="#FFD2A0" />
+    <path
+        android:pathData="M62,52 h92 v14 h-92 z"
+        android:fillColor="#FFEED5"
+        android:fillAlpha="0.6" />
+    <!-- mock sun -->
+    <path
+        android:pathData="M104,68 m-5,0 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0"
+        android:fillColor="#FFA833" />
+    <!-- mock mountains -->
+    <path
+        android:pathData="M62,82 L78,72 L92,80 L108,68 L124,78 L138,72 L154,78 L154,88 L62,88 z"
+        android:fillColor="#5B3B85" />
+
+    <!-- "Search for TVs" button -->
+    <path
+        android:pathData="M62,100 a4,4 0 0 1 4,-4 h84 a4,4 0 0 1 4,4 v22 a4,4 0 0 1 -4,4 h-84 a4,4 0 0 1 -4,-4 z"
+        android:fillColor="#34A853" />
+
+    <!-- Button text mock -->
+    <path
+        android:pathData="M84,109 h54 v4 h-54 z"
+        android:fillColor="#FFFFFF" />
+    <path
+        android:pathData="M84,116 h36 v2 h-36 z"
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.7" />
+
+    <!-- Animated tap ripple over the Search button -->
+    <group
+        android:name="cast_tap_pulse"
+        android:pivotX="108"
+        android:pivotY="111">
+        <path
+            android:name="cast_tap_pulse_ring"
+            android:pathData="M108,111 m-22,0 a22,22 0 1,0 44,0 a22,22 0 1,0 -44,0"
+            android:strokeColor="#34A853"
+            android:strokeWidth="2"
+            android:fillColor="@android:color/transparent" />
+    </group>
+
+    <!-- Discovered-TV list item -->
+    <path
+        android:pathData="M62,138 a3,3 0 0 1 3,-3 h86 a3,3 0 0 1 3,3 v22 a3,3 0 0 1 -3,3 h-86 a3,3 0 0 1 -3,-3 z"
+        android:fillColor="#FFFFFF"
+        android:strokeColor="#34A853"
+        android:strokeWidth="1"
+        android:strokeAlpha="0.4" />
+
+    <!-- TV icon in list -->
+    <path
+        android:pathData="M74,145 a1.5,1.5 0 0 1 1.5,-1.5 h12 a1.5,1.5 0 0 1 1.5,1.5 v8 a1.5,1.5 0 0 1 -1.5,1.5 h-12 a1.5,1.5 0 0 1 -1.5,-1.5 z"
+        android:strokeColor="#4285F4"
+        android:strokeWidth="1.4"
+        android:fillColor="@android:color/transparent" />
+    <path
+        android:pathData="M78,156 h6"
+        android:strokeColor="#4285F4"
+        android:strokeWidth="1.2"
+        android:strokeLineCap="round" />
+
+    <!-- "Living Room TV" text mock -->
+    <path
+        android:pathData="M98,148 h44 v3 h-44 z"
+        android:fillColor="#5A6378" />
+    <path
+        android:pathData="M98,154 h28 v2 h-28 z"
+        android:fillColor="#5A6378"
+        android:fillAlpha="0.5" />
+
+    <!-- Connect chevron -->
+    <path
+        android:pathData="M142,148 L146,151 L142,154"
+        android:strokeColor="#34A853"
+        android:strokeWidth="1.5"
+        android:strokeLineCap="round"
+        android:fillColor="@android:color/transparent" />
+
+    <!-- Home indicator -->
+    <path
+        android:pathData="M95,192 h30"
+        android:strokeColor="#34A853"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round" />
+
+</vector>

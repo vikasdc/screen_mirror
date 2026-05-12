@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Data dot 1: travels phone (x=94) -> TV (x=170), 76px in 1500ms, loops. -->
+<objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
+    android:propertyName="translateX"
+    android:valueFrom="0"
+    android:valueTo="76"
+    android:valueType="floatType"
+    android:duration="1500"
+    android:repeatCount="infinite"
+    android:repeatMode="restart"
+    android:interpolator="@android:interpolator/linear" />

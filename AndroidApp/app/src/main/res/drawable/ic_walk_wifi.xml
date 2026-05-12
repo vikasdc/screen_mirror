@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Walkthrough page 4 illustration. Wi-Fi rings emanating from a central dot
+    over a phone (left) and TV (right). Each ring is in its own named group so
+    the AVD wrapper (avd_walk_wifi.xml) can animate strokeAlpha to ripple them.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="220dp"
+    android:height="220dp"
+    android:viewportWidth="220"
+    android:viewportHeight="220">
+
+    <!-- Outer Wi-Fi arc -->
+    <group android:name="wifi_arc_outer">
+        <path
+            android:name="wifi_arc_outer_path"
+            android:pathData="M40,110 q70,-90 140,0"
+            android:strokeColor="#34A853"
+            android:strokeWidth="10"
+            android:strokeLineCap="round"
+            android:fillColor="@android:color/transparent" />
+    </group>
+
+    <!-- Middle Wi-Fi arc -->
+    <group android:name="wifi_arc_middle">
+        <path
+            android:name="wifi_arc_middle_path"
+            android:pathData="M64,118 q46,-60 92,0"
+            android:strokeColor="#34A853"
+            android:strokeWidth="10"
+            android:strokeLineCap="round"
+            android:fillColor="@android:color/transparent" />
+    </group>
+
+    <!-- Inner Wi-Fi arc -->
+    <group android:name="wifi_arc_inner">
+        <path
+            android:name="wifi_arc_inner_path"
+            android:pathData="M88,126 q22,-30 44,0"
+            android:strokeColor="#34A853"
+            android:strokeWidth="10"
+            android:strokeLineCap="round"
+            android:fillColor="@android:color/transparent" />
+    </group>
+
+    <!-- Source dot -->
+    <path
+        android:pathData="M110,142 m-9,0 a9,9 0 1,0 18,0 a9,9 0 1,0 -18,0"
+        android:fillColor="#34A853" />
+
+    <!-- Phone silhouette (left) -->
+    <path
+        android:pathData="M44,164 a4,4 0 0 1 4,-4 h18 a4,4 0 0 1 4,4 v32 a4,4 0 0 1 -4,4 h-18 a4,4 0 0 1 -4,-4 z"
+        android:fillColor="#4285F4"
+        android:fillAlpha="0.7" />
+
+    <!-- TV silhouette (right) -->
+    <path
+        android:pathData="M150,170 a4,4 0 0 1 4,-4 h32 a4,4 0 0 1 4,4 v22 a4,4 0 0 1 -4,4 h-32 a4,4 0 0 1 -4,-4 z"
+        android:fillColor="#4285F4"
+        android:fillAlpha="0.7" />
+
+</vector>

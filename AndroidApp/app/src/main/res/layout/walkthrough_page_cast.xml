@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Walkthrough page 5: open Aircast and search for TVs. Final step in the
+    onboarding flow — tells the user exactly what to do once they're past the
+    setup pages.
+-->
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingHorizontal="32dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="24dp">
+
+        <ImageView
+            android:id="@+id/walkAnimatedIcon"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginBottom="20dp"
+            android:contentDescription="@null"
+            android:src="@drawable/avd_walk_cast" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/walk_cast_title"
+            android:textColor="@color/walkthrough_text_primary"
+            android:textSize="26sp"
+            android:fontFamily="sans-serif-black"
+            android:letterSpacing="-0.02"
+            android:lineSpacingExtra="2dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:gravity="center"
+            android:text="@string/walk_cast_body"
+            android:textColor="@color/walkthrough_text_secondary"
+            android:textSize="15sp"
+            android:fontFamily="sans-serif"
+            android:lineSpacingExtra="4dp" />
+
+        <LinearLayout style="@style/WalkStepRow">
+            <TextView style="@style/WalkStepNumber" android:text="1" />
+            <TextView style="@style/WalkStepText"
+                android:text="@string/walk_cast_step1" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/WalkStepRow">
+            <TextView style="@style/WalkStepNumber" android:text="2" />
+            <TextView
+                android:id="@+id/walkCastStep2"
+                style="@style/WalkStepText" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/WalkStepRow">
+            <TextView style="@style/WalkStepNumber" android:text="3" />
+            <TextView style="@style/WalkStepText"
+                android:text="@string/walk_cast_step3" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

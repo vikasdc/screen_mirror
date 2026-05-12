@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Animated wrapper around ic_phone_tv_cast.xml.
+      - wifi_ring1/2/3 groups scale outward (0.3 -> 1.5), 600ms staggered.
+      - wifi_ring1/2/3_path strokeAlpha fades in lockstep with the scale.
+      - wifi_center group breathes gently so the icon feels alive.
+      - phone_sun and tv_sun share the SAME sun_pulse animator, so the suns
+        on both screens breathe in lockstep — same content, same timing.
+      - data_dot_1/2/3 groups translateX from 0 -> 76 along the connection line
+        (phone -> Wi-Fi hub -> TV). Three dots cascade with 0/500/1000ms offsets,
+        creating a continuous "data flowing" effect.
+-->
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/ic_phone_tv_cast">
+
+    <!-- Wi-Fi ring ripples -->
+    <target
+        android:name="wifi_ring1"
+        android:animation="@animator/wifi_pulse_1" />
+    <target
+        android:name="wifi_ring1_path"
+        android:animation="@animator/wifi_alpha_1" />
+
+    <target
+        android:name="wifi_ring2"
+        android:animation="@animator/wifi_pulse_2" />
+    <target
+        android:name="wifi_ring2_path"
+        android:animation="@animator/wifi_alpha_2" />
+
+    <target
+        android:name="wifi_ring3"
+        android:animation="@animator/wifi_pulse_3" />
+    <target
+        android:name="wifi_ring3_path"
+        android:animation="@animator/wifi_alpha_3" />
+
+    <!-- Wi-Fi hub gentle breathing -->
+    <target
+        android:name="wifi_center"
+        android:animation="@animator/wifi_center_pulse" />
+
+    <!-- Sun on each screen pulses with same animator => synced -->
+    <target
+        android:name="phone_sun"
+        android:animation="@animator/sun_pulse" />
+    <target
+        android:name="tv_sun"
+        android:animation="@animator/sun_pulse" />
+
+    <!-- Birds flying across each screen. Phone and TV bird animators share
+         durations and stagger offsets so the birds appear at the same
+         fractional position on both screens at any moment — same content
+         playing on both. -->
+    <target
+        android:name="phone_bird_1"
+        android:animation="@animator/bird_phone_1" />
+    <target
+        android:name="tv_bird_1"
+        android:animation="@animator/bird_tv_1" />
+
+    <target
+        android:name="phone_bird_2"
+        android:animation="@animator/bird_phone_2" />
+    <target
+        android:name="tv_bird_2"
+        android:animation="@animator/bird_tv_2" />
+
+    <target
+        android:name="phone_bird_3"
+        android:animation="@animator/bird_phone_3" />
+    <target
+        android:name="tv_bird_3"
+        android:animation="@animator/bird_tv_3" />
+
+    <!-- Data dots travel phone -> hub -> TV, cascade with staggered offsets -->
+    <target
+        android:name="data_dot_1"
+        android:animation="@animator/data_dot_1" />
+    <target
+        android:name="data_dot_2"
+        android:animation="@animator/data_dot_2" />
+    <target
+        android:name="data_dot_3"
+        android:animation="@animator/data_dot_3" />
+
+</animated-vector>

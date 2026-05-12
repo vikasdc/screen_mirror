@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Slate Dark Premium Palette (existing) — used in night mode -->
+    <color name="slate_bg">#1A1C1E</color>
+    <color name="slate_card">#282A2D</color>
+    <color name="slate_card_border">#3D4044</color>
+
+    <!-- Text Palette -->
+    <color name="white_text">#FFFFFF</color>
+    <color name="dim_text">#94A3B8</color>
+
+    <!-- M3 Mappings -->
+    <color name="m3_surface">#1A1C1E</color>
+    <color name="m3_on_surface">#FFFFFF</color>
+    <color name="m3_surface_variant">#282A2D</color>
+    <color name="m3_on_surface_variant">#94A3B8</color>
+
+    <!-- Soft emerald background for the "How to use" tonal button -->
+    <color name="emerald_tonal_bg">#2434A853</color>
+
+    <!-- Walkthrough (new) — match dark UI -->
+    <color name="walkthrough_bg">#1A1C1E</color>
+    <color name="walkthrough_text_primary">#FFFFFF</color>
+    <color name="walkthrough_text_secondary">#94A3B8</color>
+    <color name="walkthrough_dot_inactive">#3D4044</color>
+</resources>

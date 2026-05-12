@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Aircast</string>
+
+    <string name="walk_skip">تخطي</string>
+    <string name="walk_next">التالي</string>
+    <string name="walk_get_started">ابدأ</string>
+
+    <string name="walk_intro_title">انعكس هاتفك على أي تلفاز</string>
+    <string name="walk_intro_body">أرسل شاشتك إلى تلفاز ذكي بدقة HD مذهلة. لاسلكيًا وفوريًا.</string>
+
+    <string name="walk_brands_title">يعمل مع معظم أجهزة التلفاز الذكية</string>
+    <string name="walk_brands_body">متوافق مع أبرز أجهزة التلفاز الذكية وأجهزة البث</string>
+
+    <string name="walk_tv_setup_title">شغّله على تلفازك</string>
+    <string name="walk_tv_setup_body">ابحث عن Screen Mirroring في التلفاز. وقد تجده أيضًا باسم Wireless Display أو Smart View أو Anyview Cast أو ببساطة Cast. مسارات شائعة حسب العلامة التجارية:</string>
+    <string name="walk_tv_setup_chip_samsung">SAMSUNG</string>
+    <string name="walk_tv_setup_path_samsung">اضغط SOURCE في الريموت → Screen Mirroring</string>
+    <string name="walk_tv_setup_chip_lg">LG</string>
+    <string name="walk_tv_setup_path_lg">Home → Screen Share</string>
+    <string name="walk_tv_setup_chip_sony">SONY</string>
+    <string name="walk_tv_setup_path_sony">الإعدادات → الشبكة → Chromecast المدمج</string>
+    <string name="walk_tv_setup_chip_roku">ROKU</string>
+    <string name="walk_tv_setup_path_roku">الإعدادات → النظام → Screen Mirroring → اسمح</string>
+    <string name="walk_tv_setup_chip_firetv">FIRE TV</string>
+    <string name="walk_tv_setup_path_firetv">اضغط مطولًا على HOME → Mirroring</string>
+    <string name="walk_tv_setup_chip_hisense">HISENSE</string>
+    <string name="walk_tv_setup_path_hisense">Apps → Anyview Cast</string>
+    <string name="walk_tv_setup_chip_tcl">TCL</string>
+    <string name="walk_tv_setup_path_tcl">Apps → Wireless Display</string>
+    <string name="walk_tv_setup_chip_mitv">MI TV</string>
+    <string name="walk_tv_setup_path_mitv">الإعدادات → الاتصال → Wireless Display</string>
+    <string name="walk_tv_setup_chip_vizio">VIZIO</string>
+    <string name="walk_tv_setup_path_vizio">اضغط V في الريموت → Cast (Chromecast Built-in)</string>
+    <string name="walk_tv_setup_chip_panasonic">PANASONIC</string>
+    <string name="walk_tv_setup_path_panasonic">Apps → Mirroring</string>
+
+    <string name="walk_wifi_title">نفس شبكة Wi-Fi</string>
+    <string name="walk_wifi_body">اربط الهاتف والتلفاز بنفس شبكة Wi-Fi حتى يتعرّفا على بعضهما.</string>
+    <string name="walk_wifi_hotspot_heading">لا تتوفر Wi-Fi؟ استخدم نقطة اتصال الهاتف</string>
+    <string name="walk_wifi_hotspot_step1">فعّل نقطة اتصال هاتفك من الإعدادات.</string>
+    <string name="walk_wifi_hotspot_step2">في التلفاز افتح إعدادات Wi-Fi واتصل بنقطة اتصال هاتفك كأي شبكة عادية.</string>
+    <string name="walk_wifi_hotspot_step3">أصبح الجهازان على نفس الشبكة. الانعكاس يعمل دون إنترنت المنزل.</string>
+
+    <string name="walk_cast_title">ابدأ الانعكاس</string>
+    <string name="walk_cast_body">جاهز. ثلاث نقرات وأنت على الشاشة الكبيرة.</string>
+    <string name="walk_cast_step1">افتح Aircast على هاتفك</string>
+    <string name="walk_cast_step2">انقر على %1$s</string>
+    <string name="walk_cast_step3">اختر تلفازك وأكّد على شاشة التلفاز</string>
+
+    <string name="rate_us">قيّمنا</string>
+    <string name="how_to_use">كيفية الاستخدام</string>
+    <string name="home_subtitle">انعكاس لاسلكي</string>
+
+    <string name="cd_rate_app">قيّم Aircast على Play Store</string>
+    <string name="cd_phone_tv_cast">هاتف ينعكس على تلفاز عبر Wi-Fi</string>
+    <string name="cd_help">افتح دليل الاستخدام</string>
+
+    <string name="language_picker_title">اختر اللغة</string>
+    <string name="cd_language">اختر لغة التطبيق</string>
+    <string name="walk_language_title">اختر لغتك</string>
+    <string name="walk_language_subtitle">يمكنك تغييرها في أي وقت من داخل التطبيق</string>
+
+    <string name="theme_switch_to_light">التبديل إلى الوضع الفاتح</string>
+    <string name="theme_switch_to_dark">التبديل إلى الوضع الداكن</string>
+    <string name="home_connect_to_tv">اتصل بالتلفاز</string>
+    <string name="home_search_for_tvs">ابحث عن تلفاز</string>
+    <string name="home_search_subtitle">ابحث عن الشاشات القريبة واتصل بها</string>
+    <string name="home_wifi_hint">تأكد من أن التلفاز والهاتف\nمتصلان بنفس شبكة Wi-Fi.</string>
+    <string name="toast_cast_settings_unavailable">افتح إعدادات Cast من قائمة النظام.</string>
+</resources>

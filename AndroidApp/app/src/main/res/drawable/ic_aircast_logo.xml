@@ -1,18 +1,18 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="128dp"
-    android:height="128dp"
-    android:viewportWidth="128"
-    android:viewportHeight="128">
+    android:width="88dp"
+    android:height="50dp"
+    android:viewportWidth="88"
+    android:viewportHeight="50">
 
     <!-- Green Element (Representing Mobile Screen) -->
     <path
         android:fillColor="#34A853"
         android:alpha="0.85"
-        android:pathData="M24,44H74V84H24C21.8,84 20,82.2 20,80V48C20,45.8 21.8,44 24,44Z" />
-    
+        android:pathData="M4,0H54V40H4C1.8,40 0,38.2 0,36V4C0,1.8 1.8,0 4,0Z" />
+
     <!-- Blue Element (Representing TV Display) -->
     <path
         android:fillColor="#4285F4"
         android:alpha="0.85"
-        android:pathData="M54,54H104C106.2,54 108,55.8 108,58V90C108,92.2 106.2,94 104,94H54V54Z" />
+        android:pathData="M34,10H84C86.2,10 88,11.8 88,14V46C88,48.2 86.2,50 84,50H34V10Z" />
 </vector>

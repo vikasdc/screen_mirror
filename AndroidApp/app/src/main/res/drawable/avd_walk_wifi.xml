@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Animated wrapper around ic_walk_wifi.xml. Each Wi-Fi arc fades its
+    strokeAlpha in cascade so the rings appear to emanate outward. Suggests
+    "the network is broadcasting" without distracting from the title text.
+-->
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/ic_walk_wifi">
+
+    <target
+        android:name="wifi_arc_inner_path"
+        android:animation="@animator/walk_wifi_arc_inner" />
+
+    <target
+        android:name="wifi_arc_middle_path"
+        android:animation="@animator/walk_wifi_arc_middle" />
+
+    <target
+        android:name="wifi_arc_outer_path"
+        android:animation="@animator/walk_wifi_arc_outer" />
+
+</animated-vector>

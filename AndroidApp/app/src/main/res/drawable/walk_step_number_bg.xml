@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Solid emerald circle used as the background for numbered step badges in
+     the walkthrough pages 4 and 5. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="@color/emerald_accent" />
+</shape>

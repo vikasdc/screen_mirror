@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Walkthrough page 1: language picker. Shown as the first onboarding page so
+    new users can choose their language before reading the rest of the tour.
+    Tapping a row applies the locale via AppCompatDelegate.setApplicationLocales,
+    which triggers Activity recreation; the user lands back on this page in
+    the new language with the picked row checkmarked.
+-->
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="24dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="24dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:gravity="center"
+            android:letterSpacing="-0.02"
+            android:lineSpacingExtra="2dp"
+            android:text="@string/walk_language_title"
+            android:textColor="@color/walkthrough_text_primary"
+            android:textSize="26sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:lineSpacingExtra="3dp"
+            android:text="@string/walk_language_subtitle"
+            android:textColor="@color/walkthrough_text_secondary"
+            android:textSize="14sp" />
+
+        <GridLayout
+            android:id="@+id/walkLanguageList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:columnCount="2" />
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

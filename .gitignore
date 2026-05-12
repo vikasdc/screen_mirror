@@ -39,3 +39,9 @@
 **/build.log
 **/build_output*
 **/emulator_screenshot.png
+
+# Release signing creds. Template lives at app/keystore.properties.example.
+**/keystore.properties
+
+# Machine-specific Android SDK path.
+**/local.properties

@@ -2,17 +2,40 @@ plugins {
     id 'com.android.application'
 }
 
+// Read release-signing creds from app/keystore.properties if it exists. The
+// file stays gitignored. See keystore.properties.example for the schema.
+def keystorePropertiesFile = rootProject.file("app/keystore.properties")
+def keystoreProperties = new Properties()
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
 android {
     namespace 'com.screenmirror'
     compileSdk 35
-    buildToolsVersion "35.0.0"
 
     defaultConfig {
         applicationId "com.screenmirror"
         minSdk 24
         targetSdk 35
-        versionCode 5
-        versionName "1.4"
+        versionCode 12
+        versionName "1.3"
+
+        // Restrict packaged locales to the ones we actually ship.
+        // Without this, AppCompat's full set of ~80 locales bloats the APK.
+        resConfigs "en", "es", "pt-rBR", "hi", "in", "ru", "de", "fr",
+                "it", "ja", "ko", "zh-rCN", "tr", "vi", "ar"
+    }
+
+    signingConfigs {
+        release {
+            if (keystorePropertiesFile.exists()) {
+                storeFile file(keystoreProperties['storeFile'])
+                storePassword keystoreProperties['storePassword']
+                keyAlias keystoreProperties['keyAlias']
+                keyPassword keystoreProperties['keyPassword']
+            }
+        }
     }
 
     buildTypes {
@@ -20,6 +43,13 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            // Only attach the production signing config when keystore.properties
+            // is present. Without it, release builds produce an unsigned APK
+            // (useful for size analysis) but bundleRelease for Play upload still
+            // requires the file.
+            if (keystorePropertiesFile.exists()) {
+                signingConfig signingConfigs.release
+            }
         }
     }
     compileOptions {
@@ -32,4 +62,5 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.10.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
 }

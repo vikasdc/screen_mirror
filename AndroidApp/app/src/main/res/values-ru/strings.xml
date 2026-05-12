@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Aircast</string>
+
+    <string name="walk_skip">Пропустить</string>
+    <string name="walk_next">Далее</string>
+    <string name="walk_get_started">Начать</string>
+
+    <string name="walk_intro_title">Транслируйте экран на любой телевизор</string>
+    <string name="walk_intro_body">Отправляйте экран на Smart TV в чётком HD. По беспроводной сети и мгновенно.</string>
+
+    <string name="walk_brands_title">Работает почти со всеми ТВ</string>
+    <string name="walk_brands_body">Совместимо с ведущими Smart TV и стримерами</string>
+
+    <string name="walk_tv_setup_title">Включите на телевизоре</string>
+    <string name="walk_tv_setup_body">Найдите Screen Mirroring на ТВ. Может называться Wireless Display, Smart View, Anyview Cast или просто Cast. Типовые пути по брендам:</string>
+    <string name="walk_tv_setup_chip_samsung">SAMSUNG</string>
+    <string name="walk_tv_setup_path_samsung">Нажмите SOURCE на пульте → Screen Mirroring</string>
+    <string name="walk_tv_setup_chip_lg">LG</string>
+    <string name="walk_tv_setup_path_lg">Home → Screen Share</string>
+    <string name="walk_tv_setup_chip_sony">SONY</string>
+    <string name="walk_tv_setup_path_sony">Settings → Network → Built-in Chromecast</string>
+    <string name="walk_tv_setup_chip_roku">ROKU</string>
+    <string name="walk_tv_setup_path_roku">Settings → System → Screen Mirroring → Allow</string>
+    <string name="walk_tv_setup_chip_firetv">FIRE TV</string>
+    <string name="walk_tv_setup_path_firetv">Удерживайте HOME → Mirroring</string>
+    <string name="walk_tv_setup_chip_hisense">HISENSE</string>
+    <string name="walk_tv_setup_path_hisense">Apps → Anyview Cast</string>
+    <string name="walk_tv_setup_chip_tcl">TCL</string>
+    <string name="walk_tv_setup_path_tcl">Apps → Wireless Display</string>
+    <string name="walk_tv_setup_chip_mitv">MI TV</string>
+    <string name="walk_tv_setup_path_mitv">Settings → Connection → Wireless Display</string>
+    <string name="walk_tv_setup_chip_vizio">VIZIO</string>
+    <string name="walk_tv_setup_path_vizio">Нажмите V на пульте → Cast (Chromecast Built-in)</string>
+    <string name="walk_tv_setup_chip_panasonic">PANASONIC</string>
+    <string name="walk_tv_setup_path_panasonic">Apps → Mirroring</string>
+
+    <string name="walk_wifi_title">Одна сеть Wi-Fi</string>
+    <string name="walk_wifi_body">Подключите телефон и ТВ к одной сети Wi-Fi, чтобы они нашли друг друга.</string>
+    <string name="walk_wifi_hotspot_heading">Нет Wi-Fi? Используйте точку доступа телефона</string>
+    <string name="walk_wifi_hotspot_step1">Включите точку доступа телефона в Настройках.</string>
+    <string name="walk_wifi_hotspot_step2">На ТВ откройте настройки Wi-Fi и подключитесь к точке доступа как к обычной сети.</string>
+    <string name="walk_wifi_hotspot_step3">Оба устройства в одной сети. Трансляция работает без домашнего интернета.</string>
+
+    <string name="walk_cast_title">Начать трансляцию</string>
+    <string name="walk_cast_body">Готово. Три касания и вы на большом экране.</string>
+    <string name="walk_cast_step1">Откройте Aircast на телефоне</string>
+    <string name="walk_cast_step2">Нажмите %1$s</string>
+    <string name="walk_cast_step3">Выберите ТВ и подтвердите на экране ТВ</string>
+
+    <string name="rate_us">Оценить</string>
+    <string name="how_to_use">Как пользоваться</string>
+    <string name="home_subtitle">БЕСПРОВОДНАЯ ТРАНСЛЯЦИЯ</string>
+
+    <string name="cd_rate_app">Оценить Aircast в Play Store</string>
+    <string name="cd_phone_tv_cast">Телефон транслирует на ТВ по Wi-Fi</string>
+    <string name="cd_help">Открыть руководство</string>
+
+    <string name="language_picker_title">Выберите язык</string>
+    <string name="cd_language">Выбрать язык приложения</string>
+    <string name="walk_language_title">Выберите язык</string>
+    <string name="walk_language_subtitle">Вы можете изменить его в любой момент</string>
+
+    <string name="theme_switch_to_light">Светлая тема</string>
+    <string name="theme_switch_to_dark">Тёмная тема</string>
+    <string name="home_connect_to_tv">Подключиться к ТВ</string>
+    <string name="home_search_for_tvs">Найти ТВ</string>
+    <string name="home_search_subtitle">Сканируйте и подключайтесь к ближайшим экранам</string>
+    <string name="home_wifi_hint">Убедитесь, что ТВ и телефон\nподключены к одной сети Wi-Fi.</string>
+    <string name="toast_cast_settings_unavailable">Откройте настройки Cast в системном меню.</string>
+</resources>

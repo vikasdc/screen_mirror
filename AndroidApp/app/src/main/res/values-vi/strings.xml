@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Aircast</string>
+
+    <string name="walk_skip">Bỏ qua</string>
+    <string name="walk_next">Tiếp</string>
+    <string name="walk_get_started">Bắt đầu</string>
+
+    <string name="walk_intro_title">Phản chiếu điện thoại lên mọi TV</string>
+    <string name="walk_intro_body">Truyền màn hình lên Smart TV với chất lượng HD sắc nét. Không dây và ngay lập tức.</string>
+
+    <string name="walk_brands_title">Hoạt động với hầu hết Smart TV</string>
+    <string name="walk_brands_body">Tương thích với các Smart TV và thiết bị phát phổ biến</string>
+
+    <string name="walk_tv_setup_title">Bật trên TV của bạn</string>
+    <string name="walk_tv_setup_body">Tìm Screen Mirroring trên TV. Cũng có thể gọi là Wireless Display, Smart View, Anyview Cast hay chỉ Cast. Đường dẫn thường gặp theo hãng:</string>
+    <string name="walk_tv_setup_chip_samsung">SAMSUNG</string>
+    <string name="walk_tv_setup_path_samsung">Bấm SOURCE trên điều khiển → Screen Mirroring</string>
+    <string name="walk_tv_setup_chip_lg">LG</string>
+    <string name="walk_tv_setup_path_lg">Home → Screen Share</string>
+    <string name="walk_tv_setup_chip_sony">SONY</string>
+    <string name="walk_tv_setup_path_sony">Cài đặt → Mạng → Chromecast tích hợp</string>
+    <string name="walk_tv_setup_chip_roku">ROKU</string>
+    <string name="walk_tv_setup_path_roku">Cài đặt → Hệ thống → Screen Mirroring → Cho phép</string>
+    <string name="walk_tv_setup_chip_firetv">FIRE TV</string>
+    <string name="walk_tv_setup_path_firetv">Giữ HOME → Mirroring</string>
+    <string name="walk_tv_setup_chip_hisense">HISENSE</string>
+    <string name="walk_tv_setup_path_hisense">Apps → Anyview Cast</string>
+    <string name="walk_tv_setup_chip_tcl">TCL</string>
+    <string name="walk_tv_setup_path_tcl">Apps → Wireless Display</string>
+    <string name="walk_tv_setup_chip_mitv">MI TV</string>
+    <string name="walk_tv_setup_path_mitv">Cài đặt → Kết nối → Wireless Display</string>
+    <string name="walk_tv_setup_chip_vizio">VIZIO</string>
+    <string name="walk_tv_setup_path_vizio">Bấm V trên điều khiển → Cast (Chromecast Built-in)</string>
+    <string name="walk_tv_setup_chip_panasonic">PANASONIC</string>
+    <string name="walk_tv_setup_path_panasonic">Apps → Mirroring</string>
+
+    <string name="walk_wifi_title">Cùng mạng Wi-Fi</string>
+    <string name="walk_wifi_body">Kết nối điện thoại và TV vào cùng một mạng Wi-Fi để chúng tìm thấy nhau.</string>
+    <string name="walk_wifi_hotspot_heading">Không có Wi-Fi? Dùng điểm phát của điện thoại</string>
+    <string name="walk_wifi_hotspot_step1">Bật điểm phát của điện thoại trong Cài đặt.</string>
+    <string name="walk_wifi_hotspot_step2">Trên TV, mở cài đặt Wi-Fi và kết nối tới điểm phát giống mạng thường.</string>
+    <string name="walk_wifi_hotspot_step3">Hai thiết bị đã ở cùng mạng. Việc phản chiếu hoạt động không cần internet nhà.</string>
+
+    <string name="walk_cast_title">Bắt đầu phản chiếu</string>
+    <string name="walk_cast_body">Sẵn sàng rồi. Ba lần chạm là lên màn hình lớn.</string>
+    <string name="walk_cast_step1">Mở Aircast trên điện thoại</string>
+    <string name="walk_cast_step2">Chạm %1$s</string>
+    <string name="walk_cast_step3">Chọn TV và xác nhận trên màn hình TV</string>
+
+    <string name="rate_us">Đánh giá</string>
+    <string name="how_to_use">Cách dùng</string>
+    <string name="home_subtitle">PHẢN CHIẾU KHÔNG DÂY</string>
+
+    <string name="cd_rate_app">Đánh giá Aircast trên Play Store</string>
+    <string name="cd_phone_tv_cast">Điện thoại phản chiếu lên TV qua Wi-Fi</string>
+    <string name="cd_help">Mở hướng dẫn sử dụng</string>
+
+    <string name="language_picker_title">Chọn ngôn ngữ</string>
+    <string name="cd_language">Chọn ngôn ngữ ứng dụng</string>
+    <string name="walk_language_title">Chọn ngôn ngữ</string>
+    <string name="walk_language_subtitle">Bạn có thể đổi lại bất cứ lúc nào trong ứng dụng</string>
+
+    <string name="theme_switch_to_light">Chuyển sang chế độ sáng</string>
+    <string name="theme_switch_to_dark">Chuyển sang chế độ tối</string>
+    <string name="home_connect_to_tv">Kết nối với TV</string>
+    <string name="home_search_for_tvs">Tìm TV</string>
+    <string name="home_search_subtitle">Quét và kết nối tới màn hình gần đó</string>
+    <string name="home_wifi_hint">Đảm bảo TV và điện thoại của bạn\nđang ở cùng mạng Wi-Fi.</string>
+    <string name="toast_cast_settings_unavailable">Vui lòng mở cài đặt Cast trong menu hệ thống.</string>
+</resources>

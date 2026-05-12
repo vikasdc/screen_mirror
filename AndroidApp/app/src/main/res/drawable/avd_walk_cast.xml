@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Animated wrapper around ic_walk_cast.xml. The tap ripple over the "Search
+    for TVs" button scales outward and fades to communicate "tap here".
+-->
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/ic_walk_cast">
+
+    <target
+        android:name="cast_tap_pulse"
+        android:animation="@animator/cast_tap_scale" />
+
+    <target
+        android:name="cast_tap_pulse_ring"
+        android:animation="@animator/cast_tap_alpha" />
+
+</animated-vector>

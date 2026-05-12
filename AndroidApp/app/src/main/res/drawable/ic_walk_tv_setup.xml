@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Walkthrough page 3 illustration: a TV showing its settings menu with the
+    "Wireless Display" row checked. The checkbox group is animated (gentle
+    scale pulse) by avd_walk_tv_setup.xml to draw attention to the action.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="220dp"
+    android:height="220dp"
+    android:viewportWidth="220"
+    android:viewportHeight="220">
+
+    <!-- TV bezel -->
+    <path
+        android:pathData="M22,46 a6,6 0 0 1 6,-6 h164 a6,6 0 0 1 6,6 v100 a6,6 0 0 1 -6,6 h-164 a6,6 0 0 1 -6,-6 z"
+        android:strokeColor="#4285F4"
+        android:strokeWidth="3"
+        android:fillColor="#0F1729" />
+    <!-- TV screen wash -->
+    <path
+        android:pathData="M30,48 h160 v96 h-160 z"
+        android:fillColor="#1E3A5F" />
+
+    <!-- Top label: "Settings" -->
+    <path
+        android:pathData="M40,58 h28 v6 h-28 z"
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.7" />
+
+    <!-- Settings menu panel (right side of TV screen) -->
+    <path
+        android:pathData="M96,62 h86 v74 h-86 z"
+        android:fillColor="#FFFFFF" />
+    <path
+        android:pathData="M96,62 h86 v74 h-86 z"
+        android:strokeColor="#4285F4"
+        android:strokeWidth="1.5"
+        android:fillColor="@android:color/transparent" />
+
+    <!-- Highlight bar behind active row -->
+    <path
+        android:pathData="M98,68 h82 v18 h-82 z"
+        android:fillColor="#34A853"
+        android:fillAlpha="0.10" />
+
+    <!-- Menu row 1: "Wireless Display" -->
+    <path
+        android:pathData="M104,76 h54"
+        android:strokeColor="#1F1F1F"
+        android:strokeWidth="3"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M104,82 h36"
+        android:strokeColor="#5A6378"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeAlpha="0.6" />
+
+    <!-- Checkbox (animated group) -->
+    <group
+        android:name="tv_check"
+        android:pivotX="169"
+        android:pivotY="76">
+        <!-- soft glow -->
+        <path
+            android:pathData="M169,76 m-8,0 a8,8 0 1,0 16,0 a8,8 0 1,0 -16,0"
+            android:fillColor="#34A853"
+            android:fillAlpha="0.25" />
+        <!-- box -->
+        <path
+            android:pathData="M163,72 a2,2 0 0 1 2,-2 h8 a2,2 0 0 1 2,2 v8 a2,2 0 0 1 -2,2 h-8 a2,2 0 0 1 -2,-2 z"
+            android:fillColor="#34A853" />
+        <!-- check tick -->
+        <path
+            android:pathData="M165.5,76 L168,79 L173,73"
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="1.6"
+            android:strokeLineCap="round"
+            android:fillColor="@android:color/transparent" />
+    </group>
+
+    <!-- Divider -->
+    <path
+        android:pathData="M104,94 h70"
+        android:strokeColor="#E3E7EE"
+        android:strokeWidth="1" />
+
+    <!-- Menu row 2: "Help & Feedback" -->
+    <path
+        android:pathData="M104,104 h44"
+        android:strokeColor="#5A6378"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M104,110 h28"
+        android:strokeColor="#5A6378"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeAlpha="0.5" />
+
+    <!-- Divider -->
+    <path
+        android:pathData="M104,122 h70"
+        android:strokeColor="#E3E7EE"
+        android:strokeWidth="1" />
+
+    <!-- Slim TV stand (single thin base) -->
+    <path
+        android:pathData="M82,154 h56 v8 h-56 z"
+        android:fillColor="#4285F4"
+        android:fillAlpha="0.85" />
+
+</vector>

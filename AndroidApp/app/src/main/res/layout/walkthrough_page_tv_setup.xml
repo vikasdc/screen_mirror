@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Walkthrough page 3: brand-aware TV setup. Shows the user the menu path to
+    enable Wireless Display / Screen Mirroring on the most common Smart TV
+    brands. Path information researched from manufacturer help pages and
+    user guides on Reddit/forums.
+-->
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingHorizontal="24dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="24dp">
+
+        <ImageView
+            android:id="@+id/walkAnimatedIcon"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginBottom="14dp"
+            android:contentDescription="@null"
+            android:src="@drawable/avd_walk_tv_setup" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/walk_tv_setup_title"
+            android:textColor="@color/walkthrough_text_primary"
+            android:textSize="24sp"
+            android:fontFamily="sans-serif-black"
+            android:letterSpacing="-0.02"
+            android:lineSpacingExtra="2dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="12dp"
+            android:gravity="center"
+            android:text="@string/walk_tv_setup_body"
+            android:textColor="@color/walkthrough_text_secondary"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif"
+            android:lineSpacingExtra="3dp" />
+
+        <!-- Brand path rows: chip on left, menu path on right -->
+
+        <LinearLayout style="@style/BrandPathRow">
+            <TextView style="@style/BrandPathChip"
+                android:backgroundTint="#1428A0"
+                android:text="@string/walk_tv_setup_chip_samsung" />
+            <TextView style="@style/BrandPathText"
+                android:text="@string/walk_tv_setup_path_samsung" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/BrandPathRow">
+            <TextView style="@style/BrandPathChip"
+                android:backgroundTint="#A50034"
+                android:text="@string/walk_tv_setup_chip_lg" />
+            <TextView style="@style/BrandPathText"
+                android:text="@string/walk_tv_setup_path_lg" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/BrandPathRow">
+            <TextView style="@style/BrandPathChip"
+                android:backgroundTint="#2D2F33"
+                android:text="@string/walk_tv_setup_chip_sony" />
+            <TextView style="@style/BrandPathText"
+                android:text="@string/walk_tv_setup_path_sony" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/BrandPathRow">
+            <TextView style="@style/BrandPathChip"
+                android:backgroundTint="#6F1AB1"
+                android:text="@string/walk_tv_setup_chip_roku" />
+            <TextView style="@style/BrandPathText"
+                android:text="@string/walk_tv_setup_path_roku" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/BrandPathRow">
+            <TextView style="@style/BrandPathChip"
+                android:backgroundTint="#FF9900"
+                android:text="@string/walk_tv_setup_chip_firetv" />
+            <TextView style="@style/BrandPathText"
+                android:text="@string/walk_tv_setup_path_firetv" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/BrandPathRow">
+            <TextView style="@style/BrandPathChip"
+                android:backgroundTint="#008C5C"
+                android:text="@string/walk_tv_setup_chip_hisense" />
+            <TextView style="@style/BrandPathText"
+                android:text="@string/walk_tv_setup_path_hisense" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/BrandPathRow">
+            <TextView style="@style/BrandPathChip"
+                android:backgroundTint="#DA2127"
+                android:text="@string/walk_tv_setup_chip_tcl" />
+            <TextView style="@style/BrandPathText"
+                android:text="@string/walk_tv_setup_path_tcl" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/BrandPathRow">
+            <TextView style="@style/BrandPathChip"
+                android:backgroundTint="#FF6900"
+                android:text="@string/walk_tv_setup_chip_mitv" />
+            <TextView style="@style/BrandPathText"
+                android:text="@string/walk_tv_setup_path_mitv" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/BrandPathRow">
+            <TextView style="@style/BrandPathChip"
+                android:backgroundTint="#2D2F33"
+                android:text="@string/walk_tv_setup_chip_vizio" />
+            <TextView style="@style/BrandPathText"
+                android:text="@string/walk_tv_setup_path_vizio" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/BrandPathRow">
+            <TextView style="@style/BrandPathChip"
+                android:backgroundTint="#0F4DA4"
+                android:text="@string/walk_tv_setup_chip_panasonic" />
+            <TextView style="@style/BrandPathText"
+                android:text="@string/walk_tv_setup_path_panasonic" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

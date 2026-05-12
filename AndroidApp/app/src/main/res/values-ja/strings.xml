@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Aircast</string>
+
+    <string name="walk_skip">スキップ</string>
+    <string name="walk_next">次へ</string>
+    <string name="walk_get_started">はじめる</string>
+
+    <string name="walk_intro_title">スマホをどのテレビにもミラーリング</string>
+    <string name="walk_intro_body">美しい HD でスマートテレビに画面を映し出します。ワイヤレスで瞬時に。</string>
+
+    <string name="walk_brands_title">多くのスマートテレビに対応</string>
+    <string name="walk_brands_body">主要なスマートテレビとストリーミング機器に対応</string>
+
+    <string name="walk_tv_setup_title">テレビでミラーリングを有効に</string>
+    <string name="walk_tv_setup_body">テレビで Screen Mirroring を探してください。Wireless Display、Smart View、Anyview Cast、または単に Cast と呼ばれることもあります。ブランド別の一般的な経路:</string>
+    <string name="walk_tv_setup_chip_samsung">SAMSUNG</string>
+    <string name="walk_tv_setup_path_samsung">リモコンで SOURCE → Screen Mirroring</string>
+    <string name="walk_tv_setup_chip_lg">LG</string>
+    <string name="walk_tv_setup_path_lg">Home → Screen Share</string>
+    <string name="walk_tv_setup_chip_sony">SONY</string>
+    <string name="walk_tv_setup_path_sony">設定 → ネットワーク → 内蔵 Chromecast</string>
+    <string name="walk_tv_setup_chip_roku">ROKU</string>
+    <string name="walk_tv_setup_path_roku">設定 → システム → Screen Mirroring → 許可</string>
+    <string name="walk_tv_setup_chip_firetv">FIRE TV</string>
+    <string name="walk_tv_setup_path_firetv">HOME を長押し → Mirroring</string>
+    <string name="walk_tv_setup_chip_hisense">HISENSE</string>
+    <string name="walk_tv_setup_path_hisense">Apps → Anyview Cast</string>
+    <string name="walk_tv_setup_chip_tcl">TCL</string>
+    <string name="walk_tv_setup_path_tcl">Apps → Wireless Display</string>
+    <string name="walk_tv_setup_chip_mitv">MI TV</string>
+    <string name="walk_tv_setup_path_mitv">設定 → 接続 → Wireless Display</string>
+    <string name="walk_tv_setup_chip_vizio">VIZIO</string>
+    <string name="walk_tv_setup_path_vizio">リモコンで V → Cast (Chromecast Built-in)</string>
+    <string name="walk_tv_setup_chip_panasonic">PANASONIC</string>
+    <string name="walk_tv_setup_path_panasonic">Apps → Mirroring</string>
+
+    <string name="walk_wifi_title">同じ Wi-Fi ネットワーク</string>
+    <string name="walk_wifi_body">スマホとテレビを同じ Wi-Fi ネットワークに接続して、互いに見つけられるようにします。</string>
+    <string name="walk_wifi_hotspot_heading">Wi-Fi がない場合はスマホのテザリングを使う</string>
+    <string name="walk_wifi_hotspot_step1">設定でスマホのテザリングをオンにします。</string>
+    <string name="walk_wifi_hotspot_step2">テレビで Wi-Fi 設定を開き、通常のネットワークと同じようにテザリングに接続します。</string>
+    <string name="walk_wifi_hotspot_step3">両方の機器が同じネットワーク上にあります。家のインターネットなしでもミラーリングが動作します。</string>
+
+    <string name="walk_cast_title">ミラーリングを開始</string>
+    <string name="walk_cast_body">準備完了。3 タップで大画面に映ります。</string>
+    <string name="walk_cast_step1">スマホで Aircast を開く</string>
+    <string name="walk_cast_step2">%1$s をタップ</string>
+    <string name="walk_cast_step3">テレビを選んで画面で確認</string>
+
+    <string name="rate_us">評価する</string>
+    <string name="how_to_use">使い方</string>
+    <string name="home_subtitle">ワイヤレスミラーリング</string>
+
+    <string name="cd_rate_app">Play ストアで Aircast を評価</string>
+    <string name="cd_phone_tv_cast">Wi-Fi でテレビにミラーリングするスマホ</string>
+    <string name="cd_help">使い方ガイドを開く</string>
+
+    <string name="language_picker_title">言語を選択</string>
+    <string name="cd_language">アプリの言語を選択</string>
+    <string name="walk_language_title">言語を選択してください</string>
+    <string name="walk_language_subtitle">アプリ内でいつでも変更できます</string>
+
+    <string name="theme_switch_to_light">ライトモードに切替</string>
+    <string name="theme_switch_to_dark">ダークモードに切替</string>
+    <string name="home_connect_to_tv">テレビに接続</string>
+    <string name="home_search_for_tvs">テレビを検索</string>
+    <string name="home_search_subtitle">近くのディスプレイを検索して接続</string>
+    <string name="home_wifi_hint">テレビとスマホが同じ Wi-Fi に\n接続されていることを確認してください。</string>
+    <string name="toast_cast_settings_unavailable">システムメニューで Cast 設定を開いてください。</string>
+</resources>

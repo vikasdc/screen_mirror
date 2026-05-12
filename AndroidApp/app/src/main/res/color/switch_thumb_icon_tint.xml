@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Sun thumb (checked / light mode): warm yellow-orange -->
+    <item android:state_checked="true" android:color="#F4A23C" />
+    <!-- Moon thumb (unchecked / dark mode): emerald to match brand -->
+    <item android:color="@color/emerald_accent" />
+</selector>

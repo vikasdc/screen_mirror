@@ -1,4 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Aircast</string>
+
+    <!-- Walkthrough nav -->
+    <string name="walk_skip">Skip</string>
+    <string name="walk_next">Next</string>
+    <string name="walk_get_started">Get Started</string>
+
+    <!-- Walkthrough page 1: intro -->
+    <string name="walk_intro_title">Mirror your phone to any TV</string>
+    <string name="walk_intro_body">Cast your screen to a Smart TV in stunning HD. Wireless and instant.</string>
+
+    <!-- Walkthrough page 2: brand compatibility -->
+    <string name="walk_brands_title">Works with most TVs</string>
+    <string name="walk_brands_body">Compatible with leading Smart TVs and streaming devices</string>
+
+    <!-- Walkthrough page 3: enable wireless display on TV (brand-aware) -->
+    <string name="walk_tv_setup_title">Enable on your TV</string>
+    <string name="walk_tv_setup_body">Find Screen Mirroring on your TV. It may also be called Wireless Display, Smart View, Anyview Cast, or just Cast. Common paths by brand:</string>
+    <string name="walk_tv_setup_chip_samsung">SAMSUNG</string>
+    <string name="walk_tv_setup_path_samsung">Press SOURCE on remote → Screen Mirroring</string>
+    <string name="walk_tv_setup_chip_lg">LG</string>
+    <string name="walk_tv_setup_path_lg">Home → Screen Share</string>
+    <string name="walk_tv_setup_chip_sony">SONY</string>
+    <string name="walk_tv_setup_path_sony">Settings → Network → Built-in Chromecast</string>
+    <string name="walk_tv_setup_chip_roku">ROKU</string>
+    <string name="walk_tv_setup_path_roku">Settings → System → Screen Mirroring → Allow</string>
+    <string name="walk_tv_setup_chip_firetv">FIRE TV</string>
+    <string name="walk_tv_setup_path_firetv">Hold HOME → Mirroring</string>
+    <string name="walk_tv_setup_chip_hisense">HISENSE</string>
+    <string name="walk_tv_setup_path_hisense">Apps → Anyview Cast</string>
+    <string name="walk_tv_setup_chip_tcl">TCL</string>
+    <string name="walk_tv_setup_path_tcl">Apps → Wireless Display</string>
+    <string name="walk_tv_setup_chip_mitv">MI TV</string>
+    <string name="walk_tv_setup_path_mitv">Settings → Connection → Wireless Display</string>
+    <string name="walk_tv_setup_chip_vizio">VIZIO</string>
+    <string name="walk_tv_setup_path_vizio">Press V on remote → Cast (Chromecast Built-in)</string>
+    <string name="walk_tv_setup_chip_panasonic">PANASONIC</string>
+    <string name="walk_tv_setup_path_panasonic">Apps → Mirroring</string>
+
+    <!-- Walkthrough page 4: same Wi-Fi network + hotspot fallback -->
+    <string name="walk_wifi_title">Same Wi-Fi network</string>
+    <string name="walk_wifi_body">Connect your phone and TV to the same Wi-Fi network so they can find each other.</string>
+    <string name="walk_wifi_hotspot_heading">No Wi-Fi? Use your phone hotspot</string>
+    <string name="walk_wifi_hotspot_step1">Turn on your phone\'s hotspot in Settings.</string>
+    <string name="walk_wifi_hotspot_step2">On the TV, open Wi-Fi settings and connect to your hotspot like any normal network.</string>
+    <string name="walk_wifi_hotspot_step3">Both devices are now on the same network. Mirroring works without home internet.</string>
+
+    <!-- Walkthrough page 5: open Aircast and start casting -->
+    <string name="walk_cast_title">Start mirroring</string>
+    <string name="walk_cast_body">You\'re ready. Three taps and you\'re on the big screen.</string>
+    <string name="walk_cast_step1">Open Aircast on your phone</string>
+    <string name="walk_cast_step2">Tap %1$s</string>
+    <string name="walk_cast_step3">Pick your TV and confirm on the TV screen</string>
+
+    <!-- Home screen actions -->
+    <string name="rate_us">Rate us</string>
+    <string name="how_to_use">How to use</string>
+    <string name="home_subtitle">WIRELESS MIRRORING</string>
+
+    <!-- Content descriptions -->
+    <string name="cd_rate_app">Rate Aircast on the Play Store</string>
+    <string name="cd_phone_tv_cast">Phone mirroring to a TV over Wi-Fi</string>
+    <string name="cd_help">Open the how-to-use guide</string>
+
+    <!-- Language picker -->
+    <string name="language_picker_title">Choose language</string>
+    <string name="cd_language">Choose app language</string>
+    <string name="walk_language_title">Choose your language</string>
+    <string name="walk_language_subtitle">You can change this anytime in the app</string>
+
+    <!-- Home screen UI -->
+    <string name="theme_switch_to_light">Switch to light mode</string>
+    <string name="theme_switch_to_dark">Switch to dark mode</string>
+    <string name="home_connect_to_tv">Connect to TV</string>
+    <string name="home_search_for_tvs">Search for TVs</string>
+    <string name="home_search_subtitle">Scan and connect to displays nearby</string>
+    <string name="home_wifi_hint">Ensure your TV and mobile device are connected\nto the same Wi-Fi network.</string>
+    <string name="toast_cast_settings_unavailable">Please open Cast settings in your System Menu.</string>
+
 </resources>

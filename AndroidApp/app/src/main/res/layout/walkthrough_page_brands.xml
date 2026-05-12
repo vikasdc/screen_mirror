@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:paddingHorizontal="20dp">
+
+    <!-- 3 x 4 grid of brand chips. Plain text on coloured rounded backgrounds —
+         no third-party logos, so no trademark/asset complications. -->
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="3"
+        android:useDefaultMargins="false">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            android:background="@drawable/brand_chip_bg"
+            android:backgroundTint="#1428A0"
+            android:gravity="center"
+            android:text="SAMSUNG"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            android:background="@drawable/brand_chip_bg"
+            android:backgroundTint="#A50034"
+            android:gravity="center"
+            android:text="LG"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            android:background="@drawable/brand_chip_bg"
+            android:backgroundTint="#2D2F33"
+            android:gravity="center"
+            android:text="SONY"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            android:background="@drawable/brand_chip_bg"
+            android:backgroundTint="#6F1AB1"
+            android:gravity="center"
+            android:text="ROKU"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            android:background="@drawable/brand_chip_bg"
+            android:backgroundTint="#FF9900"
+            android:gravity="center"
+            android:text="FIRE TV"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            android:background="@drawable/brand_chip_bg"
+            android:backgroundTint="#4285F4"
+            android:gravity="center"
+            android:text="CHROMECAST"
+            android:textColor="#FFFFFF"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            android:background="@drawable/brand_chip_bg"
+            android:backgroundTint="#2D2F33"
+            android:gravity="center"
+            android:text="APPLE TV"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            android:background="@drawable/brand_chip_bg"
+            android:backgroundTint="#008C5C"
+            android:gravity="center"
+            android:text="HISENSE"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            android:background="@drawable/brand_chip_bg"
+            android:backgroundTint="#2D2F33"
+            android:gravity="center"
+            android:text="VIZIO"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            android:background="@drawable/brand_chip_bg"
+            android:backgroundTint="#DA2127"
+            android:gravity="center"
+            android:text="TCL"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            android:background="@drawable/brand_chip_bg"
+            android:backgroundTint="#0F4DA4"
+            android:gravity="center"
+            android:text="PANASONIC"
+            android:textColor="#FFFFFF"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            android:background="@drawable/brand_chip_bg"
+            android:backgroundTint="#FF6900"
+            android:gravity="center"
+            android:text="MI TV"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+    </GridLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:text="@string/walk_brands_title"
+        android:textColor="@color/walkthrough_text_primary"
+        android:textSize="28sp"
+        android:fontFamily="sans-serif-black"
+        android:letterSpacing="-0.02"
+        android:lineSpacingExtra="2dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:text="@string/walk_brands_body"
+        android:textColor="@color/walkthrough_text_secondary"
+        android:textSize="16sp"
+        android:fontFamily="sans-serif"
+        android:lineSpacingExtra="4dp" />
+
+</LinearLayout>

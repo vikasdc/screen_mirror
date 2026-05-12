@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Single language tile for the walkthrough language picker. Designed to read
+    as a tappable button: rounded card, visible stroke, ripple on press. The
+    active locale's tile gets stroke + fill + text colour overrides applied
+    programmatically in WalkthroughActivity.bindLanguagePage.
+-->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:minHeight="92dp"
+    app:cardBackgroundColor="@color/slate_card"
+    app:cardCornerRadius="18dp"
+    app:cardElevation="0dp"
+    app:rippleColor="@color/emerald_ripple"
+    app:strokeColor="@color/slate_card_border"
+    app:strokeWidth="1dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="14dp">
+
+        <TextView
+            android:id="@+id/langNative"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textColor="@color/walkthrough_text_primary"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/langEnglish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textColor="@color/walkthrough_text_secondary"
+            android:textSize="12sp" />
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Home-screen hero infographic.
+      - Phone (left, emerald): 88x188, ~9:19 portrait aspect like a real phone.
+      - TV (right, blue): 174x98, ~16:9 landscape aspect like a real flat-panel.
+      - Wi-Fi hub: centered between them at (132, 97).
+      - Connection: faint dashed line from phone -> hub -> TV, with three blue
+        data dots traveling along it on a continuous loop. Dots get visually
+        absorbed by the hub disc as they pass through (z-order — dots drawn
+        before the hub, so the hub covers them in the middle).
+      - Both phone and TV screens render the SAME sunset scene (sky + mountains
+        + glowing sun + stars). The two suns share the sun_pulse animator so
+        they breathe in lockstep, telling the user "same content on both".
+    Animation wired up in avd_phone_tv_cast.xml.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="360dp"
+    android:height="210dp"
+    android:viewportWidth="360"
+    android:viewportHeight="210">
+
+    <!-- =================== PHONE (left, emerald) — x=6-94, y=8-192 =================== -->
+
+    <!-- Drop shadow -->
+    <path
+        android:pathData="M6,22 a14,14 0 0 1 14,-14 h60 a14,14 0 0 1 14,14 v172 a14,14 0 0 1 -14,14 h-60 a14,14 0 0 1 -14,-14 z"
+        android:fillColor="#000000"
+        android:fillAlpha="0.07" />
+
+    <!-- Outer body -->
+    <path
+        android:pathData="M6,20 a14,14 0 0 1 14,-14 h60 a14,14 0 0 1 14,14 v168 a14,14 0 0 1 -14,14 h-60 a14,14 0 0 1 -14,-14 z"
+        android:strokeColor="#34A853"
+        android:strokeWidth="3"
+        android:fillColor="#FFFFFF" />
+
+    <!-- ============ Phone screen content: sunset scene (x=14-86, y=22-178) ============ -->
+
+    <!-- Sky base (warm peach) -->
+    <path
+        android:pathData="M14,22 h72 v156 h-72 z"
+        android:fillColor="#FFD2A0" />
+
+    <!-- Upper sky lighter wash -->
+    <path
+        android:pathData="M14,22 h72 v60 h-72 z"
+        android:fillColor="#FFEED5"
+        android:fillAlpha="0.65" />
+
+    <!-- Stars -->
+    <path
+        android:pathData="M26,40 m-1.2,0 a1.2,1.2 0 1,0 2.4,0 a1.2,1.2 0 1,0 -2.4,0"
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.85" />
+    <path
+        android:pathData="M76,46 m-1,0 a1,1 0 1,0 2,0 a1,1 0 1,0 -2,0"
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.7" />
+    <path
+        android:pathData="M68,32 m-1,0 a1,1 0 1,0 2,0 a1,1 0 1,0 -2,0"
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.85" />
+    <path
+        android:pathData="M22,72 m-0.8,0 a0.8,0.8 0 1,0 1.6,0 a0.8,0.8 0 1,0 -1.6,0"
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.6" />
+    <path
+        android:pathData="M80,72 m-0.9,0 a0.9,0.9 0 1,0 1.8,0 a0.9,0.9 0 1,0 -1.8,0"
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.7" />
+    <path
+        android:pathData="M30,58 m-0.7,0 a0.7,0.7 0 1,0 1.4,0 a0.7,0.7 0 1,0 -1.4,0"
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.55" />
+
+    <!-- Sun group (pulses) -->
+    <group
+        android:name="phone_sun"
+        android:pivotX="50"
+        android:pivotY="62">
+        <!-- Outer glow -->
+        <path
+            android:pathData="M50,62 m-13,0 a13,13 0 1,0 26,0 a13,13 0 1,0 -26,0"
+            android:fillColor="#FFC266"
+            android:fillAlpha="0.30" />
+        <!-- Mid glow -->
+        <path
+            android:pathData="M50,62 m-10,0 a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0"
+            android:fillColor="#FFB347"
+            android:fillAlpha="0.55" />
+        <!-- Sun core -->
+        <path
+            android:pathData="M50,62 m-7,0 a7,7 0 1,0 14,0 a7,7 0 1,0 -14,0"
+            android:fillColor="#FFA833" />
+        <!-- Highlight -->
+        <path
+            android:pathData="M48,59 m-2.5,0 a2.5,2.5 0 1,0 5,0 a2.5,2.5 0 1,0 -5,0"
+            android:fillColor="#FFE5B0"
+            android:fillAlpha="0.7" />
+    </group>
+
+    <!-- Far mountain silhouette -->
+    <path
+        android:pathData="M14,128 L24,108 L36,122 L50,96 L62,116 L74,104 L86,114 L86,178 L14,178 z"
+        android:fillColor="#9A6BC4"
+        android:fillAlpha="0.55" />
+
+    <!-- Near mountain silhouette -->
+    <path
+        android:pathData="M14,150 L28,118 L42,134 L56,110 L72,134 L86,124 L86,178 L14,178 z"
+        android:fillColor="#5B3B85" />
+
+    <!-- Mountain snow caps -->
+    <path
+        android:pathData="M28,118 L33,124 L23,124 z"
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.85" />
+    <path
+        android:pathData="M56,110 L61,116 L51,116 z"
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.85" />
+
+    <!-- Phone birds: 3 silhouettes flying left-to-right across the screen.
+         Each group's translateX animates 0 -> 72 (full screen width) on a
+         5000ms loop, with 0/1700/3400ms staggered offsets so a flock cascade
+         is always visible. Phone bird animators share durations with TV bird
+         animators so the birds appear at the same fractional position on both
+         screens — the visual story of the same content playing on both. -->
+    <group android:name="phone_bird_1">
+        <path
+            android:pathData="M14,34 q1.5,-1.6 3,0 q1.5,-1.6 3,0"
+            android:strokeColor="#3D2A5C"
+            android:strokeWidth="1.4"
+            android:strokeLineCap="round"
+            android:fillColor="@android:color/transparent" />
+    </group>
+    <group android:name="phone_bird_2">
+        <path
+            android:pathData="M14,82 q1.5,-1.6 3,0 q1.5,-1.6 3,0"
+            android:strokeColor="#3D2A5C"
+            android:strokeWidth="1.4"
+            android:strokeLineCap="round"
+            android:fillColor="@android:color/transparent" />
+    </group>
+    <group android:name="phone_bird_3">
+        <path
+            android:pathData="M14,98 q1.5,-1.6 3,0 q1.5,-1.6 3,0"
+            android:strokeColor="#3D2A5C"
+            android:strokeWidth="1.4"
+            android:strokeLineCap="round"
+            android:fillColor="@android:color/transparent" />
+    </group>
+
+    <!-- Phone speaker grille -->
+    <path
+        android:pathData="M40,14 h20"
+        android:strokeColor="#34A853"
+        android:strokeWidth="1.6"
+        android:strokeLineCap="round"
+        android:strokeAlpha="0.6" />
+
+    <!-- Phone front camera dot -->
+    <path
+        android:pathData="M68,14 m-1.6,0 a1.6,1.6 0 1,0 3.2,0 a1.6,1.6 0 1,0 -3.2,0"
+        android:fillColor="#34A853"
+        android:fillAlpha="0.55" />
+
+    <!-- Phone home indicator -->
+    <path
+        android:pathData="M40,186 h20"
+        android:strokeColor="#34A853"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round" />
+
+
+    <!-- =================== CONNECTION LINE + ANIMATED DATA DOTS =================== -->
+    <!-- Static dashed line at y=97 from phone right (x=94) to TV left (x=170),
+         broken at the Wi-Fi hub disc area so it doesn't visually overlap. -->
+
+    <path
+        android:pathData="M96,97 L102,97 M106,97 L112,97 M116,97 L120,97 M144,97 L148,97 M152,97 L158,97 M162,97 L168,97"
+        android:strokeColor="#4285F4"
+        android:strokeWidth="1.4"
+        android:strokeAlpha="0.4"
+        android:strokeLineCap="round" />
+
+    <!-- 3 data dots traveling phone -> TV. Each dot's group translateX 0 -> 76,
+         duration 1500ms, infinite. Different startOffsets per animator file
+         (0/500/1000) so they cascade. Drawn BEFORE the Wi-Fi hub so the hub
+         disc covers them visually as they pass through the middle. -->
+
+    <group android:name="data_dot_1">
+        <!-- glow -->
+        <path
+            android:pathData="M94,97 m-3.5,0 a3.5,3.5 0 1,0 7,0 a3.5,3.5 0 1,0 -7,0"
+            android:fillColor="#4285F4"
+            android:fillAlpha="0.3" />
+        <!-- core -->
+        <path
+            android:pathData="M94,97 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0"
+            android:fillColor="#4285F4" />
+    </group>
+
+    <group android:name="data_dot_2">
+        <path
+            android:pathData="M94,97 m-3.5,0 a3.5,3.5 0 1,0 7,0 a3.5,3.5 0 1,0 -7,0"
+            android:fillColor="#4285F4"
+            android:fillAlpha="0.3" />
+        <path
+            android:pathData="M94,97 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0"
+            android:fillColor="#4285F4" />
+    </group>
+
+    <group android:name="data_dot_3">
+        <path
+            android:pathData="M94,97 m-3.5,0 a3.5,3.5 0 1,0 7,0 a3.5,3.5 0 1,0 -7,0"
+            android:fillColor="#4285F4"
+            android:fillAlpha="0.3" />
+        <path
+            android:pathData="M94,97 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0"
+            android:fillColor="#4285F4" />
+    </group>
+
+
+    <!-- =================== WI-FI BROADCAST HUB — centered at (132, 97) =================== -->
+
+    <!-- Ripple ring 1 -->
+    <group
+        android:name="wifi_ring1"
+        android:pivotX="132"
+        android:pivotY="97">
+        <path
+            android:name="wifi_ring1_path"
+            android:pathData="M132,97 m-18,0 a18,18 0 1,0 36,0 a18,18 0 1,0 -36,0"
+            android:strokeColor="#4285F4"
+            android:strokeWidth="2.5"
+            android:fillColor="@android:color/transparent" />
+    </group>
+
+    <!-- Ripple ring 2 -->
+    <group
+        android:name="wifi_ring2"
+        android:pivotX="132"
+        android:pivotY="97">
+        <path
+            android:name="wifi_ring2_path"
+            android:pathData="M132,97 m-18,0 a18,18 0 1,0 36,0 a18,18 0 1,0 -36,0"
+            android:strokeColor="#4285F4"
+            android:strokeWidth="2.5"
+            android:fillColor="@android:color/transparent" />
+    </group>
+
+    <!-- Ripple ring 3 -->
+    <group
+        android:name="wifi_ring3"
+        android:pivotX="132"
+        android:pivotY="97">
+        <path
+            android:name="wifi_ring3_path"
+            android:pathData="M132,97 m-18,0 a18,18 0 1,0 36,0 a18,18 0 1,0 -36,0"
+            android:strokeColor="#4285F4"
+            android:strokeWidth="2.5"
+            android:fillColor="@android:color/transparent" />
+    </group>
+
+    <!-- Static center hub: soft halo + solid disc + white wifi fan, breathes gently -->
+    <group
+        android:name="wifi_center"
+        android:pivotX="132"
+        android:pivotY="97">
+
+        <!-- Soft outer halo -->
+        <path
+            android:pathData="M132,97 m-15,0 a15,15 0 1,0 30,0 a15,15 0 1,0 -30,0"
+            android:fillColor="#4285F4"
+            android:fillAlpha="0.18" />
+
+        <!-- Solid disc -->
+        <path
+            android:pathData="M132,97 m-11,0 a11,11 0 1,0 22,0 a11,11 0 1,0 -22,0"
+            android:fillColor="#4285F4" />
+
+        <!-- Soft top highlight -->
+        <path
+            android:pathData="M132,94 m-7,0 a7,7 0 1,0 14,0 a7,7 0 1,0 -14,0"
+            android:fillColor="#FFFFFF"
+            android:fillAlpha="0.12" />
+
+        <!-- Wi-Fi fan: outer arc -->
+        <path
+            android:pathData="M123.5,96 Q132,87 140.5,96"
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="2"
+            android:strokeLineCap="round"
+            android:fillColor="@android:color/transparent" />
+
+        <!-- Wi-Fi fan: middle arc -->
+        <path
+            android:pathData="M126.5,98.5 Q132,93 137.5,98.5"
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="2"
+            android:strokeLineCap="round"
+            android:fillColor="@android:color/transparent" />
+
+        <!-- Wi-Fi fan: bottom dot -->
+        <path
+            android:pathData="M132,101 m-1.5,0 a1.5,1.5 0 1,0 3,0 a1.5,1.5 0 1,0 -3,0"
+            android:fillColor="#FFFFFF" />
+
+    </group>
+
+
+    <!-- =================== TV (right, blue) — x=170-344, y=46-144 =================== -->
+
+    <!-- Drop shadow -->
+    <path
+        android:pathData="M174,52 a4,4 0 0 1 4,-4 h158 a4,4 0 0 1 4,4 v100 a4,4 0 0 1 -4,4 h-158 a4,4 0 0 1 -4,-4 z"
+        android:fillColor="#000000"
+        android:fillAlpha="0.07" />
+
+    <!-- Slim bezel -->
+    <path
+        android:pathData="M174,50 a4,4 0 0 1 4,-4 h158 a4,4 0 0 1 4,4 v98 a4,4 0 0 1 -4,4 h-158 a4,4 0 0 1 -4,-4 z"
+        android:strokeColor="#4285F4"
+        android:strokeWidth="3"
+        android:fillColor="#0F1729" />
+
+    <!-- ============ TV screen content: same sunset scene, scaled wide (x=180-334, y=54-138) ============ -->
+
+    <!-- Sky base -->
+    <path
+        android:pathData="M180,54 h154 v84 h-154 z"
+        android:fillColor="#FFD2A0" />
+
+    <!-- Upper sky lighter wash -->
+    <path
+        android:pathData="M180,54 h154 v32 h-154 z"
+        android:fillColor="#FFEED5"
+        android:fillAlpha="0.65" />
+
+    <!-- Stars -->
+    <path
+        android:pathData="M196,66 m-1.3,0 a1.3,1.3 0 1,0 2.6,0 a1.3,1.3 0 1,0 -2.6,0"
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.9" />
+    <path
+        android:pathData="M218,72 m-1,0 a1,1 0 1,0 2,0 a1,1 0 1,0 -2,0"
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.7" />
+    <path
+        android:pathData="M324,76 m-1.1,0 a1.1,1.1 0 1,0 2.2,0 a1.1,1.1 0 1,0 -2.2,0"
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.85" />
+    <path
+        android:pathData="M308,62 m-0.9,0 a0.9,0.9 0 1,0 1.8,0 a0.9,0.9 0 1,0 -1.8,0"
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.65" />
+    <path
+        android:pathData="M210,84 m-0.8,0 a0.8,0.8 0 1,0 1.6,0 a0.8,0.8 0 1,0 -1.6,0"
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.6" />
+    <path
+        android:pathData="M242,60 m-1,0 a1,1 0 1,0 2,0 a1,1 0 1,0 -2,0"
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.8" />
+    <path
+        android:pathData="M188,86 m-0.8,0 a0.8,0.8 0 1,0 1.6,0 a0.8,0.8 0 1,0 -1.6,0"
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.55" />
+
+    <!-- Sun group (pulses, shares animator with phone_sun) -->
+    <group
+        android:name="tv_sun"
+        android:pivotX="276"
+        android:pivotY="78">
+        <!-- Outer glow -->
+        <path
+            android:pathData="M276,78 m-20,0 a20,20 0 1,0 40,0 a20,20 0 1,0 -40,0"
+            android:fillColor="#FFC266"
+            android:fillAlpha="0.30" />
+        <!-- Mid glow -->
+        <path
+            android:pathData="M276,78 m-15,0 a15,15 0 1,0 30,0 a15,15 0 1,0 -30,0"
+            android:fillColor="#FFB347"
+            android:fillAlpha="0.55" />
+        <!-- Sun core -->
+        <path
+            android:pathData="M276,78 m-10,0 a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0"
+            android:fillColor="#FFA833" />
+        <!-- Highlight -->
+        <path
+            android:pathData="M273,75 m-3.5,0 a3.5,3.5 0 1,0 7,0 a3.5,3.5 0 1,0 -7,0"
+            android:fillColor="#FFE5B0"
+            android:fillAlpha="0.7" />
+    </group>
+
+    <!-- Far mountain silhouette -->
+    <path
+        android:pathData="M180,108 L200,84 L222,102 L246,76 L276,98 L304,82 L328,96 L334,92 L334,138 L180,138 z"
+        android:fillColor="#9A6BC4"
+        android:fillAlpha="0.55" />
+
+    <!-- Near mountain silhouette -->
+    <path
+        android:pathData="M180,124 L208,94 L236,114 L270,90 L302,114 L334,104 L334,138 L180,138 z"
+        android:fillColor="#5B3B85" />
+
+    <!-- Mountain snow caps -->
+    <path
+        android:pathData="M208,94 L213,100 L203,100 z"
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.85" />
+    <path
+        android:pathData="M270,90 L275,96 L265,96 z"
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.85" />
+    <path
+        android:pathData="M236,114 L241,120 L231,120 z"
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.7" />
+
+    <!-- TV birds: 3 silhouettes flying left-to-right. Same staggered offsets
+         and durations as the phone birds, but each animator covers the wider
+         TV screen (translateX 0 -> 154 vs phone's 0 -> 72). Same fractional
+         position on both screens at any moment => the same content playing. -->
+    <group android:name="tv_bird_1">
+        <path
+            android:pathData="M180,62 q2,-2.2 4,0 q2,-2.2 4,0"
+            android:strokeColor="#3D2A5C"
+            android:strokeWidth="1.6"
+            android:strokeLineCap="round"
+            android:fillColor="@android:color/transparent" />
+    </group>
+    <group android:name="tv_bird_2">
+        <path
+            android:pathData="M180,98 q2,-2.2 4,0 q2,-2.2 4,0"
+            android:strokeColor="#3D2A5C"
+            android:strokeWidth="1.6"
+            android:strokeLineCap="round"
+            android:fillColor="@android:color/transparent" />
+    </group>
+    <group android:name="tv_bird_3">
+        <path
+            android:pathData="M180,108 q2,-2.2 4,0 q2,-2.2 4,0"
+            android:strokeColor="#3D2A5C"
+            android:strokeWidth="1.6"
+            android:strokeLineCap="round"
+            android:fillColor="@android:color/transparent" />
+    </group>
+
+    <!-- Slim feet (modern flat-panel TV) -->
+    <path
+        android:pathData="M198,152 h16 v8 h-16 z"
+        android:fillColor="#4285F4" />
+    <path
+        android:pathData="M300,152 h16 v8 h-16 z"
+        android:fillColor="#4285F4" />
+
+</vector>

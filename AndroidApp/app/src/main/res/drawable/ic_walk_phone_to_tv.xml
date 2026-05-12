@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="220dp"
+    android:height="220dp"
+    android:viewportWidth="220"
+    android:viewportHeight="220">
+
+    <!-- Phone (left) -->
+    <path
+        android:pathData="M30,55 a10,10 0 0 1 10,-10 h32 a10,10 0 0 1 10,10 v110 a10,10 0 0 1 -10,10 h-32 a10,10 0 0 1 -10,-10 z"
+        android:strokeColor="#34A853"
+        android:strokeWidth="3"
+        android:fillColor="@android:color/transparent" />
+    <path
+        android:pathData="M40,62 h32 v96 h-32 z"
+        android:fillColor="#34A853"
+        android:fillAlpha="0.15" />
+
+    <!-- Beam: phone -> TV -->
+    <path
+        android:pathData="M86,108 L132,108"
+        android:strokeColor="#4285F4"
+        android:strokeWidth="6"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M132,108 L168,108"
+        android:strokeColor="#34A853"
+        android:strokeWidth="6"
+        android:strokeLineCap="round" />
+
+    <!-- TV (right) -->
+    <path
+        android:pathData="M125,68 a8,8 0 0 1 8,-8 h54 a8,8 0 0 1 8,8 v60 a8,8 0 0 1 -8,8 h-54 a8,8 0 0 1 -8,-8 z"
+        android:strokeColor="#4285F4"
+        android:strokeWidth="3"
+        android:fillColor="@android:color/transparent" />
+    <path
+        android:pathData="M134,72 h52 v52 h-52 z"
+        android:fillColor="#4285F4"
+        android:fillAlpha="0.15" />
+    <path
+        android:pathData="M150,138 L170,138 L172,148 L148,148 z"
+        android:fillColor="#4285F4" />
+    <path
+        android:pathData="M138,150 h44"
+        android:strokeColor="#4285F4"
+        android:strokeWidth="3"
+        android:strokeLineCap="round" />
+
+</vector>

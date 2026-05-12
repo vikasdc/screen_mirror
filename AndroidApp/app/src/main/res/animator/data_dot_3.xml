@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Data dot 3: same as dot 1, starts 1000ms later (2/3 of cycle). -->
+<objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
+    android:propertyName="translateX"
+    android:valueFrom="0"
+    android:valueTo="76"
+    android:valueType="floatType"
+    android:duration="1500"
+    android:startOffset="1000"
+    android:repeatCount="infinite"
+    android:repeatMode="restart"
+    android:interpolator="@android:interpolator/linear" />

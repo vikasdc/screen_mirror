@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Animated wrapper around ic_walk_tv_setup.xml. The checkbox group "tv_check"
+    pulses gently to draw the eye to the action: "this is the option you turn on".
+-->
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/ic_walk_tv_setup">
+
+    <target
+        android:name="tv_check"
+        android:animation="@animator/check_pulse" />
+
+</animated-vector>
