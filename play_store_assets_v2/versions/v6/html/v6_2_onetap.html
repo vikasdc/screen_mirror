@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="styles_v6.css">
+<style>
+  /* Connected Successfully screen — green check on deep dark TV bg */
+  .connected-tv {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, #0F1A2E 0%, #1B2E5A 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    color: #fff;
+  }
+  .check-ring {
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: var(--green);
+    display: flex; align-items: center; justify-content: center;
+    font: 900 110px 'Plus Jakarta Sans', sans-serif;
+    color: #fff;
+    box-shadow: 0 0 80px rgba(52,168,83,0.55), 0 0 40px rgba(52,168,83,0.6);
+    margin-bottom: 30px;
+  }
+  .connected-text {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800; font-size: 44px;
+    color: #fff;
+  }
+  /* phone cast-picker UI */
+  .cast-ui {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, #0b1020 0%, #04060f 100%);
+    color: #fff;
+    padding: 70px 22px 22px;
+  }
+  .cast-ui h3 { font: 800 32px 'Plus Jakarta Sans', sans-serif; letter-spacing: -0.02em; }
+  .cast-ui .sub { font: 600 18px 'Plus Jakarta Sans', sans-serif; color: rgba(255,255,255,0.6); margin-top: 4px; margin-bottom: 20px; }
+  .cast-ui .row {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 12px; border-radius: 14px;
+    border: 1px solid transparent;
+    margin-bottom: 4px;
+  }
+  .cast-ui .row.selected {
+    background: rgba(52,168,83,0.16);
+    border-color: rgba(52,168,83,0.55);
+  }
+  .cast-ui .row .logobox {
+    width: 46px; height: 46px; border-radius: 10px;
+    background: #fff; padding: 6px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .cast-ui .row .logobox.dark { background: #18181B; }
+  .cast-ui .row .logobox img { max-width: 100%; max-height: 100%; }
+  .cast-ui .row .nm { font: 700 18px 'Plus Jakarta Sans', sans-serif; }
+  .cast-ui .row .sm { font: 500 13px 'Plus Jakarta Sans', sans-serif; color: rgba(255,255,255,0.5); margin-top: 2px; }
+  .cast-ui .row .ck { margin-left: auto; color: var(--green); font: 900 22px sans-serif; opacity: 0; }
+  .cast-ui .row.selected .ck { opacity: 1; }
+</style>
+</head>
+<body>
+<div class="canvas grad-c">
+
+  <div style="position: absolute; top: 60px; left: 60px; z-index: 12;">
+    <div class="aircast-wordmark">
+      <div class="aircast-mark size-md"><div class="gr"></div><div class="bl"></div></div>
+      <span style="color: var(--ink);">AIRCAST</span>
+    </div>
+  </div>
+
+  <h1 class="display h-140" style="position: absolute; top: 180px; left: 60px; right: 60px;
+       text-align: center; line-height: 1.0; color: var(--ink); text-shadow: none;">
+    ONE TAP<br>
+    TO <span style="color: var(--blue);">CONNECT</span>
+  </h1>
+
+  <!-- TV showing Connected Successfully (smaller, upper area) -->
+  <div class="tv" style="top: 560px; left: 50%; transform: translateX(-50%);
+       width: 720px; height: 432px;">
+    <div class="scr">
+      <div class="connected-tv">
+        <div class="check-ring">✓</div>
+        <div class="connected-text">Connected Successfully</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- phone with cast picker showing real brand logos (foreground, large) -->
+  <div class="phone" style="bottom: 100px; left: 50%; margin-left: -210px;
+       width: 420px; height: 760px; border-radius: 50px;">
+    <div class="notch"></div>
+    <div class="scr">
+      <div class="cast-ui">
+        <h3>Cast to</h3>
+        <div class="sub">5 devices found</div>
+        <div class="row selected">
+          <div class="logobox"><img src="../brand_logos/samsung.svg" alt=""></div>
+          <div><div class="nm">Smart TV</div><div class="sm">Samsung Living Room</div></div>
+          <div class="ck">✓</div>
+        </div>
+        <div class="row"><div class="logobox"><img src="../brand_logos/chromecast.svg"></div>
+          <div><div class="nm">Google Chromecast</div><div class="sm">4K · Kitchen</div></div></div>
+        <div class="row"><div class="logobox"><img src="../brand_logos/firetv.svg"></div>
+          <div><div class="nm">Amazon Fire Stick</div><div class="sm">1080P</div></div></div>
+        <div class="row"><div class="logobox"><img src="../brand_logos/roku.svg"></div>
+          <div><div class="nm">Roku Express</div><div class="sm">1080P</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- yellow sticker -->
+  <div class="sticker" style="top: 530px; left: 60px; transform: rotate(8deg);">
+    <span class="red-dot"></span>
+    2 seconds!
+  </div>
+
+</div>
+</body></html>

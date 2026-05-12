@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="styles_v6.css">
+<style>
+  /* shared cinematic content for both screens (same photo on phone + TV = mirroring proof) */
+  .same-content {
+    background-image:
+      linear-gradient(180deg, rgba(0,0,0,0) 60%, rgba(0,0,0,0.45) 100%),
+      url('../photos/cinema_landscape.jpg');
+    background-size: cover; background-position: center;
+  }
+</style>
+</head>
+<body>
+<div class="canvas grad-a">
+
+  <!-- top: aircast wordmark left + "Real-time" sticker -->
+  <div style="position: absolute; top: 60px; left: 60px; z-index: 12;">
+    <div class="aircast-wordmark">
+      <div class="aircast-mark size-md"><div class="gr"></div><div class="bl"></div></div>
+      <span>AIRCAST</span>
+    </div>
+  </div>
+
+  <!-- headline -->
+  <h1 class="display h-120" style="position: absolute; top: 180px; left: 60px; right: 60px;
+       text-align: center; line-height: 1.0;">
+    MIRROR YOUR<br>
+    <span style="color: var(--yellow);">PHONE</span> TO ANY TV
+  </h1>
+
+  <!-- big TV mockup centred, showing cinematic landscape -->
+  <div class="tv" style="top: 540px; left: 50%; transform: translateX(-50%);
+       width: 880px; height: 520px;">
+    <div class="scr"><div class="same-content" style="position: absolute; inset:0;"></div></div>
+    <div class="timer"><span class="red">●</span> LIVE  1:22:25</div>
+    <div class="res-badge">1080P · 60FPS</div>
+  </div>
+
+  <!-- Real-time! sticker overlapping TV top-right -->
+  <div class="sticker" style="top: 480px; right: 40px;">
+    <span class="red-dot"></span>
+    Real-time!
+  </div>
+
+  <!-- hand-phone real photo bottom-right (shows arm + hand + phone in real photo) -->
+  <div class="hand-phone-photo" style="bottom: 320px; right: -60px;
+       width: 460px; height: 540px;
+       transform: rotate(-6deg);"></div>
+
+  <!-- mirror beam from phone-photo upward to TV -->
+  <div class="beam" style="top: 1080px; right: 200px;
+       width: 220px; transform: rotate(-50deg);"></div>
+
+  <!-- Supported Devices header + chip strip at bottom -->
+  <div class="supported-header">▸ SUPPORTED DEVICES</div>
+  <div class="chip-row">
+    <span class="chip"><img class="brand-mark" src="../brand_logos/samsung.svg" alt="Samsung"></span>
+    <span class="chip"><img class="brand-mark" src="../brand_logos/lg.svg" alt="LG"></span>
+    <span class="chip"><img class="brand-mark" src="../brand_logos/firetv.svg" alt="Fire TV"></span>
+    <span class="chip"><img class="brand-mark" src="../brand_logos/roku.svg" alt="Roku"></span>
+    <span class="chip"><img class="brand-mark" src="../brand_logos/chromecast.svg" alt="Chromecast"></span>
+  </div>
+
+</div>
+</body></html>
