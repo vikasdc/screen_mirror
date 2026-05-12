@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="styles_v4.css">
+<style>
+  .cast-ui {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, #0b1020 0%, #04060f 100%);
+    color: #fff;
+    padding: 70px 20px 22px;
+  }
+  .cast-ui .statusbar { position: absolute; top: 18px; left: 24px; right: 24px;
+    display: flex; justify-content: space-between;
+    font: 600 14px 'JetBrains Mono', monospace; color: rgba(255,255,255,0.7);
+    letter-spacing: 0.08em; }
+  .cast-ui h3 { font: 800 32px 'JetBrains Mono', monospace; letter-spacing: -0.02em; margin-bottom: 4px; }
+  .cast-ui .sub { font: 500 16px 'Satoshi', sans-serif; color: rgba(255,255,255,0.55); margin-bottom: 20px; }
+  .cast-ui .row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 10px; border-radius: 12px;
+    border: 1px solid transparent;
+    margin-bottom: 2px;
+  }
+  .cast-ui .row.connected {
+    background: rgba(52,168,83,0.16);
+    border-color: rgba(52,168,83,0.55);
+  }
+  /* logo containers — white background so SVG logos read on dark UI */
+  .cast-ui .row .logobox {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: #FFFFFF;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; padding: 6px;
+  }
+  .cast-ui .row .logobox.dark { background: #18181B; }
+  .cast-ui .row .logobox img { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .cast-ui .row .nm { font: 700 16px 'JetBrains Mono', monospace; letter-spacing: -0.01em; }
+  .cast-ui .row .sm { font: 500 12px 'JetBrains Mono', monospace; color: rgba(255,255,255,0.5); margin-top: 2px; letter-spacing: 0.04em; }
+  .cast-ui .row .ck { margin-left: auto; color: var(--air-green); font: 900 22px 'JetBrains Mono', monospace; opacity: 0; }
+  .cast-ui .row.connected .ck { opacity: 1; }
+</style>
+</head>
+<body>
+<div class="canvas surf-ink">
+  <div style="position:absolute; top: 80px; left: 80px; right: 80px;
+       display: flex; justify-content: space-between; align-items: center;">
+    <div class="air-logo size-md" style="color: #FAFAF7;">
+      <div class="mark"><div class="rect-green"></div><div class="rect-blue"></div></div>
+      <span class="name" style="font-size: 36px;">AIRCAST</span>
+    </div>
+    <div class="label" style="color: #FAFAF7; opacity: 0.55;">03 / ONE TAP</div>
+  </div>
+
+  <h1 class="mono h-130" style="position: absolute; top: 220px; left: 80px; right: 80px;">
+    TAP.<br>
+    PICK.<br>
+    <span style="color: var(--air-green);">DONE.</span>
+  </h1>
+  <p class="body t-32" style="position: absolute; top: 660px; left: 80px; right: 80px;
+       color: rgba(250,250,247,0.78); font-weight: 500;">
+    No accounts. No setup wizard. The first tap is the only tap.
+  </p>
+
+  <div class="phone" style="top: 920px; left: 50%; margin-left: -210px;
+       width: 420px; height: 880px; border-radius: 50px;">
+    <div class="notch"></div>
+    <div class="scr">
+      <div class="cast-ui">
+        <div class="statusbar"><span>14:22</span><span>100%</span></div>
+        <h3>CAST TO TV</h3>
+        <div class="sub">5 devices found nearby</div>
+
+        <div class="row connected">
+          <div class="logobox"><img src="../brand_logos/samsung.svg" alt="Samsung"></div>
+          <div><div class="nm">Samsung Living Room</div><div class="sm">SMART TV · 4K</div></div>
+          <div class="ck">✓</div>
+        </div>
+        <div class="row">
+          <div class="logobox"><img src="../brand_logos/lg.svg" alt="LG"></div>
+          <div><div class="nm">LG OLED Bedroom</div><div class="sm">WEBOS · 4K HDR</div></div>
+        </div>
+        <div class="row">
+          <div class="logobox"><img src="../brand_logos/amazon.svg" alt="Fire TV"></div>
+          <div><div class="nm">Fire TV Stick</div><div class="sm">AMAZON · 1080P</div></div>
+        </div>
+        <div class="row">
+          <div class="logobox"><img src="../brand_logos/roku.svg" alt="Roku"></div>
+          <div><div class="nm">Roku Express</div><div class="sm">ROKUOS · 1080P</div></div>
+        </div>
+        <div class="row">
+          <div class="logobox"><img src="../brand_logos/chromecast.svg" alt="Chromecast"></div>
+          <div><div class="nm">Chromecast Kitchen</div><div class="sm">GOOGLE · 4K</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="position: absolute; bottom: 90px; left: 0; right: 0; text-align: center;">
+    <span class="tag" style="color: #FAFAF7; border-color: rgba(250,250,247,0.4);">
+      <span class="dot"></span>ELAPSED · 00:00:02
+    </span>
+  </div>
+</div>
+</body></html>

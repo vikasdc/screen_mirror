@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="styles_v4.css">
+<style>
+  .paper-panel { position: absolute; inset: 0; background: #F5F1E8; }
+  .big-logo {
+    width: 260px; height: 180px;
+    position: relative;
+  }
+  .big-logo .green {
+    position: absolute; left: 0; top: 0;
+    width: 150px; height: 120px;
+    background: var(--air-green);
+    border-radius: 16px;
+  }
+  .big-logo .blue {
+    position: absolute; right: 0; top: 30px;
+    width: 150px; height: 120px;
+    background: var(--air-blue);
+    border-radius: 16px;
+  }
+</style>
+</head>
+<body>
+<div class="canvas surf-paper">
+  <div class="paper-panel"></div>
+
+  <div style="position:absolute; top: 80px; left: 80px; right: 80px;
+       display: flex; justify-content: space-between; align-items: center;">
+    <div class="air-logo size-md">
+      <div class="mark"><div class="rect-green"></div><div class="rect-blue"></div></div>
+      <span class="name" style="font-size: 36px;">AIRCAST</span>
+    </div>
+    <div class="label" style="color: var(--air-ink); opacity: 0.55;">06 / GET IT</div>
+  </div>
+
+  <div style="position: absolute; top: 340px; left: 50%; transform: translateX(-50%);">
+    <div class="big-logo">
+      <div class="green"></div>
+      <div class="blue"></div>
+    </div>
+  </div>
+
+  <h1 class="mono h-110" style="position: absolute; top: 700px; left: 80px; right: 80px;
+       text-align: center; line-height: 0.95;">
+    FREE.<br>
+    <span style="color: var(--air-green);">WITH ADS.</span>
+  </h1>
+
+  <!-- Satoshi (no italic) -->
+  <p class="body" style="position: absolute; top: 1020px; left: 80px; right: 80px;
+       font-size: 44px; font-weight: 500; line-height: 1.25; text-align: center;
+       color: var(--air-ink); opacity: 0.78;">
+    No account. No subscription.<br>
+    Just download and cast.
+  </p>
+
+  <div style="position: absolute; bottom: 240px; left: 0; right: 0; text-align: center;">
+    <span style="display: inline-flex; align-items: center; gap: 16px;
+         padding: 26px 44px; background: #0F1A2E; color: #FAFAF7;
+         border-radius: 8px;
+         font: 800 28px 'JetBrains Mono', monospace;
+         letter-spacing: 0.04em;
+         box-shadow: 6px 6px 0 0 rgba(15,26,46,0.25);">
+      <span style="color: var(--air-green); font-size: 32px;">▶</span>
+      GET IT ON GOOGLE PLAY
+    </span>
+  </div>
+
+  <div style="position: absolute; bottom: 100px; left: 80px; right: 80px;
+       display: flex; justify-content: space-between; align-items: center;">
+    <div style="display: flex; gap: 10px;">
+      <span class="tag" style="color: var(--air-ink); padding: 8px 14px; font-size: 18px;"><span class="dot"></span>15 LANGUAGES</span>
+      <span class="tag" style="color: var(--air-ink); padding: 8px 14px; font-size: 18px;"><span class="dot blue"></span>ANDROID 7+</span>
+    </div>
+    <span class="body" style="color: var(--air-ink); opacity: 0.55; font-size: 22px; font-weight: 500;">
+      v1.4
+    </span>
+  </div>
+</div>
+</body></html>
