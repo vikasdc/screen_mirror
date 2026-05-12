@@ -39,7 +39,7 @@ public final class LanguagePicker {
     private LanguagePicker() {}
 
     /** Open the picker. Selecting an item applies the locale app-wide and
-     *  triggers Activity recreation. */
+     *  forces Activity recreation so the new locale takes effect immediately. */
     public static void show(Activity activity) {
         String[] items = new String[LANGUAGES.length];
         for (int i = 0; i < LANGUAGES.length; i++) {
@@ -51,11 +51,28 @@ public final class LanguagePicker {
                 .setSingleChoiceItems(items, currentIndex(), (dialog, which) -> {
                     String tag = LANGUAGES[which][0];
                     dialog.dismiss();
-                    AppCompatDelegate.setApplicationLocales(
-                            LocaleListCompat.forLanguageTags(tag));
+                    applyLocale(activity, tag);
                 })
                 .setNegativeButton(android.R.string.cancel, null)
                 .show();
+    }
+
+    /** Apply a new app locale and force the host Activity to recreate.
+     *
+     *  Why explicit recreate: on Android 13+ with AppCompat 1.6,
+     *  setApplicationLocales schedules a configuration change but the recreate
+     *  is sometimes dropped when the Activity was PAUSED (a dialog had focus).
+     *  Symptom: the chip label updates from currentNativeName() but the rest
+     *  of the UI keeps stale (old-locale) strings until the next app launch.
+     *
+     *  The 50ms post gives the system LocaleManager time to commit the new
+     *  locale before recreate() fires, so the new Activity instance attaches
+     *  with the correct Configuration.
+     */
+    public static void applyLocale(Activity activity, String tag) {
+        AppCompatDelegate.setApplicationLocales(
+                LocaleListCompat.forLanguageTags(tag));
+        activity.getWindow().getDecorView().postDelayed(activity::recreate, 50);
     }
 
     /** Native-script name of the active language (e.g. "हिन्दी" when in Hindi),

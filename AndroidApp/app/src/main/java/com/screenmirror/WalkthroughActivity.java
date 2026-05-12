@@ -199,8 +199,7 @@ public class WalkthroughActivity extends AppCompatActivity {
             lp.setMargins(margin, margin, margin, margin);
             tile.setLayoutParams(lp);
 
-            tile.setOnClickListener(v -> AppCompatDelegate.setApplicationLocales(
-                    LocaleListCompat.forLanguageTags(lang[0])));
+            tile.setOnClickListener(v -> LanguagePicker.applyLocale(this, lang[0]));
             grid.addView(tile);
         }
     }
