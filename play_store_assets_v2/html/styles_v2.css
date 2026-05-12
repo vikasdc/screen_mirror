@@ -1,0 +1,231 @@
+/* Aircast Play Store screenshots v2.
+   Direction: editorial dark + cream paper. Instrument Serif italic accents
+   + Inter body. Forest/mint accent for connection/live indicators.
+   No saturated gradients, no tilted phones with glow beams, no 3x3 brand
+   grid, no floating capability-pill row. */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap');
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body {
+  width: 1080px; height: 1920px; overflow: hidden;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  font-feature-settings: 'ss01', 'cv11';
+}
+
+.canvas { width: 1080px; height: 1920px; position: relative; overflow: hidden; }
+
+/* ----- editorial dark surface ----- */
+.surf-dark {
+  background: #0B0D10;
+  color: #F4F4F2;
+}
+.surf-dark .muted { color: #8A8F98; }
+
+/* ----- cream paper surface ----- */
+.surf-cream {
+  background: #F4EFE7;
+  color: #1B1A17;
+}
+.surf-cream .muted { color: #6C6760; }
+
+/* ----- noise grain overlay ----- */
+.canvas::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/></svg>");
+  mix-blend-mode: overlay;
+  opacity: 0.06;
+}
+
+/* ----- typography ----- */
+.serif {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 0.94;
+}
+.serif em, .serif i, .italic {
+  font-style: italic;
+}
+
+.sans {
+  font-family: 'Inter', sans-serif;
+  letter-spacing: -0.01em;
+}
+
+.h-160 { font-size: 160px; }
+.h-140 { font-size: 140px; }
+.h-120 { font-size: 120px; }
+.h-100 { font-size: 100px; }
+.h-80  { font-size: 80px; }
+.h-60  { font-size: 60px; }
+.h-44  { font-size: 44px; }
+.h-32  { font-size: 32px; }
+.h-26  { font-size: 26px; }
+
+/* slim section label / chapter marker */
+.eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.eyebrow .num { color: #7AE0C2; font-weight: 700; }
+
+/* ----- phone mockup (cleaner than v1) ----- */
+.phone {
+  position: absolute;
+  width: 420px;
+  height: 880px;
+  border-radius: 52px;
+  background: #0A0A0A;
+  border: 5px solid #1A1A1A;
+  box-shadow:
+    0 80px 120px rgba(0,0,0,0.55),
+    0 24px 40px rgba(0,0,0,0.35);
+  overflow: hidden;
+}
+.surf-cream .phone {
+  box-shadow:
+    0 80px 120px rgba(60,40,20,0.18),
+    0 24px 40px rgba(60,40,20,0.10);
+}
+.phone .scr {
+  position: absolute; inset: 14px;
+  border-radius: 40px; overflow: hidden;
+  background: #000;
+}
+.phone .scr img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.phone .notch {
+  position: absolute; top: 22px; left: 50%; transform: translateX(-50%);
+  width: 110px; height: 24px; background: #000; border-radius: 18px; z-index: 2;
+}
+
+/* ----- TV mockup (more believable proportions) ----- */
+.tv {
+  position: absolute;
+  width: 800px; height: 480px;
+  background: #0A0A0A;
+  border: 16px solid #14141A;
+  border-radius: 14px;
+  box-shadow:
+    0 90px 140px rgba(0,0,0,0.55),
+    0 30px 60px rgba(0,0,0,0.4);
+  overflow: hidden;
+}
+.surf-cream .tv {
+  box-shadow:
+    0 90px 140px rgba(60,40,20,0.18),
+    0 30px 60px rgba(60,40,20,0.10);
+}
+.tv::after {
+  /* TV stand */
+  content: ''; position: absolute;
+  bottom: -42px; left: 50%; transform: translateX(-50%);
+  width: 240px; height: 30px;
+  background: linear-gradient(180deg, #14141A 0%, #0A0A0A 100%);
+  border-radius: 0 0 12px 12px;
+}
+.tv .scr { position: absolute; inset: 0; background: #000; }
+.tv .scr img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ----- mint live dot (one accent across the brand) ----- */
+.live-dot {
+  display: inline-block; width: 12px; height: 12px;
+  border-radius: 50%; background: #7AE0C2;
+  box-shadow: 0 0 12px rgba(122, 224, 194, 0.6);
+  vertical-align: middle;
+  margin-right: 8px;
+}
+.live-dot.warn { background: #FF6B5B; box-shadow: 0 0 12px rgba(255,107,91,0.6); }
+
+/* ----- single-line wordmark row treatment ----- */
+.wordmarks {
+  display: flex; flex-wrap: wrap;
+  gap: 0 56px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 800; letter-spacing: -0.02em;
+  line-height: 1.0;
+}
+.wordmarks .wm {
+  display: inline-block;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 4px;
+}
+
+/* ----- brand-color tokens ----- */
+.c-samsung  { color: #1428A0; }
+.c-lg       { color: #A50034; }
+.c-sony     { color: #111111; }
+.c-roku     { color: #6E249F; }
+.c-firetv   { color: #FF9900; }
+.c-chrome   { color: #4285F4; }
+.c-hisense  { color: #008F8C; }
+.c-mi       { color: #FF6900; }
+.c-tcl      { color: #ED1C24; }
+.c-android  { color: #3DDC84; }
+.c-vizio    { color: #060606; }
+.c-bravia   { color: #111111; }
+
+/* ----- caption block (asymmetric editorial layout) ----- */
+.cap {
+  position: absolute;
+  color: inherit;
+}
+.cap.tl { top: 110px; left: 80px; right: 80px; }
+.cap.bl { bottom: 100px; left: 80px; right: 200px; }
+
+/* ----- live ticker — small detail used in lifestyle shots ----- */
+.live-ticker {
+  display: inline-flex; align-items: center;
+  gap: 8px; padding: 8px 16px;
+  background: rgba(122, 224, 194, 0.12);
+  border: 1px solid rgba(122, 224, 194, 0.35);
+  border-radius: 100px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600; font-size: 22px;
+  color: #7AE0C2;
+  letter-spacing: 0.04em;
+}
+
+/* ----- 1px grid overlay (only on cream surfaces) ----- */
+.grid-cream {
+  background-image:
+    linear-gradient(to right, rgba(27,26,23,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(27,26,23,0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* ----- duotone overlay for Unsplash interior shots ----- */
+.duo {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+}
+.duo::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(11,13,16,0.45) 0%, rgba(11,13,16,0.78) 100%);
+}
+
+/* ----- soft asymmetric shadow under floating UI ----- */
+.float-shadow {
+  filter: drop-shadow(0 50px 60px rgba(0,0,0,0.3));
+}
+
+/* ----- mirror line connecting phone and TV (subtle, not the v1 beam) ----- */
+.mirror-line {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(122, 224, 194, 0.6) 50%, transparent 100%);
+  z-index: 2;
+}
+
+/* ----- thin diagonal seam used on the theme-split slide ----- */
+.seam {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.0) 0%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0.0) 100%);
+  z-index: 3;
+}

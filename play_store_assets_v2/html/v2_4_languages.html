@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="styles_v2.css">
+<style>
+  .mosaic {
+    position: absolute;
+    top: 380px; left: 60px; right: 60px; bottom: 200px;
+    display: flex; flex-wrap: wrap;
+    gap: 0;
+    align-content: flex-start;
+    font-family: 'Instrument Serif', serif;
+    letter-spacing: -0.025em;
+    line-height: 0.92;
+  }
+  .word {
+    padding: 0 28px;
+    border-right: 1px solid rgba(27,26,23,0.18);
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 12px;
+  }
+  .word:last-child { border-right: none; }
+  .w-xl { font-size: 180px; }
+  .w-lg { font-size: 140px; }
+  .w-md { font-size: 96px; }
+  .w-sm { font-size: 72px; }
+  .accent { color: #2E5D4F; }
+  .italic { font-style: italic; }
+</style>
+</head>
+<body>
+<div class="canvas surf-cream">
+
+  <div class="cap tl">
+    <div class="eyebrow"><span class="num">04</span> &nbsp; FIFTEEN LANGUAGES</div>
+  </div>
+
+  <h1 class="serif" style="position: absolute; top: 210px; left: 80px; right: 80px;
+       font-size: 92px;">
+    The word for <em>cast,</em><br>
+    in your language.
+  </h1>
+
+  <!-- typographic mosaic — "Cast" in 15 languages -->
+  <div class="mosaic">
+    <span class="word w-xl">Cast</span>
+    <span class="word w-lg accent italic">Transmitir</span>
+    <span class="word w-md">投屏</span>
+    <span class="word w-lg italic">कास्ट</span>
+    <span class="word w-sm">キャスト</span>
+    <span class="word w-md accent">Передать</span>
+    <span class="word w-sm italic">Übertragen</span>
+    <span class="word w-md">전송</span>
+    <span class="word w-lg">Diffuser</span>
+    <span class="word w-sm accent">Trasmetti</span>
+    <span class="word w-md italic">إرسال</span>
+    <span class="word w-sm">Bahasa</span>
+    <span class="word w-md accent italic">Yayınla</span>
+    <span class="word w-sm">Truyền</span>
+    <span class="word w-sm">Transmissão</span>
+  </div>
+
+  <!-- footer -->
+  <div style="position: absolute; bottom: 100px; left: 80px; right: 80px;
+       display: flex; justify-content: space-between; align-items: baseline;">
+    <p class="sans" style="font-size: 24px; color:#6C6760; letter-spacing: 0.04em;">
+      en · es · pt · hi · in · ru · de · fr · it · ja · ko · zh · tr · vi · ar
+    </p>
+    <span style="font-family: 'Instrument Serif', serif; font-size: 38px; letter-spacing: -0.02em;">
+      Aircast<span style="color:#2E5D4F">.</span>
+    </span>
+  </div>
+
+</div>
+</body></html>
