@@ -1,106 +1,83 @@
 # Aircast Play Store assets
 
-1080×1920 phone screenshots and 30-second promo videos for the Google
-Play listing. Each iteration kept in its own `versions/vN/` folder so
-you can compare or roll back.
+Final set of Play Store listing assets for Aircast. Single source — `versions/v10/` is THE version. Earlier iterations (v1–v9) and the pre-`versions/` flat layout were removed; if you need them, git log them.
+
+## What's in v10
 
 ```
-play_store_assets_v2/
-├─ versions/
-│  ├─ v1/   saturated-gradient + 3x3 brand tile grid (the cliche)
-│  ├─ v2/   editorial dark + Instrument Serif (AI-template look)
-│  ├─ v3/   NeoPOP + JetBrains Mono caps + Erode italic (cursive flagged
-│  │       as AI-slop by user)
-│  └─ v4/   ← CURRENT: real brand SVG logos + JetBrains Mono + Satoshi
-│           sans-serif (no italic, no cursive, no serif)
-├─ phone_screens/   real app screenshots shared by all versions
-└─ package.json     shared playwright dependency
+versions/v10/
+├─ html/                      9 portrait screenshot HTMLs (1080×1920)
+│  ├─ v10_1_hero.html        MIRROR. CAST. — phone+TV beach mirror
+│  ├─ v10_2_apphome.html     OPEN. SEARCH. — Aircast home screen mockup
+│  ├─ v10_3_onetap.html      ONE TAP. — cast picker (Samsung selected)
+│  ├─ v10_4_streaming.html   STREAM. BIGGER. — mountain documentary
+│  ├─ v10_5_gaming.html      GAME. HUGE. — synthwave racing scene
+│  ├─ v10_6_working.html     PRESENT. PROUDLY. — revenue chart slide
+│  ├─ v10_7_alltvs.html      EVERY TV. — 6 brand pills vertical stack
+│  ├─ v10_8_languages.html   15. — 12 floating language pills
+│  └─ v10_9_cta.html         FREE. FOREVER. + INSTALL button
+├─ tablet/                    7" and 10" tablet variants (1920×1080 landscape)
+│  └─ html/                   each screenshot has a tab_*.html version
+├─ feature/
+│  └─ feature.html            1024×500 Play Store feature graphic
+├─ video/                     promo videos
+│  ├─ tutorial_v10.html       36s portrait video source
+│  ├─ tutorial_landscape.html 36s landscape video source
+│  ├─ aircast_tutorial_v10_final.mp4         portrait + voice + music (ready)
+│  ├─ aircast_tutorial_landscape_final.mp4   landscape + voice + music (ready)
+│  ├─ bg_music.mp3            Bensound 'Creative Minds' (CC-BY)
+│  ├─ aircast_vo_jenny.mp3    standalone voiceover options
+│  ├─ aircast_vo_aria.mp3
+│  ├─ aircast_vo_andrew.mp3
+│  ├─ gen_final_video.py      per-scene voice + music mux (portrait)
+│  ├─ gen_landscape_final.py  per-scene voice + music mux (landscape)
+│  ├─ gen_voiceover.py        3-voice generator for A/B/C selection
+│  └─ voiceover_script.txt    timed script + SSML + delivery notes
+├─ brand_logos/               clean SVGs (Samsung, LG, Sony, Roku, Fire TV, Chromecast, etc.)
+├─ photos/                    sunset_beach.jpg, mountain.jpg, concert_lights.jpg
+├─ out/                       rendered PNG output (9 screenshots)
+├─ render_v10.js              renders the 9 portrait screenshots
+├─ record_v10.js              records the 36s portrait video
+├─ render_extras.js           renders feature graphic + tablet variants
+└─ package.json               playwright dep
 ```
 
-## v4 — current recommended set
+## Design system (locked)
 
-### Typography
+- **Font**: Bricolage Grotesque 800 (display) + Inter Medium/500 (body)
+- **Palette**: warm cream paper (`#FAF3E5` → `#E8D6B0`) with olive (`#4A5D23`), terracotta (`#D2654B`), saffron (`#E5A04D`), plum (`#6E2B47`) accents
+- **Brand colors retained for the Aircast mark**: green `#34A853`, blue `#4285F4`
+- **Text rule**: 2–3 word headlines max, no body sublines
 
-- **Headlines / mono labels**: JetBrains Mono ExtraBold (800), caps,
-  -2% tracking, 0.95 line-height. Distinctive technical voice — reads
-  as "engineered, not templated."
-- **Body / sub-headlines / captions**: Satoshi (Fontshare, ITF Free
-  Font License — explicitly licensed for commercial use). Weight 500
-  for body, 600-700 for emphasis. **No italic, no serif, no cursive
-  anywhere.** This is the specific fix vs v3 where Erode italic read as
-  AI-cursive.
-
-### Brand logos
-
-Real SVG marks downloaded from simple-icons (CC0) and vectorlogo.zone
-(brand-color full-vector). 11 brands sit in `versions/v4/brand_logos/`:
-samsung, lg, sony, roku, chromecast, amazon (used for Fire TV),
-xiaomi (used for Mi TV), tcl, panasonic, google, amazonalexa. Used
-both in the compatibility grid (`v4_2_brands.png`) and inside the
-cast-picker rows of `v4_3_onetap.png` and the v4 tutorial video.
-
-### Screenshots (carousel order)
-
-| File | Concept | Surface |
-|------|---------|---------|
-| `versions/v4/out/v4_1_hero.png` | "MIRROR YOUR PHONE TO ANY TV." mono caps, green/blue accent words, phone + TV with cinematic landscape | Paper + grid |
-| `versions/v4/out/v4_2_brands.png` | "EVERY TV. EVERY STICK." 3×3 grid of WHITE TILES with the actual brand SVG logos inside (Samsung's blue oval, LG's pink character, Sony's wordmark on black, Amazon's "a", Chromecast wifi-arc, Roku R, TCL, Xiaomi Mi, Panasonic) | Paper + grid |
-| `versions/v4/out/v4_3_onetap.png` | "TAP. PICK. DONE." Cast-picker mock with real brand logos in each row, Samsung Living Room selected with mint highlight | Dark navy |
-| `versions/v4/out/v4_4_proof.png` | Pull-quote "Took longer to find the remote than to set this up." — PLAY STORE REVIEW ★★★★★. NeoPOP chunky shadow on devices | Brand green |
-| `versions/v4/out/v4_5_speed.png` | Massive numeral "1" with NeoPOP offset shadow. "Tap to cast. That's it." | Brand blue |
-| `versions/v4/out/v4_6_honest.png` | Real Aircast logo big, "FREE. WITH ADS." (truthful), black "GET IT ON GOOGLE PLAY" CTA | Paper |
-
-### Promo video
-
-**`versions/v4/video/aircast_tutorial_v4.mp4`** — 30-second tutorial.
-
-7 scenes, continuous spatial narrative. Real brand SVG logos visible
-in the scene-4 cast picker (Samsung, LG, Amazon, Roku, Chromecast).
-All captions in JetBrains Mono caps + Satoshi sub (no italic):
-
-1. 0-3s — Particles converge from edges, assemble into real Aircast logo
-2. 3-7s — Phone arrives on interior plate with overshoot
-3. 7-12s — Phone tilts perspective(1600px) rotateY(8deg), thumb taps
-4. 12-17s — Cast picker emerges with real brand logos, rows stagger in
-5. 17-23s — Phone+TV split, SVG beam draws between them with traveling particles
-6. 23-27s — Hero shot: TV fills frame, phone in corner, rotateY orbit
-7. 27-30s — End card on paper with real logo, mono wordmark, Satoshi
-   tagline "Cast in one tap. Free, with ads.", black "GET IT ON GOOGLE PLAY"
-
-Upload to YouTube → paste URL into Play Console's Promo Video field.
-
-### Design tokens
-
-```
---air-green : #34A853  /* the brand green from the app icon */
---air-blue  : #4285F4  /* the brand blue */
---air-ink   : #0F1A2E  /* dark surface */
---air-paper : #F5F1E8  /* warm paper surface */
-```
-
-### Brand voice
-
-App is **free, with ads**. NEVER claim "ad-free", "no ads", or "0
-trackers" — would be misinformation. Truthful value props acceptable:
-"no account", "no subscription", "no email", "free to download", "no
-setup wizard".
-
-## Regenerate v4
+## To regenerate
 
 ```sh
-cd versions/v4
-node render_v4.js       # 6 PNG screenshots
-node record_v4.js       # 30s WebM tutorial
-# WebM → MP4
-ffmpeg -i video/aircast_tutorial_v4.webm \
-       -c:v libx264 -pix_fmt yuv420p -preset slow -crf 20 \
-       -movflags +faststart video/aircast_tutorial_v4.mp4
+cd play_store_assets_v2/versions/v10
+npm install                         # one-time, installs playwright
+node render_v10.js                  # renders 9 portrait PNG screenshots
+node record_v10.js                  # records 36s portrait video WebM
+node render_extras.js               # renders feature graphic + tablet variants
+cd video
+python gen_landscape_final.py       # builds landscape MP4 with voice + music
+python gen_final_video.py           # builds portrait MP4 with voice + music
 ```
 
-## Legacy versions
+FFmpeg comes from imageio-ffmpeg (pip-installed). The `gen_*.py` scripts hardcode the Windows binary path — update the `FFMPEG` variable at the top of the script when running on macOS.
 
-- `versions/v1/` — first pass, saturated-gradient cliche
-- `versions/v2/` — editorial dark + Instrument Serif (AI-template)
-- `versions/v3/` — NeoPOP + Erode italic (cursive flagged as AI-slop)
+## Voiceover
 
-Kept for comparison. Safe to delete once v4 is uploaded to Play Console.
+Per-scene phrases generated via Edge TTS, placed at exact second timestamps using ffmpeg `adelay`. Default voice: `en-US-GuyNeural` with pitch `-8Hz` for an older-sounding male delivery. See `video/voiceover_script.txt` for the full timed script.
+
+## Background music
+
+`bg_music.mp3` is Bensound "Creative Minds" (CC-BY — credit Bensound if you keep it, or drop in a CC0 replacement from Pixabay / YouTube Audio Library and re-run `gen_landscape_final.py`).
+
+## Upload checklist
+
+| Play Console field | File |
+|---|---|
+| Phone screenshots (8 max) | `versions/v10/out/v10_1_hero.png` through `v10_9_cta.png` (pick any 8 of the 9) |
+| 7" tablet screenshots | `versions/v10/tablet/out_7/tab_*.png` |
+| 10" tablet screenshots | `versions/v10/tablet/out_10/tab_*.png` |
+| Feature graphic | `versions/v10/feature/feature_graphic.png` |
+| Promo video | `versions/v10/video/aircast_tutorial_landscape_final.mp4` (landscape is preferred for Play Store) |

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="styles_v10.css">
+<style>
+  /* Aircast app home screen UI — clean modern, warm cream theme */
+  .app-home {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, #FAF3E5 0%, #F0E4CB 100%);
+    padding: 78px 22px 22px;
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+  }
+  /* status bar */
+  .status-bar {
+    position: absolute; top: 26px; left: 22px; right: 22px;
+    display: flex; justify-content: space-between; align-items: center;
+    font: 700 14px 'Inter', sans-serif; color: var(--ink);
+  }
+  .status-bar .icons { display: flex; gap: 6px; align-items: center; }
+  .status-bar .icons span {
+    display: inline-block; width: 14px; height: 14px;
+    background: var(--ink); border-radius: 3px;
+  }
+  /* header */
+  .app-header { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
+  .app-header .logo { width: 36px; height: 36px; position: relative; }
+  .app-header .logo .g { position: absolute; left: 0; top: 4px; width: 20px; height: 28px; background: var(--brand-g); border-radius: 7px; }
+  .app-header .logo .b { position: absolute; right: 0; bottom: 4px; width: 28px; height: 20px; background: var(--brand-b); border-radius: 7px; }
+  .app-header .name {
+    font: 800 26px 'Bricolage Grotesque', sans-serif;
+    letter-spacing: -0.025em; color: var(--ink);
+  }
+  .app-header .gear {
+    margin-left: auto;
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(31,26,20,0.06);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ink-soft);
+    font: 700 16px sans-serif;
+  }
+  /* greeting */
+  .greeting {
+    margin-top: 30px;
+    font: 800 38px 'Bricolage Grotesque', sans-serif;
+    letter-spacing: -0.03em; color: var(--ink); line-height: 1.05;
+  }
+  .greeting .accent { color: var(--terra); }
+  .greeting-sub {
+    margin-top: 8px; font: 600 16px 'Inter', sans-serif;
+    color: var(--ink-soft);
+  }
+  /* hero illustration card */
+  .hero-card {
+    margin-top: 28px;
+    background: linear-gradient(135deg, #FAF3E5 0%, #ECDCBE 100%);
+    border: 1px solid rgba(31,26,20,0.06);
+    border-radius: 24px;
+    height: 200px;
+    position: relative; overflow: hidden;
+    box-shadow: 0 8px 20px rgba(31,26,20,0.06);
+  }
+  .hero-card .ill-phone {
+    position: absolute; bottom: 18px; left: 30px;
+    width: 80px; height: 130px;
+    background: #1F1A14; border-radius: 14px;
+    box-shadow: 0 8px 18px rgba(31,26,20,0.3);
+  }
+  .hero-card .ill-phone::before {
+    content:""; position:absolute; inset:6px; border-radius:9px;
+    background: linear-gradient(135deg, #D2654B, #E5A04D);
+  }
+  .hero-card .ill-tv {
+    position: absolute; bottom: 30px; right: 30px;
+    width: 160px; height: 100px;
+    background: #1F1A14; border-radius: 8px;
+    box-shadow: 0 8px 18px rgba(31,26,20,0.3);
+  }
+  .hero-card .ill-tv::before {
+    content:""; position:absolute; inset:5px; border-radius:4px;
+    background: linear-gradient(135deg, #D2654B, #E5A04D);
+  }
+  .hero-card .ill-beam {
+    position: absolute; bottom: 80px; left: 105px;
+    width: 180px; height: 4px;
+    background: linear-gradient(90deg, #34A853, #4285F4);
+    border-radius: 2px;
+    box-shadow: 0 0 14px rgba(52,168,83,0.5);
+  }
+  .hero-card .ill-beam::after {
+    content:""; position:absolute; left:50%; top:-3px;
+    width:10px; height:10px; border-radius:50%;
+    background: var(--saffron); transform:translateX(-50%);
+    box-shadow: 0 0 8px rgba(229,160,77,0.7);
+  }
+  .hero-card .ill-label {
+    position: absolute; top: 18px; left: 22px;
+    font: 800 18px 'Bricolage Grotesque', sans-serif;
+    letter-spacing: -0.02em; color: var(--ink);
+  }
+  .hero-card .ill-sub {
+    position: absolute; top: 44px; left: 22px;
+    font: 600 12px 'Inter', sans-serif; color: var(--ink-soft);
+  }
+
+  /* search for TVs main button */
+  .search-btn {
+    margin-top: 22px;
+    background: var(--olive);
+    border-radius: 22px;
+    padding: 24px 26px;
+    display: flex; align-items: center; gap: 18px;
+    color: var(--cream);
+    box-shadow: 0 14px 32px rgba(74,93,35,0.32);
+  }
+  .search-btn .iconbox {
+    width: 56px; height: 56px; border-radius: 16px;
+    background: rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font: 800 28px sans-serif;
+  }
+  .search-btn .label { flex: 1; }
+  .search-btn .label .t { font: 800 22px 'Bricolage Grotesque', sans-serif; letter-spacing: -0.02em; }
+  .search-btn .label .s { font: 600 13px 'Inter', sans-serif; opacity: 0.78; margin-top: 2px; }
+  .search-btn .arrow {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(255,255,255,0.18);
+    display: flex; align-items: center; justify-content: center;
+    font: 900 20px sans-serif;
+  }
+
+  /* recently connected */
+  .recent-label {
+    margin-top: 26px;
+    font: 700 12px 'Inter', sans-serif;
+    color: var(--ink-soft);
+    text-transform: uppercase; letter-spacing: 0.12em;
+  }
+  .recent-row {
+    margin-top: 10px;
+    background: #fff; border: 1px solid rgba(31,26,20,0.06);
+    border-radius: 18px; padding: 14px;
+    display: flex; align-items: center; gap: 12px;
+    box-shadow: 0 4px 10px rgba(31,26,20,0.04);
+  }
+  .recent-row .lb {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: var(--paper-1); padding: 6px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .recent-row .lb img { max-width: 100%; max-height: 100%; }
+  .recent-row .nm { font: 800 16px 'Inter', sans-serif; }
+  .recent-row .sm { font: 600 12px 'Inter', sans-serif; color: var(--ink-soft); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.08em; }
+  .recent-row .dot {
+    margin-left: auto;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--brand-g);
+    box-shadow: 0 0 0 4px rgba(52,168,83,0.18);
+  }
+</style>
+</head>
+<body>
+<div class="canvas bg-cream">
+  <div class="tag" style="position: absolute; top: 120px; left: 0; right: 0; text-align: center; z-index: 10;">
+    OUR APP
+  </div>
+
+  <h1 class="display" style="position: absolute; top: 200px; left: 60px; right: 60px; text-align: center;">
+    OPEN.<br><span class="olive">SEARCH.</span>
+  </h1>
+
+  <!-- big phone showing actual Aircast app home -->
+  <div class="phone" style="top: 760px; left: 50%; margin-left: -270px; width: 540px; height: 1120px; border-radius: 66px;">
+    <div class="notch"></div>
+    <div class="scr">
+      <div class="app-home">
+        <div class="status-bar">
+          <span>12:24</span>
+          <div class="icons"><span></span><span></span><span></span></div>
+        </div>
+
+        <div class="app-header">
+          <div class="logo"><div class="g"></div><div class="b"></div></div>
+          <div class="name">Aircast</div>
+          <div class="gear">⚙</div>
+        </div>
+
+        <div class="greeting">
+          Cast to any <span class="accent">TV.</span>
+        </div>
+        <div class="greeting-sub">Wireless screen mirror &middot; HD &middot; no cable</div>
+
+        <div class="hero-card">
+          <div class="ill-label">Mirror in HD</div>
+          <div class="ill-sub">phone → TV, 1080P</div>
+          <div class="ill-phone"></div>
+          <div class="ill-beam"></div>
+          <div class="ill-tv"></div>
+        </div>
+
+        <div class="search-btn">
+          <div class="iconbox">⌕</div>
+          <div class="label">
+            <div class="t">Search for TVs</div>
+            <div class="s">Detect nearby smart TVs</div>
+          </div>
+          <div class="arrow">›</div>
+        </div>
+
+        <div class="recent-label">Recently connected</div>
+        <div class="recent-row">
+          <div class="lb"><img src="../brand_logos/samsung.svg" alt=""></div>
+          <div><div class="nm">Samsung Living Room</div><div class="sm">4K HDR · last connected today</div></div>
+          <div class="dot"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>

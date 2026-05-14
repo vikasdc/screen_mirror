@@ -1,0 +1,124 @@
+AIRCAST PLAY STORE VIDEO — VOICEOVER SCRIPT
+============================================
+Total duration: 36 seconds | ~70 words | ~150 wpm | conversational pace
+
+
+───────────────────────────────────────────────
+TIMED SCRIPT (for syncing with video)
+───────────────────────────────────────────────
+
+[0.0 – 2.4s]  Meet Aircast.
+                                          ← AIRCAST logo intro
+
+[2.4 – 5.5s]  Open the app —
+                                          ← STEP 1: Aircast home screen appears
+
+[5.5 – 8.0s]  tap Search for TVs.
+                                          ← STEP 2: finger taps green Search button
+
+[8.0 – 12s]   Pick your TV. Samsung, LG, Fire TV, Roku —
+              it works with all of them.
+                                          ← STEP 3: device list populates, tap Samsung
+
+[12 – 15.5s]  Connected. In about two seconds.
+                                          ← connecting spinner + green check
+
+[15.5 – 18.5s] Done. Your phone's now on the big screen.
+                                          ← STEP 4: Connected confirmation
+
+[18.5 – 22s]  Mirror anything —
+                                          ← MIRRORING NOW: beach on phone+TV
+
+[22 – 25s]    watch movies and shows,
+                                          ← STREAM: mountain documentary
+
+[25 – 28s]    play games on the TV,
+                                          ← GAME: racing speedometer
+
+[28 – 31s]    present right from your phone.
+                                          ← PRESENT: revenue chart
+
+[31 – 36s]    Free, forever. No sign-up.
+              Install Aircast and start casting.
+                                          ← CTA: INSTALL button
+
+
+───────────────────────────────────────────────
+PLAIN SCRIPT (for any TTS engine — paste and go)
+───────────────────────────────────────────────
+
+Meet Aircast. Open the app — tap Search for TVs. Pick your TV. Samsung, LG,
+Fire TV, Roku — it works with all of them. Connected. In about two seconds.
+Done. Your phone's now on the big screen. Mirror anything — watch movies
+and shows, play games on the TV, present right from your phone. Free,
+forever. No sign-up. Install Aircast and start casting.
+
+
+───────────────────────────────────────────────
+SSML SCRIPT (for engines that support SSML — ElevenLabs, Azure, Edge-TTS, Polly)
+───────────────────────────────────────────────
+
+<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">
+  <prosody rate="-3%">
+    Meet Aircast.<break time="1300ms"/>
+    Open the app<break time="350ms"/>
+    tap, Search for TVs.<break time="650ms"/>
+    Pick your TV.<break time="200ms"/>
+    Samsung, <say-as interpret-as="characters">LG</say-as>, Fire <say-as interpret-as="characters">TV</say-as>, Roku<break time="200ms"/>
+    it works with all of them.<break time="450ms"/>
+    Connected.<break time="200ms"/>
+    In about two seconds.<break time="400ms"/>
+    Done.<break time="200ms"/>
+    Your phone's now on the big screen.<break time="500ms"/>
+    Mirror anything<break time="350ms"/>
+    watch movies and shows,<break time="500ms"/>
+    play games on the <say-as interpret-as="characters">TV</say-as>,<break time="500ms"/>
+    present right from your phone.<break time="500ms"/>
+    Free, forever.<break time="200ms"/>
+    No sign-up.<break time="350ms"/>
+    Install Aircast<break time="200ms"/>
+    and start casting.
+  </prosody>
+</speak>
+
+
+───────────────────────────────────────────────
+RECOMMENDED TTS SETTINGS
+───────────────────────────────────────────────
+
+ENGINE PICKS (in order of quality)
+  1. ElevenLabs — paid but most natural. Voice: "Bella" or "Aria".
+  2. Microsoft Edge / Azure Neural TTS — free via edge-tts CLI.
+     Best voices:  en-US-JennyNeural   ← warm, friendly female (recommended)
+                   en-US-AriaNeural    ← modern, slightly more energetic
+                   en-US-AndrewNeural  ← warm male
+                   en-US-EmmaNeural    ← professional female
+  3. Google Cloud TTS — Studio voices (en-US-Studio-O) are excellent.
+  4. Amazon Polly — Neural voices: Joanna, Matthew, Ruth.
+
+VOICE STYLE
+  - Tone: warm, friendly, confident — like a helpful guide, not a salesperson
+  - Speed: 95–100% (slightly under default for clarity)
+  - Pitch: default
+  - Emphasis: light stress on "Aircast", "anything", "Free, forever", "Install"
+
+DELIVERY NOTES
+  - "Meet Aircast." — slow, deliberate. Sets the tone.
+  - "tap Search for TVs" — slightly playful, like demonstrating.
+  - "Samsung, LG, Fire TV, Roku" — list cadence, small pause between each.
+  - "Connected. In about two seconds." — satisfied, slight upward inflection on "Connected."
+  - "watch movies, play games, present" — three-beat rhythm, each phrase same length feel.
+  - "Free, forever." — strong emphasis on FOREVER.
+  - "Install Aircast" — call to action, slightly punchier.
+
+
+───────────────────────────────────────────────
+ALTERNATIVE SHORTER SCRIPT (if pacing feels rushed)
+───────────────────────────────────────────────
+
+Meet Aircast. Open it, tap Search, and pick your TV.
+Samsung, LG, Fire TV — they all work.
+Connected in two seconds.
+Now your phone is on the big screen.
+Watch movies, play games, present your work.
+Free, forever. Install Aircast.

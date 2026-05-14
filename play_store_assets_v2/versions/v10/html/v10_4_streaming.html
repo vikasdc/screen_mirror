@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="styles_v10.css">
+<style>
+  /* video player overlay shown on phone and TV */
+  .player-overlay {
+    position: absolute; inset: 0; pointer-events: none;
+  }
+  .player-overlay .top-bar {
+    position: absolute; top: 14px; left: 14px; right: 14px;
+    display: flex; justify-content: space-between; align-items: flex-start;
+  }
+  .player-overlay .badge {
+    background: rgba(0,0,0,0.55); backdrop-filter: blur(8px);
+    color: #fff; padding: 6px 14px; border-radius: 100px;
+    font: 700 14px 'Inter', sans-serif;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .player-overlay .badge.live::before {
+    content: ""; width: 6px; height: 6px; border-radius: 50%;
+    background: #FF3B30; box-shadow: 0 0 0 3px rgba(255,59,48,0.3);
+  }
+  .player-overlay .bottom-bar {
+    position: absolute; bottom: 16px; left: 14px; right: 14px;
+  }
+  .player-overlay .title {
+    color: #fff; font: 800 18px 'Bricolage Grotesque', sans-serif;
+    letter-spacing: -0.02em; text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+  }
+  .player-overlay .meta {
+    color: rgba(255,255,255,0.85); font: 600 11px 'Inter', sans-serif;
+    margin-top: 2px; letter-spacing: 0.04em;
+  }
+  .player-overlay .progress {
+    margin-top: 10px; height: 4px; border-radius: 4px;
+    background: rgba(255,255,255,0.25);
+    position: relative;
+  }
+  .player-overlay .progress::after {
+    content: ""; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 42%; background: var(--saffron); border-radius: 4px;
+  }
+  /* tv version is bigger */
+  .tv .player-overlay .top-bar { top: 18px; left: 22px; right: 22px; }
+  .tv .player-overlay .badge { font: 700 18px 'Inter', sans-serif; padding: 8px 18px; }
+  .tv .player-overlay .bottom-bar { bottom: 22px; left: 22px; right: 22px; }
+  .tv .player-overlay .title { font: 800 28px 'Bricolage Grotesque', sans-serif; }
+  .tv .player-overlay .meta { font: 600 16px 'Inter', sans-serif; margin-top: 4px; }
+  .tv .player-overlay .progress { height: 6px; margin-top: 14px; }
+</style>
+</head>
+<body>
+<div class="canvas bg-paper">
+  <div class="tag" style="position: absolute; top: 120px; left: 0; right: 0; text-align: center; z-index: 10;">
+    MOVIES &middot; SHOWS &middot; LIVE
+  </div>
+
+  <h1 class="display" style="position: absolute; top: 200px; left: 60px; right: 60px; text-align: center;">
+    STREAM.<br><span class="terra">BIGGER.</span>
+  </h1>
+
+  <!-- TV showing cinematic content -->
+  <div class="tv" style="top: 760px; left: 50px; width: 640px; height: 400px;">
+    <div class="scr">
+      <img class="fill" src="../photos/mountain.jpg" alt="">
+      <div class="player-overlay">
+        <div class="top-bar">
+          <span class="badge live">LIVE</span>
+          <span class="badge">4K HDR</span>
+        </div>
+        <div class="bottom-bar">
+          <div class="title">EARTH FROM ABOVE</div>
+          <div class="meta">EPISODE 4 &middot; 42 OF 60 MIN</div>
+          <div class="progress"></div>
+        </div>
+      </div>
+    </div>
+    <div class="stand"></div>
+  </div>
+
+  <!-- phone showing same content (mirror) -->
+  <div class="phone" style="top: 880px; right: 50px; width: 460px; height: 920px; transform: rotate(3deg);">
+    <div class="notch"></div>
+    <div class="scr">
+      <img class="fill" src="../photos/mountain.jpg" alt="">
+      <div class="player-overlay">
+        <div class="top-bar">
+          <span class="badge live">LIVE</span>
+        </div>
+        <div class="bottom-bar">
+          <div class="title">EARTH FROM ABOVE</div>
+          <div class="meta">EP 4 &middot; 42 OF 60 MIN</div>
+          <div class="progress"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>

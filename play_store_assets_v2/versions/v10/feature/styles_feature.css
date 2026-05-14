@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@500;700&display=swap');
+:root {
+  --ink:#1F1A14; --cream:#FAF3E5;
+  --paper:#F4E9D9; --olive:#4A5D23; --terra:#D2654B;
+  --saffron:#E5A04D; --brand-g:#34A853; --brand-b:#4285F4;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  width: 1024px; height: 500px; overflow: hidden;
+  background: var(--paper); color: var(--ink);
+  font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased;
+}
+.canvas {
+  position: relative; width: 1024px; height: 500px; overflow: hidden;
+  background: linear-gradient(135deg, #FAF3E5 0%, #F0E4CB 100%);
+  isolation: isolate;
+}
+.canvas::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    radial-gradient(rgba(31,26,20,0.04) 1px, transparent 1px),
+    radial-gradient(rgba(31,26,20,0.025) 1px, transparent 1px);
+  background-size: 4px 4px, 7px 7px;
+  background-position: 0 0, 2px 3px;
+  mix-blend-mode: multiply;
+}
+
+.aircast-mark { position: relative; width: 64px; height: 64px; }
+.aircast-mark .gr, .aircast-mark .bl { position: absolute; border-radius: 14px; }
+.aircast-mark .gr { background: var(--brand-g); width: 36px; height: 50px; left: 0; top: 7px; }
+.aircast-mark .bl { background: var(--brand-b); width: 50px; height: 36px; right: 0; bottom: 7px; }
+
+.phone {
+  position: absolute; background: #0a0a0a;
+  border: 5px solid #16161B; border-radius: 28px;
+  box-shadow: 0 14px 30px rgba(31,26,20,0.32);
+  overflow: hidden;
+}
+.phone .scr { position: absolute; inset: 0; border-radius: 22px; overflow: hidden; background: #000; }
+.phone .scr img { width: 100%; height: 100%; object-fit: cover; }
+.phone .notch {
+  position: absolute; top: 6px; left: 50%; transform: translateX(-50%);
+  width: 60px; height: 12px; background: #000; border-radius: 8px; z-index: 10;
+}
+
+.tv {
+  position: absolute; background: #14140F;
+  border: 6px solid #1F1A14; border-radius: 16px;
+  box-shadow: 0 20px 38px rgba(31,26,20,0.32);
+  overflow: hidden;
+}
+.tv .scr { position: absolute; inset: 0; border-radius: 8px; overflow: hidden; background: #000; }
+.tv .scr img { width: 100%; height: 100%; object-fit: cover; }
+.tv .stand {
+  position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%);
+  width: 100px; height: 12px;
+  background: linear-gradient(180deg, #2A241A, #14110A);
+  border-radius: 0 0 6px 6px;
+}
+
+.live-tag {
+  position: absolute; top: 8px; left: 10px;
+  background: rgba(0,0,0,0.55); color: #fff;
+  padding: 3px 8px; border-radius: 100px;
+  font: 700 9px 'Inter', sans-serif;
+  display: inline-flex; align-items: center; gap: 4px;
+}
+.live-tag::before { content:""; width: 5px; height: 5px; border-radius: 50%; background: #FF3B30; }

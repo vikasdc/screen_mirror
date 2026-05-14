@@ -38,6 +38,8 @@
 **/*.zip
 **/*.log
 **/*.txt
+# re-allow .txt files inside the Play Store assets v2 tree (voiceover scripts etc.)
+!/play_store_assets_v2/**/*.txt
 **/*.class
 **/.DS_Store
 **/android_prefs/

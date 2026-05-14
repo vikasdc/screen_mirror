@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108" width="108" height="108">
-  <!-- Green rounded rect = phone screen -->
-  <path fill="#34A853" fill-opacity="0.92"
-        d="M30,38H65V65H30C28.5,65 27.2,63.7 27.2,62.2V40.8C27.2,39.3 28.5,38 30,38Z"/>
-  <!-- Blue rounded rect = TV display, partially overlapping the phone -->
-  <path fill="#4285F4" fill-opacity="0.92"
-        d="M50,45H82C83.5,45 84.8,46.3 84.8,47.8V70.2C84.8,71.7 83.5,73 82,73H50V45Z"/>
-</svg>

@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="styles_v10.css">
+<style>
+  /*
+    v10 video — 36s real app screen-recording feel
+    0.0 - 2.4s   intro AIRCAST
+    2.4 - 5.5s   APP OPENS · home screen, app launches with bounce
+    5.5 - 8.0s   finger lowers + taps "Search for TVs" button
+    8.0 - 9.0s   screen transitions to scanning view (slide up)
+    9.0 - 13.0s  scanning + TVs populate one by one
+    13.0 - 15.0s finger taps Samsung row, row highlights with check
+    15.0 - 16.5s connecting spinner
+    16.5 - 18.5s green check + "Connected"
+    18.5 - 22.0s mirror demo: phone slides left, TV slides in from right, beach on both
+    22.0 - 25.0s streaming use case (mountain)
+    25.0 - 28.0s gaming use case
+    28.0 - 31.0s presenting use case
+    31.0 - 36.0s CTA INSTALL FREE
+  */
+  body { background: var(--cream); overflow: hidden; margin: 0; padding: 0; }
+
+  /* persistent canvas backgrounds — crossfade */
+  .bg-layer {
+    position: absolute; inset: 0; z-index: 0;
+    opacity: 0;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    animation-fill-mode: forwards;
+  }
+  @keyframes bg-on {
+    0%,5%   { opacity: 0; }
+    10%,90% { opacity: 1; }
+    100%    { opacity: 0; }
+  }
+  .bg-intro   { background: linear-gradient(180deg, #FAF3E5 0%, #F0E4CB 100%);
+                animation: bg-on 2.6s 0.0s forwards; }
+  .bg-demo    { background: linear-gradient(180deg, #FAF3E5 0%, #F0E4CB 100%);
+                animation: bg-on 16s   2.5s forwards; }
+  .bg-mirror  { background: linear-gradient(180deg, #F4E9D9 0%, #E8D6B0 100%);
+                animation: bg-on 3.7s  18.3s forwards; }
+  .bg-stream  { background: linear-gradient(180deg, #F4E9D9 0%, #E8D6B0 100%);
+                animation: bg-on 3.2s  21.8s forwards; }
+  .bg-game    { background: linear-gradient(180deg, #FAF3E5 0%, #F0E4CB 100%);
+                animation: bg-on 3.2s  24.8s forwards; }
+  .bg-work    { background: linear-gradient(180deg, #F4E9D9 0%, #E8D6B0 100%);
+                animation: bg-on 3.2s  27.8s forwards; }
+  .bg-cta     { background: linear-gradient(180deg, #FAF3E5 0%, #F0E4CB 100%);
+                animation: bg-on 5.2s  30.8s forwards; }
+
+  /* HEADLINE TAGS — change per step */
+  .head {
+    position: absolute; top: 100px; left: 0; right: 0; text-align: center;
+    z-index: 10; opacity: 0;
+    font-family: 'Inter', sans-serif;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    animation-fill-mode: forwards;
+  }
+  .head .tag {
+    font: 700 22px 'Inter', sans-serif;
+    color: var(--olive); letter-spacing: 0.18em; text-transform: uppercase;
+  }
+  .head .display {
+    margin-top: 14px;
+    font: 800 84px 'Bricolage Grotesque', sans-serif;
+    color: var(--ink); letter-spacing: -0.04em; line-height: 0.95;
+  }
+  .head .display .a { color: var(--terra); }
+  .head .display .g { color: var(--olive); }
+  @keyframes head-on {
+    0%   { opacity: 0; transform: translateY(10px); }
+    15%  { opacity: 1; transform: translateY(0); }
+    85%  { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-8px); }
+  }
+  .head-open   { animation: head-on 3.2s 2.4s forwards; }
+  .head-search { animation: head-on 4.5s 5.6s forwards; }
+  .head-pick   { animation: head-on 5.5s 9.6s forwards; }
+  .head-conn   { animation: head-on 3.2s 15.1s forwards; }
+  .head-mirror { animation: head-on 3.7s 18.3s forwards; }
+  .head-stream { animation: head-on 3.2s 21.8s forwards; }
+  .head-game   { animation: head-on 3.2s 24.8s forwards; }
+  .head-work   { animation: head-on 3.2s 27.8s forwards; }
+
+  /* PERSISTENT PHONE — centered during demo, slides right for mirror */
+  .phone-stage {
+    position: absolute;
+    top: 360px;
+    left: 50%; transform: translateX(-50%);
+    width: 540px; height: 1120px;
+    z-index: 5;
+    animation: phone-pos 36s forwards;
+  }
+  @keyframes phone-pos {
+    0%,8%     { transform: translateX(-50%) scale(0.92); opacity: 0; }
+    9%        { opacity: 1; }
+    10%, 50%  { transform: translateX(-50%) scale(1); opacity: 1; }
+    /* slide+shrink to right side for mirror demo */
+    53%       { transform: translateX(80px) scale(0.7); opacity: 1; }
+    87%       { transform: translateX(80px) scale(0.7); opacity: 1; }
+    88%, 100% { opacity: 0; transform: translateX(80px) scale(0.7); }
+  }
+  .phone-frame {
+    position: relative; width: 100%; height: 100%;
+    background: #0a0a0a;
+    border: 8px solid #16161B;
+    border-radius: 66px;
+    box-shadow:
+      0 0 0 2px rgba(31,26,20,0.08),
+      0 60px 100px rgba(31,26,20,0.22),
+      0 16px 36px rgba(31,26,20,0.16);
+    overflow: hidden;
+  }
+  .phone-frame .notch {
+    position: absolute; top: 18px; left: 50%; transform: translateX(-50%);
+    width: 140px; height: 30px; background: #000; border-radius: 18px; z-index: 30;
+  }
+  .phone-frame .scr {
+    position: absolute; inset: 0; border-radius: 58px; overflow: hidden; background: #000;
+  }
+  /* live app screens stack inside the phone */
+  .app-screen {
+    position: absolute; inset: 0;
+    opacity: 0;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    animation-fill-mode: forwards;
+  }
+  @keyframes screen-in {
+    0%   { opacity: 0; transform: translateY(40px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes screen-out {
+    0%   { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-30px); }
+  }
+  @keyframes screen-stay {
+    0%, 100% { opacity: 1; transform: translateY(0); }
+  }
+  /* screen 1: home, visible 2.5s - 8s */
+  .scr-home {
+    animation:
+      screen-in 0.5s 2.5s forwards,
+      screen-stay 0.1s 3.0s forwards,
+      screen-out 0.6s 7.7s forwards;
+  }
+  /* screen 2: searching/list visible 8.3s - 14.5s */
+  .scr-list {
+    animation:
+      screen-in 0.5s 8.3s forwards,
+      screen-stay 0.1s 8.8s forwards,
+      screen-out 0.5s 14.5s forwards;
+  }
+  /* screen 3: connecting visible 15.0s - 16.4s */
+  .scr-connecting {
+    animation:
+      screen-in 0.5s 15.0s forwards,
+      screen-stay 0.1s 15.5s forwards,
+      screen-out 0.5s 16.4s forwards;
+  }
+  /* screen 4: connected check 16.5s - 18.5s, then becomes mirror content */
+  .scr-connected {
+    animation:
+      screen-in 0.5s 16.5s forwards,
+      screen-stay 0.1s 17.0s forwards,
+      screen-out 0.5s 18.3s forwards;
+  }
+  /* screen 5: beach mirror — visible 18.5s - 21.8s */
+  .scr-beach {
+    animation:
+      screen-in 0.5s 18.5s forwards,
+      screen-stay 0.1s 19.0s forwards,
+      screen-out 0.5s 21.8s forwards;
+  }
+  /* mountain mirror 21.8 - 24.8 */
+  .scr-mountain {
+    animation:
+      screen-in 0.5s 21.8s forwards,
+      screen-stay 0.1s 22.3s forwards,
+      screen-out 0.5s 24.8s forwards;
+  }
+  /* game 24.8 - 27.8 */
+  .scr-game {
+    animation:
+      screen-in 0.5s 24.8s forwards,
+      screen-stay 0.1s 25.3s forwards,
+      screen-out 0.5s 27.8s forwards;
+  }
+  /* slide 27.8 - 31.0 */
+  .scr-slide {
+    animation:
+      screen-in 0.5s 27.8s forwards,
+      screen-stay 0.1s 28.3s forwards,
+      screen-out 0.5s 30.8s forwards;
+  }
+
+  /* TV — slides in from left, parks on the left, slides out for CTA */
+  .tv-stage {
+    position: absolute;
+    top: 720px; left: 0px;
+    width: 660px; height: 420px;
+    z-index: 4;
+    opacity: 0;
+    animation: tv-slide 36s forwards;
+  }
+  @keyframes tv-slide {
+    0%, 50%    { opacity: 0; transform: translateX(-100%); }
+    53%        { opacity: 1; transform: translateX(0); }
+    87%        { opacity: 1; transform: translateX(0); }
+    88%, 100%  { opacity: 0; transform: translateX(-100%); }
+  }
+  .tv-frame {
+    position: relative; width: 100%; height: 100%;
+    background: #14140F;
+    border: 10px solid #1F1A14;
+    border-radius: 26px;
+    box-shadow: 0 50px 100px rgba(31,26,20,0.32);
+    overflow: hidden;
+  }
+  .tv-frame .scr {
+    position: absolute; inset: 0; border-radius: 14px; overflow: hidden; background: #000;
+  }
+  .tv-frame .stand {
+    position: absolute; bottom: -22px; left: 50%; transform: translateX(-50%);
+    width: 230px; height: 22px;
+    background: linear-gradient(180deg, #2A241A, #14110A);
+    border-radius: 0 0 12px 12px;
+  }
+  /* TV internal screens (mirror what phone shows) */
+  .tv-screen {
+    position: absolute; inset: 0;
+    opacity: 0;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    animation-fill-mode: forwards;
+  }
+  .tv-beach    { animation: screen-in 0.5s 18.5s forwards, screen-stay 0.1s 19.0s forwards, screen-out 0.5s 21.8s forwards; }
+  .tv-mountain { animation: screen-in 0.5s 21.8s forwards, screen-stay 0.1s 22.3s forwards, screen-out 0.5s 24.8s forwards; }
+  .tv-game     { animation: screen-in 0.5s 24.8s forwards, screen-stay 0.1s 25.3s forwards, screen-out 0.5s 27.8s forwards; }
+  .tv-slide    { animation: screen-in 0.5s 27.8s forwards, screen-stay 0.1s 28.3s forwards, screen-out 0.5s 30.8s forwards; }
+
+  /* ============ FINGER ============ */
+  .finger {
+    position: absolute;
+    width: 90px; height: 130px;
+    pointer-events: none;
+    z-index: 25;
+    opacity: 0;
+  }
+  .finger svg { width: 100%; height: 100%; display: block; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.3)); }
+
+  /* finger 1: taps Search for TVs button at ~6.5s
+     button is inside phone-stage at approx y=460-560 (button center ~y=512) */
+  .finger-1 {
+    top: 500px; left: 50%; margin-left: -45px;
+    animation: finger-1-anim 2.2s 5.8s forwards;
+  }
+  @keyframes finger-1-anim {
+    0%   { opacity: 0; transform: translate(0, 80px); }
+    25%  { opacity: 1; transform: translate(0, 20px); }
+    45%  { opacity: 1; transform: translate(0, 0px) scale(0.95); }
+    60%  { opacity: 1; transform: translate(0, 0px) scale(0.95); }
+    85%  { opacity: 0.6; transform: translate(0, -20px); }
+    100% { opacity: 0; transform: translate(0, -60px); }
+  }
+  /* finger 2: taps Samsung row at ~13s
+     Samsung row at approx y=280-360 (center ~y=318) within phone-stage */
+  .finger-2 {
+    top: 310px; left: 50%; margin-left: -45px;
+    animation: finger-2-anim 2s 12.7s forwards;
+  }
+  @keyframes finger-2-anim {
+    0%   { opacity: 0; transform: translate(0, 80px); }
+    30%  { opacity: 1; transform: translate(0, 20px); }
+    55%  { opacity: 1; transform: translate(0, 0) scale(0.95); }
+    75%  { opacity: 1; transform: translate(0, 0) scale(0.95); }
+    100% { opacity: 0; transform: translate(0, -40px); }
+  }
+
+  /* tap ring rings */
+  .tap-ring {
+    position: absolute;
+    width: 140px; height: 140px;
+    margin: -70px;
+    border-radius: 50%;
+    border: 5px solid var(--saffron);
+    box-shadow: 0 0 0 4px rgba(229,160,77,0.18);
+    pointer-events: none; z-index: 24;
+    opacity: 0;
+  }
+  @keyframes ring-pulse {
+    0%   { opacity: 0; transform: scale(0.3); }
+    30%  { opacity: 0.95; transform: scale(1); }
+    100% { opacity: 0; transform: scale(2.4); }
+  }
+  .ring-1 { top: 512px; left: 50%; animation: ring-pulse 1.2s 6.8s forwards; }
+  .ring-2 { top: 318px; left: 50%; animation: ring-pulse 1.2s 13.6s forwards; }
+
+  /* button press animation */
+  @keyframes btn-press {
+    0%, 35%   { transform: scale(1); }
+    45%       { transform: scale(0.96); box-shadow: 0 6px 18px rgba(74,93,35,0.5); }
+    60%       { transform: scale(1); }
+  }
+  .scr-home .search-btn { animation: btn-press 2.4s 5.4s forwards; }
+
+  /* scanning ping animation in list scrn */
+  @keyframes ping {
+    0% { transform: scale(0.5); opacity: 0.8; }
+    100% { transform: scale(2.5); opacity: 0; }
+  }
+  .ping {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--olive); opacity: 0.4;
+    animation: ping 1.4s infinite;
+  }
+
+  /* row populate stagger */
+  @keyframes row-in {
+    0%   { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  .scr-list .tv-row { opacity: 0; animation-fill-mode: forwards; animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+  .scr-list .tv-row.r1 { animation: row-in 0.4s 9.2s forwards; }
+  .scr-list .tv-row.r2 { animation: row-in 0.4s 9.6s forwards; }
+  .scr-list .tv-row.r3 { animation: row-in 0.4s 10.0s forwards; }
+  .scr-list .tv-row.r4 { animation: row-in 0.4s 10.4s forwards; }
+  .scr-list .tv-row.r5 { animation: row-in 0.4s 10.8s forwards; }
+
+  /* Samsung row highlight on tap at 13.5s */
+  @keyframes row-select {
+    0%, 50%  { background: #fff; border-color: rgba(31,26,20,0.06); }
+    60%      { background: var(--olive); border-color: var(--olive); transform: scale(0.98); }
+    100%     { background: var(--olive); border-color: var(--olive); transform: scale(1); }
+  }
+  .scr-list .tv-row.target {
+    animation: row-in 0.4s 9.2s forwards, row-select 2.5s 12.5s forwards;
+  }
+  @keyframes ck-in {
+    0%,70%  { opacity: 0; transform: scale(0.5); }
+    85%     { opacity: 1; transform: scale(1.3); }
+    100%    { opacity: 1; transform: scale(1); }
+  }
+  .scr-list .tv-row.target .row-ck { animation: ck-in 2.5s 12.5s forwards; }
+  @keyframes row-text-flip {
+    0%,55% { color: var(--ink); }
+    65%, 100% { color: var(--cream); }
+  }
+  .scr-list .tv-row.target .row-text { animation: row-text-flip 2.5s 12.5s forwards; }
+
+  /* connecting spinner */
+  @keyframes spin { 0% { transform: rotate(0); } 100% { transform: rotate(360deg); } }
+  .scr-connecting .spinner {
+    width: 90px; height: 90px; border-radius: 50%;
+    border: 8px solid rgba(74,93,35,0.18);
+    border-top-color: var(--olive);
+    animation: spin 1s linear infinite;
+  }
+
+  /* big check pulse */
+  @keyframes check-pop {
+    0%   { transform: scale(0); opacity: 0; }
+    60%  { transform: scale(1.18); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  .scr-connected .big-check { animation: check-pop 0.7s 16.6s forwards; }
+
+  /* CTA scene */
+  .cta-scene {
+    position: absolute; inset: 0; z-index: 8;
+    opacity: 0;
+    animation: cta-on 5s 31s forwards;
+  }
+  @keyframes cta-on {
+    0%   { opacity: 0; transform: scale(0.96); }
+    8%   { opacity: 1; transform: scale(1); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  @keyframes cta-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+  .cta-btn { animation: cta-pulse 1.4s 31.5s infinite; }
+
+  /* intro */
+  .intro-scene {
+    position: absolute; inset: 0; z-index: 9;
+    display: flex; align-items: center; justify-content: center;
+    animation: intro-out 2.6s 0s forwards;
+  }
+  @keyframes intro-out {
+    0%,80%   { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  @keyframes intro-pop {
+    0% { transform: scale(0.55); opacity: 0; }
+    50% { transform: scale(1.08); opacity: 1; }
+    100% { transform: scale(1); }
+  }
+  .intro-anim { animation: intro-pop 1.2s 0.2s both; }
+
+  /* === APP HOME SCREEN INSIDE PHONE === */
+  .app-home-content {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, #FAF3E5 0%, #F0E4CB 100%);
+    padding: 78px 22px 22px;
+    color: var(--ink); font-family: 'Inter', sans-serif;
+  }
+  .app-home-content .header {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .app-home-content .logo {
+    width: 36px; height: 36px; position: relative;
+  }
+  .app-home-content .logo .g {
+    position: absolute; left: 0; top: 4px; width: 20px; height: 28px;
+    background: var(--brand-g); border-radius: 7px;
+  }
+  .app-home-content .logo .b {
+    position: absolute; right: 0; bottom: 4px; width: 28px; height: 20px;
+    background: var(--brand-b); border-radius: 7px;
+  }
+  .app-home-content .name {
+    font: 800 26px 'Bricolage Grotesque', sans-serif; letter-spacing: -0.025em;
+  }
+  .app-home-content .greeting {
+    margin-top: 30px;
+    font: 800 38px 'Bricolage Grotesque', sans-serif;
+    letter-spacing: -0.03em; line-height: 1.05;
+  }
+  .app-home-content .greeting .acc { color: var(--terra); }
+  .app-home-content .sub {
+    margin-top: 8px; font: 600 16px 'Inter', sans-serif; color: var(--ink-soft);
+  }
+  .app-home-content .hero-card {
+    margin-top: 28px;
+    background: linear-gradient(135deg, #FAF3E5 0%, #ECDCBE 100%);
+    border: 1px solid rgba(31,26,20,0.06);
+    border-radius: 24px;
+    height: 200px;
+    position: relative; overflow: hidden;
+    box-shadow: 0 8px 20px rgba(31,26,20,0.06);
+  }
+  .app-home-content .hero-card .lbl {
+    position: absolute; top: 18px; left: 22px;
+    font: 800 18px 'Bricolage Grotesque', sans-serif; letter-spacing: -0.02em;
+  }
+  .app-home-content .hero-card .sub2 {
+    position: absolute; top: 44px; left: 22px;
+    font: 600 12px 'Inter', sans-serif; color: var(--ink-soft);
+  }
+  .app-home-content .hero-card .ill-phone {
+    position: absolute; bottom: 18px; left: 30px;
+    width: 80px; height: 130px; background: #1F1A14; border-radius: 14px;
+  }
+  .app-home-content .hero-card .ill-tv {
+    position: absolute; bottom: 30px; right: 30px;
+    width: 160px; height: 100px; background: #1F1A14; border-radius: 8px;
+  }
+  .app-home-content .hero-card .ill-beam {
+    position: absolute; bottom: 80px; left: 115px;
+    width: 170px; height: 4px;
+    background: linear-gradient(90deg, #34A853, #4285F4);
+    border-radius: 2px;
+  }
+  .app-home-content .search-btn {
+    margin-top: 22px; background: var(--olive); border-radius: 22px;
+    padding: 24px 26px;
+    display: flex; align-items: center; gap: 18px;
+    color: var(--cream);
+    box-shadow: 0 14px 32px rgba(74,93,35,0.32);
+  }
+  .app-home-content .search-btn .iconbox {
+    width: 56px; height: 56px; border-radius: 16px;
+    background: rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font: 800 28px sans-serif;
+  }
+  .app-home-content .search-btn .lab { flex: 1; }
+  .app-home-content .search-btn .lab .t {
+    font: 800 22px 'Bricolage Grotesque', sans-serif; letter-spacing: -0.02em;
+  }
+  .app-home-content .search-btn .lab .s {
+    font: 600 13px 'Inter', sans-serif; opacity: 0.78; margin-top: 2px;
+  }
+  .app-home-content .search-btn .arrow {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(255,255,255,0.18);
+    display: flex; align-items: center; justify-content: center;
+    font: 900 20px sans-serif;
+  }
+  .app-home-content .recent-lbl {
+    margin-top: 26px;
+    font: 700 12px 'Inter', sans-serif; color: var(--ink-soft);
+    text-transform: uppercase; letter-spacing: 0.12em;
+  }
+  .app-home-content .recent-row {
+    margin-top: 10px;
+    background: #fff; border: 1px solid rgba(31,26,20,0.06);
+    border-radius: 18px; padding: 14px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .app-home-content .recent-row .lb {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: var(--paper-1); padding: 6px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .app-home-content .recent-row .lb img { max-width: 100%; max-height: 100%; }
+  .app-home-content .recent-row .nm { font: 800 16px 'Inter', sans-serif; }
+  .app-home-content .recent-row .sm { font: 600 12px 'Inter', sans-serif; color: var(--ink-soft); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.08em; }
+
+  /* === LIST SCREEN === */
+  .list-content {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, #FAF3E5 0%, #F0E4CB 100%);
+    padding: 78px 22px 22px;
+    font-family: 'Inter', sans-serif; color: var(--ink);
+  }
+  .list-content .h-top { display: flex; align-items: center; gap: 14px; }
+  .list-content .h-top .back {
+    width: 40px; height: 40px; border-radius: 12px;
+    background: rgba(31,26,20,0.06);
+    display: flex; align-items: center; justify-content: center;
+    font: 900 22px sans-serif; color: var(--ink-soft);
+  }
+  .list-content .h-top .titles .t {
+    font: 800 28px 'Bricolage Grotesque', sans-serif; letter-spacing: -0.025em;
+  }
+  .list-content .h-top .titles .s {
+    font: 600 13px 'Inter', sans-serif; color: var(--ink-soft); margin-top: 2px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .list-content .h-top .titles .s::before {
+    content: ""; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--olive); animation: ping 1.5s infinite;
+  }
+  .list-content .scan-banner {
+    margin-top: 22px;
+    background: rgba(74,93,35,0.08); border: 1px solid rgba(74,93,35,0.18);
+    border-radius: 16px; padding: 14px;
+    display: flex; align-items: center; gap: 12px;
+    color: var(--olive);
+  }
+  .list-content .scan-banner .dot {
+    width: 14px; height: 14px; border-radius: 50%; background: var(--olive);
+    animation: ping 1.4s infinite;
+  }
+  .list-content .scan-banner .txt { font: 700 14px 'Inter', sans-serif; letter-spacing: -0.005em; }
+  .list-content .lbl {
+    margin-top: 20px;
+    font: 700 11px 'Inter', sans-serif; color: var(--ink-soft);
+    text-transform: uppercase; letter-spacing: 0.12em;
+  }
+  .list-content .tv-row {
+    margin-top: 8px;
+    background: #fff; border: 1px solid rgba(31,26,20,0.06);
+    border-radius: 18px; padding: 16px;
+    display: flex; align-items: center; gap: 14px;
+    box-shadow: 0 4px 10px rgba(31,26,20,0.04);
+  }
+  .list-content .tv-row .lb {
+    width: 48px; height: 48px; border-radius: 12px;
+    background: var(--paper-1); padding: 6px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .list-content .tv-row .lb img { max-width: 100%; max-height: 100%; }
+  .list-content .tv-row .row-text .nm {
+    font: 800 17px 'Inter', sans-serif;
+  }
+  .list-content .tv-row .row-text .sm {
+    font: 600 12px 'Inter', sans-serif; color: var(--ink-soft); margin-top: 2px;
+    text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  .list-content .tv-row .row-ck {
+    margin-left: auto;
+    font: 900 24px sans-serif; color: var(--cream);
+    opacity: 0;
+  }
+
+  /* === CONNECTING SCREEN === */
+  .connecting-content {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, #FAF3E5 0%, #F0E4CB 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+  }
+  .connecting-content .spinner { margin-bottom: 30px; }
+  .connecting-content .t {
+    font: 800 36px 'Bricolage Grotesque', sans-serif; letter-spacing: -0.03em;
+    color: var(--ink);
+  }
+  .connecting-content .s {
+    margin-top: 8px;
+    font: 600 16px 'Inter', sans-serif; color: var(--ink-soft);
+  }
+
+  /* === CONNECTED SCREEN === */
+  .connected-content {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, #F0F4DC 0%, #D5E3A8 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+  }
+  .connected-content .big-check {
+    width: 180px; height: 180px; border-radius: 50%;
+    background: var(--olive);
+    display: flex; align-items: center; justify-content: center;
+    font: 900 110px 'Bricolage Grotesque', sans-serif; color: var(--cream);
+    box-shadow: 0 0 80px rgba(74,93,35,0.5);
+    margin-bottom: 30px;
+  }
+  .connected-content .t {
+    font: 800 38px 'Bricolage Grotesque', sans-serif; letter-spacing: -0.03em;
+    color: var(--ink);
+  }
+  .connected-content .s {
+    margin-top: 8px;
+    font: 600 16px 'Inter', sans-serif; color: var(--ink-soft);
+  }
+
+  /* mirror screens fill phone */
+  .mirror-fill { position: absolute; inset: 0; }
+  .mirror-fill img { width: 100%; height: 100%; object-fit: cover; }
+  .mirror-fill .live-tag {
+    position: absolute; top: 50px; left: 28px;
+    background: rgba(0,0,0,0.55); backdrop-filter: blur(8px);
+    color: #fff; padding: 6px 14px; border-radius: 100px;
+    font: 700 16px 'Inter', sans-serif;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .mirror-fill .live-tag::before {
+    content: ""; width: 8px; height: 8px; border-radius: 50%;
+    background: #FF3B30; box-shadow: 0 0 0 3px rgba(255,59,48,0.3);
+  }
+
+  /* tv mirror screens */
+  .tv-fill { position: absolute; inset: 0; }
+  .tv-fill img { width: 100%; height: 100%; object-fit: cover; }
+  .tv-fill .live-tag {
+    position: absolute; top: 18px; left: 20px;
+    background: rgba(0,0,0,0.55); backdrop-filter: blur(8px);
+    color: #fff; padding: 8px 16px; border-radius: 100px;
+    font: 700 18px 'Inter', sans-serif;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .tv-fill .live-tag::before {
+    content: ""; width: 8px; height: 8px; border-radius: 50%;
+    background: #FF3B30; box-shadow: 0 0 0 3px rgba(255,59,48,0.3);
+  }
+  .tv-fill .res-tag {
+    position: absolute; top: 18px; right: 20px;
+    background: rgba(0,0,0,0.55); backdrop-filter: blur(8px);
+    color: #fff; padding: 8px 16px; border-radius: 100px;
+    font: 700 18px 'Inter', sans-serif;
+  }
+
+  /* GAME SCENE - in both phone and TV */
+  .gamefill {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 100%, rgba(255,140,60,0.35) 0%, transparent 50%),
+                radial-gradient(ellipse at 30% 20%, rgba(140,80,220,0.4) 0%, transparent 60%),
+                linear-gradient(180deg, #1B0F2A 0%, #4B1F44 45%, #C5384A 100%);
+  }
+  .gamefill .sun {
+    position: absolute; left: 50%; bottom: 50%; transform: translateX(-50%);
+    width: 60%; aspect-ratio: 1;
+    background: radial-gradient(circle at center, #FFE680 0%, #FF8C3C 40%, transparent 70%);
+    border-radius: 50%;
+  }
+  .gamefill .speedo {
+    position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%);
+    text-align: center; color: #fff;
+  }
+  .gamefill .speedo .n { font: 900 70px 'Bricolage Grotesque', sans-serif; color: #FFE680; line-height: 1; }
+  .gamefill .speedo .u { font: 700 14px 'Inter', sans-serif; letter-spacing: 0.18em; margin-top: 4px; }
+  /* tv version bigger */
+  .tv-screen .gamefill .speedo .n { font-size: 100px; }
+  .tv-screen .gamefill .speedo .u { font-size: 18px; }
+
+  /* SLIDE — presenting */
+  .slidefill {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, #FAF7F0 0%, #F1E8D2 100%);
+    padding: 80px 22px 22px;
+    color: var(--ink);
+  }
+  .slidefill .h {
+    font: 800 36px 'Bricolage Grotesque', sans-serif; letter-spacing: -0.03em; line-height: 1;
+  }
+  .slidefill .h .acc { color: var(--olive); }
+  .slidefill .chart {
+    margin-top: 24px; background: #fff; border-radius: 14px;
+    padding: 14px; height: 200px;
+    box-shadow: 0 4px 10px rgba(31,26,20,0.06);
+  }
+  .slidefill .bars { display: flex; align-items: flex-end; gap: 8px; height: 160px; }
+  .slidefill .bar { flex: 1; border-radius: 4px 4px 0 0; }
+  .slidefill .bar.a { background: linear-gradient(180deg,#4A5D23,#6B7F3A); height: 45%; }
+  .slidefill .bar.b { background: linear-gradient(180deg,#D2654B,#E5A04D); height: 60%; }
+  .slidefill .bar.c { background: linear-gradient(180deg,#4A5D23,#6B7F3A); height: 75%; }
+  .slidefill .bar.d { background: linear-gradient(180deg,#D2654B,#E5A04D); height: 88%; }
+  .slidefill .bar.e { background: linear-gradient(180deg,#4A5D23,#6B7F3A); height: 95%; }
+  /* tv bigger */
+  .tv-screen .slidefill { padding: 30px; }
+  .tv-screen .slidefill .h { font-size: 44px; }
+  .tv-screen .slidefill .chart { padding: 20px; height: 240px; }
+  .tv-screen .slidefill .bars { height: 180px; gap: 12px; }
+</style>
+</head>
+<body>
+
+<!-- backgrounds — crossfade layers -->
+<div class="bg-layer bg-intro"></div>
+<div class="bg-layer bg-demo"></div>
+<div class="bg-layer bg-mirror"></div>
+<div class="bg-layer bg-stream"></div>
+<div class="bg-layer bg-game"></div>
+<div class="bg-layer bg-work"></div>
+<div class="bg-layer bg-cta"></div>
+
+<!-- INTRO scene -->
+<div class="intro-scene">
+  <div class="intro-anim" style="text-align: center; display: flex; align-items: center; gap: 30px;">
+    <div class="aircast-mark lg"><div class="gr"></div><div class="bl"></div></div>
+    <span style="font: 800 130px 'Bricolage Grotesque', sans-serif; letter-spacing: -0.04em; color: var(--ink);">AIRCAST</span>
+  </div>
+</div>
+
+<!-- HEADLINES -->
+<div class="head head-open"><div class="tag">STEP 1</div><div class="display">OPEN <span class="g">AIRCAST.</span></div></div>
+<div class="head head-search"><div class="tag">STEP 2</div><div class="display">TAP <span class="g">SEARCH.</span></div></div>
+<div class="head head-pick"><div class="tag">STEP 3</div><div class="display">PICK A <span class="g">TV.</span></div></div>
+<div class="head head-conn"><div class="tag">STEP 4</div><div class="display"><span class="g">CONNECTED.</span></div></div>
+<div class="head head-mirror"><div class="tag">MIRRORING NOW</div><div class="display"><span class="a">SAME SCREEN.</span></div></div>
+<div class="head head-stream"><div class="tag">MOVIES &middot; SHOWS</div><div class="display"><span class="a">STREAM.</span></div></div>
+<div class="head head-game"><div class="tag">PLAY BIG</div><div class="display"><span class="a">GAME.</span></div></div>
+<div class="head head-work"><div class="tag">SLIDES &middot; DOCS</div><div class="display"><span class="g">PRESENT.</span></div></div>
+
+<!-- PERSISTENT PHONE — center → slides right for mirror+use cases -->
+<div class="phone-stage">
+  <div class="phone-frame">
+    <div class="notch"></div>
+    <div class="scr">
+
+      <!-- SCREEN 1: app home -->
+      <div class="app-screen scr-home">
+        <div class="app-home-content">
+          <div class="header">
+            <div class="logo"><div class="g"></div><div class="b"></div></div>
+            <div class="name">Aircast</div>
+          </div>
+          <div class="greeting">Cast to any <span class="acc">TV.</span></div>
+          <div class="sub">Wireless screen mirror &middot; HD</div>
+          <div class="hero-card">
+            <div class="lbl">Mirror in HD</div>
+            <div class="sub2">phone → TV, 1080P</div>
+            <div class="ill-phone"></div>
+            <div class="ill-beam"></div>
+            <div class="ill-tv"></div>
+          </div>
+          <div class="search-btn">
+            <div class="iconbox">⌕</div>
+            <div class="lab">
+              <div class="t">Search for TVs</div>
+              <div class="s">Detect nearby smart TVs</div>
+            </div>
+            <div class="arrow">›</div>
+          </div>
+          <div class="recent-lbl">Recently connected</div>
+          <div class="recent-row">
+            <div class="lb"><img src="../brand_logos/samsung.svg"></div>
+            <div><div class="nm">Samsung Living Room</div><div class="sm">last connected today</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCREEN 2: scanning + TV list -->
+      <div class="app-screen scr-list">
+        <div class="list-content">
+          <div class="h-top">
+            <div class="back">‹</div>
+            <div class="titles">
+              <div class="t">Available TVs</div>
+              <div class="s">Scanning network…</div>
+            </div>
+          </div>
+          <div class="scan-banner">
+            <div class="dot"></div>
+            <div class="txt">Looking for smart TVs &amp; sticks</div>
+          </div>
+          <div class="lbl">Found nearby</div>
+          <div class="tv-row target r1">
+            <div class="lb"><img src="../brand_logos/samsung.svg"></div>
+            <div class="row-text"><div class="nm">Samsung Smart TV</div><div class="sm">Living Room · 4K HDR</div></div>
+            <div class="row-ck">✓</div>
+          </div>
+          <div class="tv-row r2">
+            <div class="lb"><img src="../brand_logos/lg.svg"></div>
+            <div class="row-text"><div class="nm">LG OLED</div><div class="sm">Bedroom · 4K</div></div>
+          </div>
+          <div class="tv-row r3">
+            <div class="lb"><img src="../brand_logos/firetv.svg"></div>
+            <div class="row-text"><div class="nm">Fire TV Stick</div><div class="sm">Kitchen · 1080P</div></div>
+          </div>
+          <div class="tv-row r4">
+            <div class="lb"><img src="../brand_logos/roku.svg"></div>
+            <div class="row-text"><div class="nm">Roku Express</div><div class="sm">Office · 1080P</div></div>
+          </div>
+          <div class="tv-row r5">
+            <div class="lb"><img src="../brand_logos/chromecast.svg"></div>
+            <div class="row-text"><div class="nm">Chromecast</div><div class="sm">Den · 4K</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCREEN 3: CONNECTING -->
+      <div class="app-screen scr-connecting">
+        <div class="connecting-content">
+          <div class="spinner"></div>
+          <div class="t">Connecting to Samsung…</div>
+          <div class="s">Establishing wireless link</div>
+        </div>
+      </div>
+
+      <!-- SCREEN 4: CONNECTED -->
+      <div class="app-screen scr-connected">
+        <div class="connected-content">
+          <div class="big-check">✓</div>
+          <div class="t">Connected!</div>
+          <div class="s">Samsung Living Room · 4K</div>
+        </div>
+      </div>
+
+      <!-- MIRROR screens — beach, mountain, game, slide -->
+      <div class="app-screen scr-beach">
+        <div class="mirror-fill">
+          <img src="../photos/sunset_beach.jpg" alt="">
+          <span class="live-tag">LIVE</span>
+        </div>
+      </div>
+      <div class="app-screen scr-mountain">
+        <div class="mirror-fill">
+          <img src="../photos/mountain.jpg" alt="">
+          <span class="live-tag">LIVE</span>
+        </div>
+      </div>
+      <div class="app-screen scr-game">
+        <div class="gamefill">
+          <div class="sun"></div>
+          <div class="speedo"><div class="n">214</div><div class="u">KM / H</div></div>
+        </div>
+      </div>
+      <div class="app-screen scr-slide">
+        <div class="slidefill">
+          <div class="h">REVENUE UP<br><span class="acc">38%.</span></div>
+          <div class="chart">
+            <div class="bars">
+              <div class="bar a"></div><div class="bar b"></div><div class="bar c"></div>
+              <div class="bar d"></div><div class="bar e"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FINGERS for taps (attached to phone-stage to stay aligned) -->
+  <div class="finger finger-1">
+    <svg viewBox="0 0 90 130">
+      <ellipse cx="45" cy="22" rx="20" ry="22" fill="#E5C0A0"/>
+      <rect x="25" y="20" width="40" height="105" fill="#E5C0A0" rx="20" ry="20"/>
+      <ellipse cx="45" cy="14" rx="14" ry="6" fill="#F0D0B0"/>
+    </svg>
+  </div>
+  <div class="finger finger-2">
+    <svg viewBox="0 0 90 130">
+      <ellipse cx="45" cy="22" rx="20" ry="22" fill="#E5C0A0"/>
+      <rect x="25" y="20" width="40" height="105" fill="#E5C0A0" rx="20" ry="20"/>
+      <ellipse cx="45" cy="14" rx="14" ry="6" fill="#F0D0B0"/>
+    </svg>
+  </div>
+  <div class="tap-ring ring-1"></div>
+  <div class="tap-ring ring-2"></div>
+</div>
+
+<!-- TV — slides in for mirror+use cases -->
+<div class="tv-stage">
+  <div class="tv-frame">
+    <div class="scr">
+      <div class="tv-screen tv-beach">
+        <div class="tv-fill">
+          <img src="../photos/sunset_beach.jpg" alt="">
+          <span class="live-tag">LIVE FROM PHONE</span>
+          <span class="res-tag">1080P</span>
+        </div>
+      </div>
+      <div class="tv-screen tv-mountain">
+        <div class="tv-fill">
+          <img src="../photos/mountain.jpg" alt="">
+          <span class="live-tag">LIVE</span>
+          <span class="res-tag">4K HDR</span>
+        </div>
+      </div>
+      <div class="tv-screen tv-game">
+        <div class="gamefill">
+          <div class="sun"></div>
+          <div class="speedo"><div class="n">214</div><div class="u">KM / H</div></div>
+        </div>
+      </div>
+      <div class="tv-screen tv-slide">
+        <div class="slidefill">
+          <div class="h">REVENUE UP<br><span class="acc">38% YoY.</span></div>
+          <div class="chart">
+            <div class="bars">
+              <div class="bar a"></div><div class="bar b"></div><div class="bar c"></div>
+              <div class="bar d"></div><div class="bar e"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="stand"></div>
+  </div>
+</div>
+
+<!-- CTA scene -->
+<div class="cta-scene">
+  <div style="position: absolute; top: 280px; left: 0; right: 0; text-align: center; display: flex; align-items: center; justify-content: center; gap: 30px;">
+    <div class="aircast-mark lg"><div class="gr"></div><div class="bl"></div></div>
+    <span style="font: 800 110px 'Bricolage Grotesque', sans-serif; letter-spacing: -0.04em; color: var(--ink);">AIRCAST</span>
+  </div>
+  <h1 class="display md" style="position: absolute; top: 720px; left: 60px; right: 60px; text-align: center;
+       font: 800 180px 'Bricolage Grotesque', sans-serif; letter-spacing: -0.04em; line-height: 0.92; color: var(--ink);">
+    <span style="color: var(--terra);">FREE.</span><br>FOREVER.
+  </h1>
+  <div style="position: absolute; top: 1240px; left: 0; right: 0; text-align: center;">
+    <span class="cta-btn" style="display: inline-flex; align-items: center; gap: 20px;
+                 background: var(--ink); color: var(--cream);
+                 padding: 36px 72px; border-radius: 100px;
+                 font: 700 52px 'Bricolage Grotesque', sans-serif; letter-spacing: -0.025em;
+                 box-shadow: 0 22px 48px rgba(31,26,20,0.32);">
+      <span style="display:inline-flex;align-items:center;justify-content:center;width:54px;height:54px;background:var(--saffron);border-radius:50%;color:var(--ink);font-size:30px;">▶</span>
+      INSTALL
+    </span>
+  </div>
+  <div class="tag" style="position: absolute; bottom: 120px; left: 0; right: 0; text-align: center;
+       font: 700 22px 'Inter', sans-serif; color: var(--olive); letter-spacing: 0.18em; text-transform: uppercase;">
+    NO SIGN-UP &middot; ALL TVs &middot; ANY LANGUAGE
+  </div>
+</div>
+
+</body></html>

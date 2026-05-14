@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="styles_v10.css">
+<style>
+  /* CSS-rendered presentation slide */
+  .slide {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, #FAF7F0 0%, #F1E8D2 100%);
+    padding: 20px;
+    color: #1F1A14;
+    font-family: 'Inter', sans-serif;
+  }
+  .slide .top {
+    display: flex; justify-content: space-between; align-items: center;
+    font: 700 9px 'Inter', sans-serif;
+    color: rgba(31,26,20,0.45);
+    letter-spacing: 0.12em; text-transform: uppercase;
+  }
+  .slide .pagedot { display: flex; gap: 4px; }
+  .slide .pagedot span { width: 5px; height: 5px; border-radius: 50%; background: rgba(31,26,20,0.18); }
+  .slide .pagedot span.on { background: var(--terra); }
+  .slide .h {
+    margin-top: 18px;
+    font: 800 22px 'Bricolage Grotesque', sans-serif;
+    letter-spacing: -0.03em;
+    line-height: 1.0;
+  }
+  .slide .h .accent { color: var(--olive); }
+  .slide .sub {
+    margin-top: 6px; font: 600 10px 'Inter', sans-serif;
+    color: rgba(31,26,20,0.5);
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  /* bar chart */
+  .slide .chart {
+    margin-top: 18px;
+    background: #fff; border-radius: 14px;
+    padding: 14px 12px 12px;
+    box-shadow: 0 4px 12px rgba(31,26,20,0.06);
+    height: 130px;
+    position: relative;
+  }
+  .slide .chart-title {
+    font: 700 9px 'Inter', sans-serif;
+    color: rgba(31,26,20,0.55);
+    letter-spacing: 0.12em; text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .slide .bars {
+    display: flex; align-items: flex-end; gap: 6px; height: 78px;
+  }
+  .slide .bar {
+    flex: 1; border-radius: 4px 4px 0 0;
+    background: linear-gradient(180deg, #4A5D23 0%, #6B7F3A 100%);
+  }
+  .slide .bar.b2 { background: linear-gradient(180deg, #D2654B 0%, #E5A04D 100%); height: 60%;}
+  .slide .bar.b3 { background: linear-gradient(180deg, #4A5D23 0%, #6B7F3A 100%); height: 75%;}
+  .slide .bar.b4 { background: linear-gradient(180deg, #D2654B 0%, #E5A04D 100%); height: 88%;}
+  .slide .bar.b5 { background: linear-gradient(180deg, #4A5D23 0%, #6B7F3A 100%); height: 95%;}
+  .slide .bar.b1 { height: 45%; }
+  .slide .x-labels {
+    display: flex; gap: 6px; margin-top: 6px;
+    font: 700 8px 'Inter', sans-serif; color: rgba(31,26,20,0.45);
+    text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  .slide .x-labels span { flex: 1; text-align: center; }
+  /* bullets */
+  .slide .bullets { margin-top: 16px; }
+  .slide .bullet {
+    display: flex; align-items: flex-start; gap: 8px;
+    padding: 8px 10px;
+    background: rgba(255,255,255,0.7);
+    border-radius: 10px;
+    margin-bottom: 6px;
+    border-left: 3px solid var(--olive);
+  }
+  .slide .bullet.terra { border-left-color: var(--terra); }
+  .slide .bullet.saff  { border-left-color: var(--saffron); }
+  .slide .bullet .num {
+    font: 800 11px 'Bricolage Grotesque', sans-serif;
+    color: var(--olive); width: 14px; flex-shrink: 0;
+  }
+  .slide .bullet.terra .num { color: var(--terra); }
+  .slide .bullet.saff .num { color: var(--mustard); }
+  .slide .bullet .txt {
+    font: 700 11px 'Inter', sans-serif;
+    color: var(--ink); letter-spacing: -0.005em;
+    line-height: 1.2;
+  }
+  .slide .bullet .txt .lt {
+    display: block; font: 500 9px 'Inter', sans-serif;
+    color: rgba(31,26,20,0.55); margin-top: 1px;
+    letter-spacing: 0.04em;
+  }
+  /* TV version - bigger */
+  .tv .slide { padding: 28px; }
+  .tv .slide .top { font: 700 13px 'Inter', sans-serif; }
+  .tv .slide .pagedot span { width: 8px; height: 8px; }
+  .tv .slide .h { margin-top: 26px; font: 800 38px 'Bricolage Grotesque', sans-serif; }
+  .tv .slide .sub { font: 600 13px 'Inter', sans-serif; margin-top: 8px; }
+  .tv .slide .chart { margin-top: 22px; padding: 18px 16px; height: 200px; border-radius: 18px; }
+  .tv .slide .chart-title { font: 700 13px 'Inter', sans-serif; margin-bottom: 14px; }
+  .tv .slide .bars { height: 140px; gap: 10px; }
+  .tv .slide .x-labels { font: 700 11px 'Inter', sans-serif; gap: 10px; }
+  .tv .slide .bullets { margin-top: 24px; }
+  .tv .slide .bullet { padding: 12px 16px; border-radius: 14px; margin-bottom: 8px; border-left-width: 5px; }
+  .tv .slide .bullet .num { font: 800 16px 'Bricolage Grotesque', sans-serif; width: 22px; }
+  .tv .slide .bullet .txt { font: 700 16px 'Inter', sans-serif; }
+  .tv .slide .bullet .txt .lt { font: 500 12px 'Inter', sans-serif; margin-top: 2px; }
+</style>
+</head>
+<body>
+<div class="canvas bg-paper">
+  <div class="tag" style="position: absolute; top: 120px; left: 0; right: 0; text-align: center; z-index: 10;">
+    SLIDES &middot; SHEETS &middot; DOCS
+  </div>
+
+  <h1 class="display" style="position: absolute; top: 200px; left: 60px; right: 60px; text-align: center;">
+    PRESENT.<br><span class="olive">PROUDLY.</span>
+  </h1>
+
+  <!-- TV with presentation slide -->
+  <div class="tv" style="top: 760px; left: 50px; width: 640px; height: 400px;">
+    <div class="scr">
+      <div class="slide">
+        <div class="top">
+          <span>Q4 RESULTS &middot; 2025</span>
+          <div class="pagedot"><span class="on"></span><span></span><span></span><span></span></div>
+        </div>
+        <div class="h">REVENUE UP<br><span class="accent">38% YoY.</span></div>
+        <div class="sub">Strong growth across every region</div>
+        <div class="chart">
+          <div class="chart-title">QUARTERLY REVENUE — USD MILLIONS</div>
+          <div class="bars">
+            <div class="bar b1"></div>
+            <div class="bar b2"></div>
+            <div class="bar b3"></div>
+            <div class="bar b4"></div>
+            <div class="bar b5"></div>
+          </div>
+          <div class="x-labels"><span>Q4 24</span><span>Q1 25</span><span>Q2 25</span><span>Q3 25</span><span>Q4 25</span></div>
+        </div>
+        <div class="bullets">
+          <div class="bullet"><div class="num">01</div><div class="txt">EMEA up 42%<span class="lt">strongest region</span></div></div>
+          <div class="bullet terra"><div class="num">02</div><div class="txt">North America up 36%<span class="lt">enterprise wins</span></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="stand"></div>
+  </div>
+
+  <!-- phone showing same slide (mirror) -->
+  <div class="phone" style="top: 880px; right: 50px; width: 460px; height: 920px; transform: rotate(3deg);">
+    <div class="notch"></div>
+    <div class="scr">
+      <div class="slide">
+        <div class="top">
+          <span>Q4 2025</span>
+          <div class="pagedot"><span class="on"></span><span></span><span></span><span></span></div>
+        </div>
+        <div class="h">REVENUE UP<br><span class="accent">38%.</span></div>
+        <div class="sub">Strong growth</div>
+        <div class="chart">
+          <div class="chart-title">QUARTERLY · USDm</div>
+          <div class="bars">
+            <div class="bar b1"></div>
+            <div class="bar b2"></div>
+            <div class="bar b3"></div>
+            <div class="bar b4"></div>
+            <div class="bar b5"></div>
+          </div>
+          <div class="x-labels"><span>Q4</span><span>Q1</span><span>Q2</span><span>Q3</span><span>Q4</span></div>
+        </div>
+        <div class="bullets">
+          <div class="bullet"><div class="num">01</div><div class="txt">EMEA +42%<span class="lt">strongest region</span></div></div>
+          <div class="bullet terra"><div class="num">02</div><div class="txt">NAM +36%<span class="lt">enterprise wins</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>

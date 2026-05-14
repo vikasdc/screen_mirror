@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="styles_v10.css">
+<style>
+  .app-ui {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, #FAF3E5 0%, #F0E4CB 100%);
+    padding: 78px 22px 22px; color: var(--ink);
+    font-family: 'Inter', sans-serif;
+  }
+  .app-ui .h {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800; font-size: 36px; letter-spacing: -0.025em;
+  }
+  .app-ui .sub { font: 600 17px 'Inter', sans-serif; color: var(--ink-soft); margin-top: 4px; margin-bottom: 22px; }
+  .app-ui .row {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px;
+    background: #fff; border: 1px solid rgba(31,26,20,0.06);
+    border-radius: 18px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 10px rgba(31,26,20,0.04);
+  }
+  .app-ui .row.selected {
+    background: var(--olive); border-color: var(--olive);
+    color: var(--cream);
+  }
+  .app-ui .row .lb {
+    width: 48px; height: 48px; border-radius: 12px;
+    background: var(--paper-1); padding: 6px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .app-ui .row.selected .lb { background: rgba(255,255,255,0.18); }
+  .app-ui .row .lb img { max-width: 100%; max-height: 100%; }
+  .app-ui .row .nm { font: 800 18px 'Inter', sans-serif; }
+  .app-ui .row .sm { font: 600 13px 'Inter', sans-serif; opacity: 0.65; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.08em; }
+  .app-ui .row .ck { margin-left: auto; font: 900 24px sans-serif; opacity: 0; color: var(--cream); }
+  .app-ui .row.selected .ck { opacity: 1; }
+</style>
+</head>
+<body>
+<div class="canvas bg-cream">
+  <div class="tag" style="position: absolute; top: 120px; left: 0; right: 0; text-align: center; z-index: 10;">
+    INSTANT CONNECT
+  </div>
+
+  <h1 class="display" style="position: absolute; top: 200px; left: 60px; right: 60px; text-align: center;">
+    ONE<br><span class="olive">TAP.</span>
+  </h1>
+
+  <!-- big phone, dominant -->
+  <div class="phone" style="top: 760px; left: 50%; margin-left: -270px; width: 540px; height: 1120px; border-radius: 66px;">
+    <div class="notch"></div>
+    <div class="scr">
+      <div class="app-ui">
+        <div class="h">Available TVs</div>
+        <div class="sub">5 found nearby</div>
+
+        <div class="row selected">
+          <div class="lb"><img src="../brand_logos/samsung.svg"></div>
+          <div><div class="nm">Samsung Smart TV</div><div class="sm">Living Room · 4K</div></div>
+          <div class="ck">✓</div>
+        </div>
+        <div class="row"><div class="lb"><img src="../brand_logos/lg.svg"></div>
+          <div><div class="nm">LG OLED</div><div class="sm">Bedroom · 4K</div></div></div>
+        <div class="row"><div class="lb"><img src="../brand_logos/firetv.svg"></div>
+          <div><div class="nm">Fire TV Stick</div><div class="sm">Kitchen · 1080P</div></div></div>
+        <div class="row"><div class="lb"><img src="../brand_logos/roku.svg"></div>
+          <div><div class="nm">Roku Express</div><div class="sm">Office · 1080P</div></div></div>
+        <div class="row"><div class="lb"><img src="../brand_logos/chromecast.svg"></div>
+          <div><div class="nm">Chromecast</div><div class="sm">Den · 4K</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>
