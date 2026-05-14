@@ -1,0 +1,31 @@
+{
+  "_schema": {
+    "purpose": "Distributed dedup for scheduled routines across multiple machines. Both my Windows desktop and MacBook Air may have the same routine registered with their OS scheduler (Task Scheduler / launchd). Without this file they would both fire and do duplicate work. With it, the first machine to claim the day's slot wins and the second machine sees the claim and skips.",
+    "arbiter": "git fast-forward push. There is no central server. The protocol relies on `git push` being atomic: exactly one machine can push a non-conflicting commit at a time. Whoever wins the push owns that day's run.",
+    "key_format": {
+      "once_per_day": "<routine-name>-<YYYY-MM-DD>  (example: passrates-daily-blog-2026-05-14)",
+      "once_per_week": "<routine-name>-<YYYY>-W<WW>  (example: pipeline-review-2026-W20). Week numbers are ISO 8601 (W01 is the week containing the first Thursday).",
+      "once_per_month": "<routine-name>-<YYYY-MM>  (example: monthly-cleanup-2026-05)",
+      "ad_hoc": "<routine-name>-<arbitrary-id>  (example: backfill-ratings-from-feedback-issue-42). For one-shot tasks that should never run twice."
+    },
+    "claim_protocol_7_steps": [
+      "1. git pull --rebase origin main  (get the latest claims)",
+      "2. Read this file. Look for the key for today's run (e.g. routine-X-2026-05-14). If status is 'completed' or 'in_progress', STOP — another machine has it.",
+      "3. Add a new entry: { 'status': 'in_progress', 'machine': '<hostname>', 'claimed_at': '<ISO 8601 UTC>' }. Write the file.",
+      "4. git add .claude/routine-locks.json && git commit -m 'lock: claim <key> on <hostname>'",
+      "5. git push origin main. If push FAILS (non-fast-forward), it means another machine claimed simultaneously. Run `git pull --rebase` and start over from step 2. If push SUCCEEDS, you own this slot.",
+      "6. Run the routine's actual work.",
+      "7. Update the entry to { 'status': 'completed', 'completed_at': '<ISO 8601 UTC>' }. Commit + push. If this push fails on retry, the work is done — just leave the in_progress entry; old entries are cleaned up periodically."
+    ],
+    "entry_status_values": ["in_progress", "completed", "failed"],
+    "failure_handling": "If a routine crashes mid-run, the entry stays at 'in_progress' forever. A weekly cleanup routine (or manual review) should look for entries older than 24 hours still 'in_progress' and either retry them or mark them 'failed' with a note. Routines MUST be idempotent — running twice should be safe even if the lock briefly slips.",
+    "retention": "Entries older than 30 days can be pruned. The cleanup is itself a routine (key: locks-cleanup-<YYYY-MM-DD>). Routines that don't find their key in this file should treat that as 'not yet run today' — missing entries are NORMAL after pruning, not an error.",
+    "what_this_does_NOT_protect": [
+      "Race conditions inside a single machine (two cron jobs firing the same routine seconds apart). Use OS-level locking for that — fcntl on macOS, the named Mutex API on Windows.",
+      "Routines that need to share STATE beyond just-ran-or-not (e.g. 'last processed timestamp'). Use a separate state file for that, or compute it from git/filesystem.",
+      "Routines started by a human (e.g. running `python my_routine.py` manually). The protocol only kicks in if the routine reads this file before doing work. A human bypass is intentional — sometimes you WANT to force a re-run."
+    ],
+    "example_entry_layout": "See `entries` below. Each top-level key is the routine key. Values are objects with status + machine + timestamps. Comments are NOT allowed inside `entries` (JSON limitation), so anything explanatory goes here in `_schema`."
+  },
+  "entries": {}
+}

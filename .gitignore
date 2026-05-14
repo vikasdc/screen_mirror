@@ -8,6 +8,7 @@
 # 2. Allow only these folders and files
 !/.gitignore
 !/README.md
+!/CLAUDE.md
 !/privacy_policy.html
 !/play_store_assets/
 !/play_store_assets/*.png
@@ -15,6 +16,10 @@
 !/play_store_assets_v2/**
 !/AndroidApp/
 !/AndroidApp/**
+# Multi-machine workflow files. SESSION_HANDOFF.md and routine-locks.json
+# MUST sync via git. .claude/worktrees/ is re-ignored below.
+!/.claude/
+!/.claude/**
 
 # 3. CRITICAL: Re-ignore the specific junk folders INSIDE AndroidApp
 # These are the ones creating the 10,000+ files
@@ -54,3 +59,6 @@
 # Playwright video raw output (we keep only the final webm/mp4 in out/).
 **/video_raw/
 **/node_modules/
+
+# Subagent worktrees: temporary git worktrees the assistant spins up. Never sync.
+.claude/worktrees/
