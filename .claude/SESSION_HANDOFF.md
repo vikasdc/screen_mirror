@@ -10,15 +10,20 @@ If two machines edit this in the same session, last-write-wins on push. That's f
 
 These are tasks that were active when the last session ended. Treat each as a TodoWrite seed.
 
-- **AdMob banner integration is wired but blocked on remaining external steps.**
-  Code-side is DONE: `play-services-ads:23.5.0` added, `MobileAds.initialize` called in `AircastApp.onCreate`, adaptive banner inflated into `adSlotTop` in `MainActivity.loadBannerAd()`. Debug builds use Google's TEST IDs (safe to ship, never real ads). Release builds use the production App ID `ca-app-pub-3814847756285692~3539815988`.
-  Developer site is DEPLOYED at `https://getaircast.netlify.app`. Confirmed live, `/app-ads.txt` returns the correct AdMob publisher line. (Note: Netlify uses `.netlify.app`, not `.netlify.com`. The deployed URL is the `.app` form.)
+- **AdMob banner integration is fully wired in code. All IDs are production.**
+  - `play-services-ads:23.5.0` added, `MobileAds.initialize` called in `AircastApp.onCreate`, adaptive banner inflated into `adSlotTop` in `MainActivity.loadBannerAd()`.
+  - Production App ID: `ca-app-pub-3814847756285692~3539815988`.
+  - Production Banner Ad Unit ID ("Aircast Home Banner"): `ca-app-pub-3814847756285692/7158811030`.
+  - Debug builds use Google's TEST IDs (safe to ship, never real ads).
+  - Developer site live at `https://getaircast.netlify.app`. `/app-ads.txt` returns the correct AdMob line.
+  
   What's still needed:
-  1. **Create the production banner ad unit in AdMob console.** Apps, Aircast, Ad units, New ad unit, Banner, name "Aircast Home Banner". Copy the `ca-app-pub-3814847756285692/XXXXXXXXXX` ad unit ID into `AndroidApp/app/build.gradle` line 74 (replacing `PLACEHOLDER_BANNER_UNIT_ID`).
-  2. **Update Play Console with the new developer website.** Aircast, Store presence, Main store listing, Contact details, Website: `https://getaircast.netlify.app`. Save.
-  3. **Update Play Console privacy policy URL.** App content, Privacy policy: `https://getaircast.netlify.app/aircast/privacy.html`. Save.
-  4. **Wait 24 to 48 hours** for Play to push the website URL change to Google's app-ads.txt crawler.
-  5. **Trigger AdMob "Check for updates"** on the app-ads.txt verification card. Verification should complete within a few minutes once Play has synced.
+  1. **Update Play Console with the new developer website.** Aircast, Store presence, Main store listing, Contact details, Website: `https://getaircast.netlify.app`. Save.
+  2. **Update Play Console privacy policy URL.** App content, Privacy policy: `https://getaircast.netlify.app/aircast/privacy.html`. Save.
+  3. **Build the signed AAB.** Android Studio, Build, Generate Signed Bundle. Output goes to `AndroidApp/app/release/app-release.aab`.
+  4. **Upload AAB to Play Console** as versionCode 14 / versionName 1.5.
+  5. **Wait 24 to 48 hours** for Play to push the website URL change to Google's app-ads.txt crawler.
+  6. **Trigger AdMob "Check for updates"** on the app-ads.txt verification card. Verification completes within minutes once Play has synced.
 - **Production AAB upload pending.** `AndroidApp/app/build.gradle` has uncommitted bump to versionCode 14 / versionName 1.5 (was 13 / 1.4). The bump is intentional — Play Console rejected versionCode 13 on previous upload as duplicate. Next session: confirm the signed AAB at `AndroidApp/app/release/app-release.aab` was rebuilt with the bumped version PLUS the new AdMob SDK PLUS the language fix, then upload to Play Console.
 - **Language picker bug fix is shipped in code but not verified on-device.** `LanguagePicker.applyLocale()` + `WalkthroughActivity.bindCastPage()` + `walk_cast_step2` string with `%1$s` placeholder all in place. Confirmed builds clean. NOT YET verified on a real Pixel 8 install via adb (phone biometric blocked it last attempt). When picking this up: install the v1.5 build, force-pick a non-English locale from the in-app picker, confirm the cast walkthrough page reflects the change without an app restart.
 - ~~`play_store_assets_v2/versions/v8/`, `v9/`, `v10/` all untracked.~~ RESOLVED 2026-05-14: v10 committed as the only Play Store asset version. v1–v9 and the pre-`versions/` flat layout deleted. `play_store_assets_v2/package.json` moved inside v10 so v10 is self-contained. `versions/v10/feature/feature_graphic.png` is the 1024×500 feature graphic.

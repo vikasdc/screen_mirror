@@ -64,14 +64,10 @@ android {
                 signingConfig signingConfigs.release
             }
 
-            // PRODUCTION AdMob IDs. App ID is wired up; the banner ad unit ID
-            // is still a placeholder — create it in AdMob console
-            // (Apps > Aircast > Ad units > New ad unit > Banner > name it
-            // "Aircast Home Banner") and paste the ca-app-pub-... id below
-            // before shipping to Play. Until then, release builds will fail
-            // to load real ads but won't crash.
+            // PRODUCTION AdMob IDs. App ID + Banner Unit ID for "Aircast Home Banner".
+            // Created in AdMob console, Apps, Aircast, Ad units.
             manifestPlaceholders = [admobAppId: "ca-app-pub-3814847756285692~3539815988"]
-            buildConfigField "String", "ADMOB_BANNER_UNIT_ID", "\"ca-app-pub-3814847756285692/PLACEHOLDER_BANNER_UNIT_ID\""
+            buildConfigField "String", "ADMOB_BANNER_UNIT_ID", "\"ca-app-pub-3814847756285692/7158811030\""
         }
     }
     compileOptions {
