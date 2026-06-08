@@ -18,12 +18,12 @@ These are tasks that were active when the last session ended. Treat each as a To
   - Developer site live at `https://getaircast.netlify.app`. `/app-ads.txt` returns the correct AdMob line.
   
   What's still needed:
-  1. **Update Play Console with the new developer website.** Aircast, Store presence, Main store listing, Contact details, Website: `https://getaircast.netlify.app`. Save.
-  2. **Update Play Console privacy policy URL.** App content, Privacy policy: `https://getaircast.netlify.app/aircast/privacy.html`. Save.
-  3. **Build the signed AAB.** Android Studio, Build, Generate Signed Bundle. Output goes to `AndroidApp/app/release/app-release.aab`.
-  4. **Upload AAB to Play Console** as versionCode 14 / versionName 1.5.
-  5. **Wait 24 to 48 hours** for Play to push the website URL change to Google's app-ads.txt crawler.
-  6. **Trigger AdMob "Check for updates"** on the app-ads.txt verification card. Verification completes within minutes once Play has synced.
+  - ~~Update Play Console developer website to `https://getaircast.netlify.app`.~~ **DONE 2026-05-14.**
+  - ~~Update Play Console privacy policy URL to `https://getaircast.netlify.app/aircast/privacy.html`.~~ **DONE 2026-05-14.**
+  1. **Build the signed AAB.** Android Studio, Build, Generate Signed Bundle. Output goes to `AndroidApp/app/release/app-release.aab`. (User started this; resumes here next session if it didn't complete.)
+  2. **Upload AAB to Play Console** as versionCode 14 / versionName 1.5.
+  3. **Wait 24 to 48 hours** for Play to push the developer-website URL change to Google's app-ads.txt crawler.
+  4. **Trigger AdMob "Check for updates"** on the app-ads.txt verification card. Verification completes within minutes once Play has synced.
 - **Production AAB upload pending.** `AndroidApp/app/build.gradle` has uncommitted bump to versionCode 14 / versionName 1.5 (was 13 / 1.4). The bump is intentional — Play Console rejected versionCode 13 on previous upload as duplicate. Next session: confirm the signed AAB at `AndroidApp/app/release/app-release.aab` was rebuilt with the bumped version PLUS the new AdMob SDK PLUS the language fix, then upload to Play Console.
 - **Language picker bug fix is shipped in code but not verified on-device.** `LanguagePicker.applyLocale()` + `WalkthroughActivity.bindCastPage()` + `walk_cast_step2` string with `%1$s` placeholder all in place. Confirmed builds clean. NOT YET verified on a real Pixel 8 install via adb (phone biometric blocked it last attempt). When picking this up: install the v1.5 build, force-pick a non-English locale from the in-app picker, confirm the cast walkthrough page reflects the change without an app restart.
 - ~~`play_store_assets_v2/versions/v8/`, `v9/`, `v10/` all untracked.~~ RESOLVED 2026-05-14: v10 committed as the only Play Store asset version. v1–v9 and the pre-`versions/` flat layout deleted. `play_store_assets_v2/package.json` moved inside v10 so v10 is self-contained. `versions/v10/feature/feature_graphic.png` is the 1024×500 feature graphic.
@@ -52,6 +52,13 @@ Non-obvious gotchas:
 ## Log
 
 Append-only daily notes. Newest at the top. Each entry: `## YYYY-MM-DD (machine)` then a few bullets of what was actually done. Useful for "wait, what did I do last Tuesday" recall.
+
+## 2026-05-14 (windows desktop, fifth pass, Play Console updated)
+
+- Play Console developer website set to `https://getaircast.netlify.app`. (Done by user.)
+- Play Console privacy policy URL set to `https://getaircast.netlify.app/aircast/privacy.html`. (Done by user.)
+- AdMob banner ad unit "Aircast Home Banner" created and ID `ca-app-pub-3814847756285692/7158811030` wired into release build.gradle.
+- User heading off to build the signed AAB in Android Studio. Next session resumes at AAB build/upload.
 
 ## 2026-05-14 (windows desktop, fourth pass, Netlify deploy verified)
 
