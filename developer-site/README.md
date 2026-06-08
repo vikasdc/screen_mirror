@@ -2,13 +2,13 @@
 
 Static site for the Aircast developer presence. Hosts:
 
-- Landing page (`index.html`) — what shows when someone visits the bare domain.
-- `app-ads.txt` — AdMob's app-ads.txt verification file. MUST be served at the ROOT of the deployed domain. AdMob's crawler fetches `https://<your-domain>/app-ads.txt` and matches the publisher ID.
-- `aircast/privacy.html` — privacy policy. The Play Store listing's "Privacy policy URL" field should point here once deployed.
+- Landing page (`index.html`). Shows when someone visits the bare domain.
+- `app-ads.txt`. AdMob's app-ads.txt verification file. MUST be served at the ROOT of the deployed domain. AdMob's crawler fetches `https://<your-domain>/app-ads.txt` and matches the publisher ID.
+- `aircast/privacy.html`. Privacy policy. The Play Store listing's "Privacy policy URL" field should point here once deployed.
 
 ## Why this exists
 
-AdMob requires a developer website to verify your app for serving ads. The website's `/app-ads.txt` file must contain a line matching your AdMob publisher ID. Google Sites pages don't expose the root path, so app-ads.txt can't live there — hence this folder, which is meant to be deployed to a host that gives you root-level URL control.
+AdMob requires a developer website to verify your app for serving ads. The website's `/app-ads.txt` file must contain a line matching your AdMob publisher ID. Google Sites pages don't expose the root path, so app-ads.txt can't live there. This folder is meant to be deployed to a host that gives you root-level URL control.
 
 ## Deploy options (pick one)
 
@@ -26,7 +26,7 @@ AdMob requires a developer website to verify your app for serving ads. The websi
 2. Copy the contents of `developer-site/` into that repo's root.
 3. Push to `main` (default branch).
 4. Repo settings → Pages → Source: `main` branch, root folder. Save.
-5. Wait 1–2 minutes for GitHub to publish.
+5. Wait 1 or 2 minutes for GitHub to publish.
 6. Site goes live at `https://vikasdc.github.io`. Verify `https://vikasdc.github.io/app-ads.txt`.
 
 ### Option C: Cloudflare Pages (3 minutes)
@@ -48,7 +48,7 @@ Once your developer site is live and `/app-ads.txt` returns the AdMob line:
    - Play Console → App content → Privacy policy
    - Change to `https://<your-domain>/aircast/privacy.html`
    - Save changes
-3. **Wait 24–48 hours** for Play Console to push the website URL change to Google's app-ads.txt crawler.
+3. **Wait 24 to 48 hours** for Play Console to push the website URL change to Google's app-ads.txt crawler.
 4. **Trigger AdMob verification**
    - AdMob console → Apps → Aircast → "Check for updates" button on the app-ads.txt verification card
    - Verification usually completes within a few minutes once Play has synced
@@ -67,4 +67,4 @@ If you ever onboard another ad network (e.g. Meta Audience Network, Unity Ads), 
 
 Whenever you change the privacy policy, edit `aircast/privacy.html` here AND redeploy. If you're using GitHub Pages, that's just a `git push`. If Netlify/Cloudflare, drag the updated folder again.
 
-The canonical privacy policy text also lives at `docs/legal/privacy-policy.md` in the Aircast repo — when changes are made there, copy them across to this static file.
+The canonical privacy policy text also lives at `docs/legal/privacy-policy.md` in the Aircast repo. When changes are made there, copy them across to this static file.
