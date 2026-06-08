@@ -18,7 +18,7 @@ android {
         applicationId "com.screenmirror"
         minSdk 24
         targetSdk 35
-        versionCode 15
+        versionCode 16
         versionName "1.5"
 
         // Restrict packaged locales to the ones we actually ship.
@@ -86,5 +86,14 @@ dependencies {
     // Google Mobile Ads SDK which handles ad serving, fill, and analytics.
     // Lite variant would drop ~3MB but trades off some features; stick with
     // full SDK until APK size becomes a problem.
-    implementation 'com.google.android.gms:play-services-ads:23.5.0'
+    //
+    // VERSION 24.0.0+ is required for Android 15+ 16 KB page size compatibility.
+    // Versions 23.x ship SQLite/Protobuf native libs that aren't 16-KB-aligned,
+    // which causes a WorkDatabase init crash on Pixel 9 Pro and similar devices.
+    // Play Pre-launch report rejects releases that fail this check.
+    implementation 'com.google.android.gms:play-services-ads:24.0.0'
+
+    // Force WorkManager to a 16-KB-compatible version. AdMob pulls WorkManager
+    // transitively; without this pin, an older transitive version can override.
+    implementation 'androidx.work:work-runtime:2.10.0'
 }
