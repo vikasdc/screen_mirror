@@ -10,7 +10,11 @@ If two machines edit this in the same session, last-write-wins on push. That's f
 
 These are tasks that were active when the last session ended. Treat each as a TodoWrite seed.
 
-- **Production AAB upload pending.** `AndroidApp/app/build.gradle` has uncommitted bump to versionCode 14 / versionName 1.5 (was 13 / 1.4). The bump is intentional — Play Console rejected versionCode 13 on previous upload as duplicate. Next session: confirm the signed AAB at `AndroidApp/app/release/app-release.aab` was rebuilt with the bumped version, then upload to Play Console.
+- **AdMob banner integration is wired but blocked on TWO external steps before it serves real ads.**
+  Code-side is DONE: `play-services-ads:23.5.0` added, `MobileAds.initialize` called in `AircastApp.onCreate`, adaptive banner inflated into `adSlotTop` in `MainActivity.loadBannerAd()`. Debug builds use Google's TEST IDs (safe to ship — never real ads). Release builds use the production App ID `ca-app-pub-3814847756285692~3539815988`. What's still needed:
+  1. **Create the production banner ad unit in AdMob console.** Apps → Aircast → Ad units → New ad unit → Banner → name "Aircast Home Banner". Copy the `ca-app-pub-3814847756285692/XXXXXXXXXX` ad unit ID into `AndroidApp/app/build.gradle` line 74 (replacing `PLACEHOLDER_BANNER_UNIT_ID`).
+  2. **Deploy `developer-site/` to a free host and set it as Play Store developer website.** Netlify drag-and-drop is fastest. See `developer-site/README.md` for the 3 options. After deploy, update Play Console → Aircast → Store presence → Main store listing → Contact details → Website to the deployed URL. Wait 24-48 hours for Play to sync, then trigger AdMob's "Check for updates" on the app-ads.txt verification card.
+- **Production AAB upload pending.** `AndroidApp/app/build.gradle` has uncommitted bump to versionCode 14 / versionName 1.5 (was 13 / 1.4). The bump is intentional — Play Console rejected versionCode 13 on previous upload as duplicate. Next session: confirm the signed AAB at `AndroidApp/app/release/app-release.aab` was rebuilt with the bumped version PLUS the new AdMob SDK PLUS the language fix, then upload to Play Console.
 - **Language picker bug fix is shipped in code but not verified on-device.** `LanguagePicker.applyLocale()` + `WalkthroughActivity.bindCastPage()` + `walk_cast_step2` string with `%1$s` placeholder all in place. Confirmed builds clean. NOT YET verified on a real Pixel 8 install via adb (phone biometric blocked it last attempt). When picking this up: install the v1.5 build, force-pick a non-English locale from the in-app picker, confirm the cast walkthrough page reflects the change without an app restart.
 - ~~`play_store_assets_v2/versions/v8/`, `v9/`, `v10/` all untracked.~~ RESOLVED 2026-05-14: v10 committed as the only Play Store asset version. v1–v9 and the pre-`versions/` flat layout deleted. `play_store_assets_v2/package.json` moved inside v10 so v10 is self-contained. `versions/v10/feature/feature_graphic.png` is the 1024×500 feature graphic.
 - **`aircast_tutorial_landscape_final.mp4` (5.7MB, 36s, 1080p)** is the upload-ready Play Store promo video. Voiceover by Edge TTS Guy Neural, background music is Bensound "Creative Minds" (CC-BY — requires attribution somewhere if Google enforces). Replace `bg_music.mp3` with a CC0 track if attribution is a concern, then re-run `python gen_landscape_final.py`.
@@ -38,6 +42,13 @@ Non-obvious gotchas:
 ## Log
 
 Append-only daily notes. Newest at the top. Each entry: `## YYYY-MM-DD (machine)` then a few bullets of what was actually done. Useful for "wait, what did I do last Tuesday" recall.
+
+## 2026-05-14 (windows desktop — third pass — AdMob integration)
+
+- Wired the Mobile Ads SDK 23.5.0 into the app. Banner is set up with anchored adaptive sizing, loads into the pre-existing `adSlotTop` FrameLayout that was already reserved in `activity_main.xml`.
+- Production AdMob App ID `ca-app-pub-3814847756285692~3539815988` set as the manifestPlaceholder for release builds. Debug uses TEST IDs (safe ad-network-recognized fake IDs, never real ads).
+- Banner ad unit ID still a placeholder (need to create in AdMob console). Build still compiles and ships fine with the placeholder; release build will fail to load real ads until updated.
+- Created `developer-site/` folder with index.html, app-ads.txt, aircast/privacy.html, and a README.md explaining how to deploy. User has no developer domain yet and was using Google Sites for privacy policy (Google Sites can't serve app-ads.txt at root). Recommended Netlify drag-and-drop.
 
 ## 2026-05-14 (windows desktop — second pass)
 

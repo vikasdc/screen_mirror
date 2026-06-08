@@ -17,6 +17,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <!-- AdMob App ID. Value is injected by manifestPlaceholders in
+             app/build.gradle: TEST id for debug, PRODUCTION id for release.
+             Missing this meta-data causes the Mobile Ads SDK to crash on
+             initialize() with a SecurityException at runtime. -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="${admobAppId}" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

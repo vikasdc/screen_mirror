@@ -20,6 +20,9 @@
 # MUST sync via git. .claude/worktrees/ is re-ignored below.
 !/.claude/
 !/.claude/**
+# Developer website static files (deployed externally to host app-ads.txt + privacy).
+!/developer-site/
+!/developer-site/**
 
 # 3. CRITICAL: Re-ignore the specific junk folders INSIDE AndroidApp
 # These are the ones creating the 10,000+ files

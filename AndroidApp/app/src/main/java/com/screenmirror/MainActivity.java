@@ -6,8 +6,11 @@ import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,6 +18,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 import com.google.android.material.materialswitch.MaterialSwitch;
 
 public class MainActivity extends AppCompatActivity {
@@ -83,6 +89,45 @@ public class MainActivity extends AppCompatActivity {
         languageLabel = findViewById(R.id.languageLabel);
         languageLabel.setText(LanguagePicker.currentNativeName());
         languageRow.setOnClickListener(v -> LanguagePicker.show(this));
+
+        loadBannerAd();
+    }
+
+    /**
+     * Inflates an adaptive banner AdView into the adSlotTop FrameLayout
+     * and requests one ad. Uses anchored adaptive sizing — banner height
+     * is calculated from the screen width so the visual presence matches
+     * the device. On a typical phone this yields a 50–100dp banner that
+     * fits inside the 90dp reservation in activity_main.xml.
+     *
+     * Failure modes: SDK init not finished (the ad request queues and
+     * fires later — fine), no network (fails silently, slot stays empty),
+     * unfilled (no ad available — slot stays empty). None of these crash.
+     */
+    private void loadBannerAd() {
+        FrameLayout adSlot = findViewById(R.id.adSlotTop);
+        if (adSlot == null) return;
+
+        AdView adView = new AdView(this);
+        adView.setAdUnitId(BuildConfig.ADMOB_BANNER_UNIT_ID);
+        adView.setAdSize(adaptiveBannerSize());
+        adSlot.removeAllViews();
+        adSlot.addView(adView);
+
+        adView.loadAd(new AdRequest.Builder().build());
+    }
+
+    /**
+     * Computes the anchored adaptive banner ad size for the current
+     * screen width. Recommended by AdMob over the legacy SMART_BANNER
+     * constant. Returns a size whose height is optimal for the device.
+     */
+    private AdSize adaptiveBannerSize() {
+        DisplayMetrics dm = new DisplayMetrics();
+        WindowManager wm = (WindowManager) getSystemService(WINDOW_SERVICE);
+        wm.getDefaultDisplay().getMetrics(dm);
+        int widthDp = Math.round(dm.widthPixels / dm.density);
+        return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this, widthDp);
     }
 
     @Override

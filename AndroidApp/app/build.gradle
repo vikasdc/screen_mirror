@@ -18,13 +18,26 @@ android {
         applicationId "com.screenmirror"
         minSdk 24
         targetSdk 35
-        versionCode 13
-        versionName "1.4"
+        versionCode 14
+        versionName "1.5"
 
         // Restrict packaged locales to the ones we actually ship.
         // Without this, AppCompat's full set of ~80 locales bloats the APK.
         resConfigs "en", "es", "pt-rBR", "hi", "in", "ru", "de", "fr",
                 "it", "ja", "ko", "zh-rCN", "tr", "vi", "ar"
+
+        // AdMob IDs. Defaults are Google's official TEST IDs — safe to ship,
+        // never serve real ads, never charge you. Release builds override
+        // these with the production values from the AdMob console.
+        // App ID is injected into AndroidManifest via manifestPlaceholders.
+        // Ad unit IDs are injected as BuildConfig fields and read at runtime
+        // (see MainActivity).
+        manifestPlaceholders = [admobAppId: "ca-app-pub-3940256099942544~3347511713"]
+        buildConfigField "String", "ADMOB_BANNER_UNIT_ID", "\"ca-app-pub-3940256099942544/6300978111\""
+    }
+
+    buildFeatures {
+        buildConfig true
     }
 
     signingConfigs {
@@ -50,6 +63,15 @@ android {
             if (keystorePropertiesFile.exists()) {
                 signingConfig signingConfigs.release
             }
+
+            // PRODUCTION AdMob IDs. App ID is wired up; the banner ad unit ID
+            // is still a placeholder — create it in AdMob console
+            // (Apps > Aircast > Ad units > New ad unit > Banner > name it
+            // "Aircast Home Banner") and paste the ca-app-pub-... id below
+            // before shipping to Play. Until then, release builds will fail
+            // to load real ads but won't crash.
+            manifestPlaceholders = [admobAppId: "ca-app-pub-3814847756285692~3539815988"]
+            buildConfigField "String", "ADMOB_BANNER_UNIT_ID", "\"ca-app-pub-3814847756285692/PLACEHOLDER_BANNER_UNIT_ID\""
         }
     }
     compileOptions {
@@ -63,4 +85,10 @@ dependencies {
     implementation 'com.google.android.material:material:1.10.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
+
+    // AdMob banner ads. The play-services-ads artifact pulls in the
+    // Google Mobile Ads SDK which handles ad serving, fill, and analytics.
+    // Lite variant would drop ~3MB but trades off some features; stick with
+    // full SDK until APK size becomes a problem.
+    implementation 'com.google.android.gms:play-services-ads:23.5.0'
 }
