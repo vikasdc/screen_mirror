@@ -43,6 +43,9 @@
 **/*.txt
 # re-allow .txt files inside the Play Store assets v2 tree (voiceover scripts etc.)
 !/play_store_assets_v2/**/*.txt
+# re-allow .txt files inside developer-site (app-ads.txt MUST track in git
+# so it can be deployed to the developer website root).
+!/developer-site/**/*.txt
 **/*.class
 **/.DS_Store
 **/android_prefs/
