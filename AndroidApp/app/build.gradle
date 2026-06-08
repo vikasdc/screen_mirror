@@ -18,7 +18,7 @@ android {
         applicationId "com.screenmirror"
         minSdk 24
         targetSdk 35
-        versionCode 16
+        versionCode 17
         versionName "1.5"
 
         // Restrict packaged locales to the ones we actually ship.
