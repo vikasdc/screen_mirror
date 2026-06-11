@@ -30,6 +30,14 @@
             margin-bottom: 15px;
         }
 
+        ul {
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: #1a73e8;
+        }
+
         .footer {
             margin-top: 50px;
             font-size: 0.9em;
@@ -42,41 +50,78 @@
 
 <body>
     <h1>Privacy Policy for Aircast</h1>
-    <p>Last updated: March 11, 2026</p>
+    <p>Last updated: June 9, 2026</p>
 
     <p>This Privacy Policy describes how <strong>Aircast</strong> ("the App") handles your information. Aircast is a
-        screen mirroring application designed to connect your mobile device to displays on the same local network.</p>
+        screen mirroring application for Android. It connects your phone to displays on the same local network and shows
+        banner advertising provided by Google AdMob.</p>
 
-    <h2>1. Data Collection</h2>
-    <p>The App does <strong>not</strong> collect, store, or transmit any personal data or private information from your
-        device. All screen mirroring and content transmission occur strictly within your local Wi-Fi network.</p>
+    <h2>1. Data Aircast Collects Directly</h2>
+    <p>The App itself does not collect, store, or transmit personally identifiable information from your device. All
+        screen mirroring traffic stays inside your local Wi-Fi network. The developer does not run any analytics service,
+        does not log app usage on a remote server, and does not have access to anything you mirror.</p>
 
     <h2>2. Permissions Used</h2>
-    <p>The App requires the following permissions to function:</p>
+    <p>The App requests the following Android permissions so it can function:</p>
     <ul>
-        <li><strong>INTERNET:</strong> To facilitate the local streaming protocol.</li>
-        <li><strong>ACCESS_WIFI_STATE / ACCESS_NETWORK_STATE:</strong> To detect and connect to displays on your local
-            network.</li>
-        <li><strong>AD_ID:</strong> Used only for Play Store compliance and identifying device platform. No personal
-            tracking is performed by the developer.</li>
+        <li><strong>INTERNET</strong>: required for Google AdMob to load banner ads, and for the system mirroring
+            framework to negotiate device discovery.</li>
+        <li><strong>ACCESS_WIFI_STATE</strong> and <strong>ACCESS_NETWORK_STATE</strong>: used to detect smart TVs and
+            casting receivers on the same local network as your phone.</li>
+        <li><strong>AD_ID</strong> (Android Advertising ID): used by Google AdMob to serve relevant ads and to limit the
+            number of times you see the same ad. You can reset or opt out of personalised advertising from your phone's
+            settings (Settings, then Google, then Ads).</li>
     </ul>
 
     <h2>3. Screen Capture</h2>
-    <p>The App uses system APIs (MediaProjection on Android and ReplayKit on iOS) to capture your screen for the
-        purposes of mirroring. This data is processed in real-time and is never recorded, saved, or uploaded to any
-        external server.</p>
+    <p>The App uses the system MediaProjection API to capture the phone screen for mirroring. This capture happens only
+        when you start a casting session and only flows to the receiving TV or cast device on your network. The captured
+        stream is never recorded to storage and never uploaded to any server controlled by the developer or by Google.</p>
 
-    <h2>4. Third-Party Services</h2>
-    <p>The App does not share any data with third-party advertisers or analytics providers. There is no background
-        tracking or profiling of user behavior.</p>
+    <h2>4. Advertising (Google AdMob)</h2>
+    <p>Aircast displays banner ads served by Google AdMob, which is part of Google LLC. When you use the App, AdMob may
+        collect or receive the following information for the purpose of serving and measuring ads:</p>
+    <ul>
+        <li>Your Android Advertising ID.</li>
+        <li>General device information (model, OS version, language, mobile network or Wi-Fi state).</li>
+        <li>Approximate location derived from your IP address.</li>
+        <li>Information about ad impressions, clicks, and interactions inside the App.</li>
+        <li>Local identifiers, similar to cookies, that AdMob may set on your device to limit ad repetition and to detect
+            invalid traffic.</li>
+    </ul>
+    <p>This information is processed by Google in line with the <a href="https://policies.google.com/privacy"
+            target="_blank" rel="noopener">Google Privacy Policy</a>. Google may share aggregated, non-identifying data
+        with advertising partners. Google's data practices for ad serving are described at <a
+            href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">policies.google.com/technologies/ads</a>.</p>
+    <p>You can manage advertising preferences and opt out of personalised ads using Google's controls at <a
+            href="https://adssettings.google.com" target="_blank" rel="noopener">adssettings.google.com</a> or directly
+        on your Android device under Settings, Google, Ads.</p>
 
-    <h2>5. Security</h2>
-    <p>Because the App operates on your local network, the security of your connection depends on the security of your
-        own Wi-Fi network.</p>
+    <h2>5. Children</h2>
+    <p>Aircast is a general-audience utility. It is not designed for, directed at, or intended to be used by children
+        under the age of 13. The App is not registered as a Designed for Families app on Google Play. If you believe a
+        child has used the App, please contact the developer using the address below and we will remove any associated
+        data we are aware of.</p>
 
-    <h2>6. Contact Us</h2>
-    <p>If you have any questions about this Privacy Policy, you can contact us at: <strong><a href="mailto:vikasjr2000@gmail.com">vikasjr2000@gmail.com</a></strong>
-    </p>
+    <h2>6. Users in the European Economic Area, United Kingdom and Switzerland</h2>
+    <p>If you are located in the EEA, UK or Switzerland, Google AdMob uses a Google certified Consent Management
+        Platform to ask for your consent before personalised ads are shown. If you decline, ads may still be shown but
+        they will be non-personalised. You can change your choice at any time from the App by reopening the consent
+        prompt through your device settings.</p>
+
+    <h2>7. Security</h2>
+    <p>Mirroring runs over your local Wi-Fi network. The security of that traffic depends on the security of your
+        Wi-Fi router and the devices on it. The App does not run a remote server or expose any port to the public
+        internet.</p>
+
+    <h2>8. Changes to This Policy</h2>
+    <p>This policy may be updated when the App changes or when the data practices of advertising partners change.
+        The current version is always available at the URL printed in the Play Store listing. Material changes will be
+        called out in the App's release notes.</p>
+
+    <h2>9. Contact</h2>
+    <p>For questions about this policy or about the App, contact the developer at <strong><a
+                href="mailto:vikasjr2000@gmail.com">vikasjr2000@gmail.com</a></strong>.</p>
 
     <div class="footer">
         © 2026 Aircast. All rights reserved.
